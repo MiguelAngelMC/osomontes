@@ -1024,8 +1024,14 @@ class Model extends Conexion{
 		$hora = date("H:i:s");
 		$fecha = date("Y-m-d");
 
-		$datos = Conexion::conectar()->prepare("SELECT nombre FROM $tabla WHERE nombre=:categoria");
-		$datos->bindParam(':categoria', $categoria);
+		$idUsuario = $datos['valor_idUsuario'];
+		$nombreUsuario = $datos['valor_nombreUsuario'];
+		$apellidosUsuario = $datos['valor_apellidosUsuario'];
+		$correoUsuario = $datos['valor_correoUsuario'];
+
+		$datos = Conexion::conectar()->prepare("SELECT id_user, nombre FROM $tabla WHERE id_user=:id AND nombre=:nombre");
+		$datos->bindParam(':id', $idUsuario);
+		$datos->bindParam(':nombre', $nombreUsuario);
 		$datos -> execute();
 		$resultados = $datos->fetch(PDO::FETCH_ASSOC);
 
@@ -1034,8 +1040,8 @@ class Model extends Conexion{
 			return "noexiste";
 		}
 		else{
-			$datos2 = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE nombre=:nombre");
-			$datos2 -> bindParam(':nombre', $nombreUsuario);
+			$datos2 = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id_user=:id");
+			$datos2 -> bindParam(':id', $idUsuario);
 			$datos2->execute();
 
 			if($datos2->execute()){

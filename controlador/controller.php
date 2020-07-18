@@ -281,6 +281,42 @@
 
 		}
 
+		// Método que verifica que siga existiendo el perfil mientras se navega
+		static public function verificarExistenciaPerfilController(){
+
+			if(!empty($_SESSION['id_usuario'])){
+
+				$respuesta = Model::vistaPerfilModelo($_SESSION['id_usuario'], "usuario");
+				
+				if(!empty($respuesta)){
+					
+				}
+				else{
+					session_destroy();
+			        echo '<script>
+			            (async () => {
+			              const a = await Swal.fire({
+			                icon: "error",
+			                timer: 4000,
+			                timerProgressBar: true,
+			                title: "Pal lobby",
+			                text: "Ha sido baneado de nuestros servidores",
+			                footer: "Presione OK para cerrar esta alerta o espere."
+			              });
+			                    
+			              if(a){
+			                window.location="index.php?opcion=login";
+			              }
+
+			            })()
+			                  
+			          </script>';
+				}
+				
+			}
+
+		}
+
 		// Método para mostrar el perfil con el ID del usuario
 		static public function verPerfilController(){
 
@@ -1730,11 +1766,11 @@
 		// Método que recibe los valores de eliminar_usuario.php
 		static public function eliminarUsuarioController($idUsuario, $nombreUsuario, $apellidosUsuario, $correoUsuario){
 
-			if(isset($idUsuario) && isset($nombreUsuario)){
+			if(isset($idUsuario) && isset($nombreUsuario) && isset($apellidosUsuario) && isset($correoUsuario)){
 
-				if(!empty($idUsuario) && !empty($nombreUsuario)){
+				if(!empty($idUsuario) && !empty($nombreUsuario) && !empty($apellidosUsuario) && !empty($correoUsuario)){
 
-					$datos = array('valor_idUsuario'=>$idUsuario, 'valor_nombreUsuario'=>$nombreUsuario);
+					$datos = array('valor_idUsuario'=>$idUsuario, 'valor_nombreUsuario'=>$nombreUsuario, 'valor_apellidosUsuario'=>$apellidosUsuario, 'valor_correoUsuario'=>$correoUsuario);
 
 					$respuesta = Model::eliminarUsuarioModelo($datos, "usuario");
 
@@ -1745,7 +1781,7 @@
 							const a = await Swal.fire({
 								icon: "success",
 								title: "El usuario fue eliminado con éxito 😄👍",
-								html: "El usuario: <b>'.$nombreUsuario.' '.$apellidosUsuario.'</b><br>Correo: <b>'.$correoUsuario.'</b>, fue eliminado",
+								html: "El usuario: <b>'.$nombreUsuario.' '.$apellidosUsuario.'</b><br>Correo: <b>'.$correoUsuario.'</b><br> fue eliminado",
 								footer: "Presiona OK para continuar."
 							});
 							
@@ -1765,7 +1801,7 @@
 								icon: "info",
 								timer: 5000,
 								timerProgressBar: true,
-								title: "El usuario: '.$nombreUsuario.' '.$apellidosUsuario.'<br>Correo: '.$correoUsuario.' no existe",
+								title: "El usuario: '.$nombreUsuario.' '.$apellidosUsuario.'<br>Correo: '.$correoUsuario.'<br> no existe",
 								text: "Ingrese un usuario existente",
 								footer: "Este mensaje cerrará automáticamente en 5s."
 							});
@@ -1780,7 +1816,7 @@
 								icon: "error",
 								timer: 5000,
 								timerProgressBar: true,
-								title: "Ups!😢<br> Ocurrió un error al modificar al usuario:",
+								title: "Ups!😢<br> Ocurrió un error al eliminar al <br>usuario:",
 								html: "<b>'.$nombreUsuario.' '.$apellidosUsuario.'</b>"
 							});
 						</script>
@@ -1795,7 +1831,7 @@
 								icon: "warning",
 								timer: 5000,
 								timerProgressBar: true,
-								title: "Porfavor ingrese una categoria"
+								title: "Porfavor ingrese la información del usuario"
 							});
 						</script>
 						';

@@ -52,7 +52,7 @@
 						  confirmButtonText: 'Si, eliminar!'
 						}).then((result) => {
 						  if (result.value) {
-						    window.location="index.php?opcion=eliminar_usuario&id_usuario="+id_usuario+"&nombre_usuario="+nombre_usuario+"&apellidos_usuario="+apellidos_usuario;
+						    window.location="index.php?opcion=eliminar_usuario&id_usuario="+id_usuario+"&nombre_usuario="+nombre_usuario+"&apellidos_usuario="+apellidos_usuario+"&correo_usuario="+correo_usuario;
 						  }
 						})
 					};

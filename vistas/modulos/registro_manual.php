@@ -159,7 +159,7 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn-outline-success btn-lg btn-block">Registrarte</button>
+      <button type="submit" class="btn btn-outline-success btn-lg btn-block">Registrar usuario</button>
       <div style="font-size: 1.08em;">
       ¿Ya registraste un usuario?&nbsp; <a href="index.php?opcion=ver_usuarios">Ver Usuarios</a>
       </div>

@@ -35,6 +35,10 @@
 <body>
 	<div>
 		<?php
+    
+      $tepi = new Controller();
+      $tepi -> verificarExistenciaPerfilController();
+      
       if(!empty($_SESSION['usuario']) && $_SESSION['tipo'] == 2){
         //echo $_SESSION['usuario']."<br>";
         //echo $_SESSION['tipo'];

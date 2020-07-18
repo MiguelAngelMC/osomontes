@@ -298,6 +298,15 @@
 					$contenido = "vistas/modulos/confirmar_correo.php";
 				}
 			}
+			else if($enlaces == 'eliminar_usuario'){
+
+				if(!empty($_SESSION['usuario']) && ($_SESSION['tipo'] == 1)){
+					$contenido = "vistas/modulos/eliminar_usuario.php";
+				}
+				else{
+					$contenido = "vistas/modulos/confirmar_correo.php";
+				}
+			}
 			else{
 				$contenido = "vistas/modulos/principal.php";
 			}
