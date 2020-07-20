@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<meta charset="UTF-8">
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta name="description" content="Empresa de telefonía celular, accesorios y servicios originaria de Santiago Ixcuintla, Nayarit, México. Realiza compras online seguras y paga con tu tarjeta de crédito/débito o tu cuenta de PayPal">
 	<title>Oso Montes</title>
@@ -64,7 +64,7 @@
 	<div style="background-color: black;">
 		<!------------------------------ aqui va el footer ---------------------------------->
 	<center>
-	<img src="vistas/img/logocelosomontes2.png" width="100vw" style="margin-top: 25px;"><br>
+	<img src="vistas/img/logocelosomontes2.png" alt="Logo Oso Montes" width="100vw" style="margin-top: 25px;"><br>
 	</center>
     <hr class="my-4">
 
@@ -91,7 +91,7 @@
         SANTIAGO IXCUINTLA, NAYARIT 63300</div></p>
         <a id="whats" style="text-decoration: none;" href="https://wa.me/523231009892?text=Hola,%20necesito%20de%20los%20servicios%20de%20tu%20página%20web." target="_blank" title="Iniciar chat"><p><div style="vertical-align: middle; display: inline-flex;"><span class="icon-whatsapp" style="font-size: 30px;"></span>&nbsp;323 100 9892</div></a></p>
         <a id="face" href="https://www.facebook.com/pages/Celulares-Oso-Montes/293767271095673" target="_blank" style="text-decoration: none;" title="Abrir página en facebook"><p><div style="vertical-align: middle; display: inline-flex;"><span class="icon-facebook2" style="font-size: 30px;"></span>&nbsp;OsoMontes</div></a></p>
-        <a id="correo" style="text-decoration: none;" title="Escríbenos un correo"><p><div style="vertical-align: middle; display: inline-flex;"><span class="icon-mail" style="font-size: 30px;"></span><img src="vistas/img/correo.png" height="21px" style="margin-top: 5px;"></div></a></p>
+        <a id="correo" style="text-decoration: none;" title="Escríbenos un correo"><p><div style="vertical-align: middle; display: inline-flex;"><span class="icon-mail" style="font-size: 30px;"></span><img src="vistas/img/correo.png" alt="Correo Oso Montes" height="21px" style="margin-top: 5px;"></div></a></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal" title="Cerrar">Cerrar</button>
@@ -112,14 +112,14 @@
       </div>
       <div class="modal-body" style="color: black;">
 		
-		<h5><b>PayPal</b> <img src="vistas/img/tarjetas/paypal.png" width="15%"></h5>
+		<h5><b>PayPal</b> <img src="vistas/img/tarjetas/paypal.png" alt="PayPal Logo" width="15%"></h5>
         Puedes pagar con tu cuenta de PayPal.<br><br>
 
-        <h5><b>Crédito</b> <img src="vistas/img/tarjetas/tarjeta-mastercard.png" width="13%"> <img src="vistas/img/tarjetas/visa.png" width="13%"></h5>
+        <h5><b>Crédito</b> <img src="vistas/img/tarjetas/tarjeta-mastercard.png" alt="Mastercard Logo" width="13%"> <img src="vistas/img/tarjetas/visa.png" alt="Visa Logo" width="13%"></h5>
         Puedes pagar con tu tarjeta Visa y Mastercard.
         <br><br>
 
-        <h5><b>Débito</b> <img src="vistas/img/tarjetas/tarjeta-mastercard.png" width="13%"> <img src="vistas/img/tarjetas/visa.png" width="13%"></h5>
+        <h5><b>Débito</b> <img src="vistas/img/tarjetas/tarjeta-mastercard.png" alt="Mastercard Logo" width="13%"> <img src="vistas/img/tarjetas/visa.png" alt="Visa Logo" width="13%"></h5>
         Puedes pagar con tu tarjeta Visa y Mastercard.
       </div>
       <div class="modal-footer">
@@ -141,7 +141,7 @@
       </div>
       <div class="modal-body">
         <center>
-        <img src="vistas/img/logocelosomontes2.png" width="100vw" style="margin-top: 10px;"><br><br>
+        <img src="vistas/img/logocelosomontes2.png" alt="Logo Oso Montes" width="100vw" style="margin-top: 10px;"><br><br>
         </center>
         <p style="justify-content: left;">Celulares Oso Montes es una tienda de telefonía celular y accesorios la cual ofrece diferentes tipos de celulares, micas, fundas, audifonos, cargadores, así mismo también ofrece servicios como lo son las recargas y liberaciones.<br>
           Celulares Oso Montes puede entregar a calquier parte de Nayarit sus articulos por medio de paqueteria, siendo este un servicio confiable y seguro para la entrega de los articulos, lo cual garantiza la seguridad de sus productos para que el artículo no llegue dañado y así puedan disfrutar de un buen servicio.<br>

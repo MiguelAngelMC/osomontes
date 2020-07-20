@@ -1664,20 +1664,20 @@
 					}else{
 						echo $dato['fecha_modificacion']." &nbsp;&nbsp;&nbsp;".$dato['hora_modificacion'];
 					} ?></td>
-					<td><button class="btn btn-warning" onclick="window.location='index.php?opcion=editar_usuario&nombre=<?php echo $dato['nombre'].'&apellidos='.$dato['apellidos'].'&sexo='.$dato['sexo'].'&fecha_nac='.$dato['fecha_nac'].'&celular='.$dato['celular'].'&localidad='.$dato['localidad'].'&estado='.$dato['estado'].'&domicilio='.$dato['domicilio'].'&id_usuario='.$dato['id_user'].'&correo='.$dato['correo'].'&contra='.$dato['contra'].'&status='.$dato['status'].'&num_rol='.$dato['num_rol'].'&fecha='.$dato['fecha'].'&hora='.$dato['hora']; ?>'">Editar</button> <button class="btn btn-danger" onclick="confirmar2('<?php echo $dato['id_user']; ?>', '<?php echo $dato['nombre']; ?>', '<?php echo $dato['apellidos']; ?>', '<?php echo $dato['correo']; ?>')">🗑️</button></td>
+					<td><button class="btn btn-warning" onclick="window.location='index.php?opcion=editar_usuario&nombre=<?php echo $dato['nombre'].'&apellidos='.$dato['apellidos'].'&sexo='.$dato['sexo'].'&fecha_nac='.$dato['fecha_nac'].'&celular='.$dato['celular'].'&localidad='.$dato['localidad'].'&estado='.$dato['estado'].'&domicilio='.urlencode($dato['domicilio']).'&id_usuario='.$dato['id_user'].'&correo='.$dato['correo'].'&status='.$dato['status'].'&num_rol='.$dato['num_rol'].'&fecha='.$dato['fecha'].'&hora='.$dato['hora'].'&fecha_confirmacion='.$dato['fecha_confirmacion'].'&hora_confirmacion='.$dato['hora_confirmacion']; ?>'">Editar</button> <button class="btn btn-danger" onclick="confirmar2('<?php echo $dato['id_user']; ?>', '<?php echo $dato['nombre']; ?>', '<?php echo $dato['apellidos']; ?>', '<?php echo $dato['correo']; ?>')">🗑️</button></td>
 				</tr>
 				<?php 
 			}
 		}
 
 		// Método que recibe los valores de editar_usuario.php
-		static public function editarUsuarioController(){
+		static public function editarUsuarioController($idUsuario, $nombreUsuario, $apellidosUsuario, $correoUsuario){
 
-			if(isset($_POST['nvoNombre'])){
+			if(isset($_POST['nvoNombre']) && isset($_POST['nvosApellidos']) && isset($_POST['nvoSexo']) && isset($_POST['nvaFecha_nac']) && isset($_POST['nvoTel']) && isset($_POST['nvaLocali']) && isset($_POST['nvoEstado']) && isset($_POST['nvoDomic']) && isset($_POST['nvoCorre']) && isset($_POST['nvaContra']) && isset($_POST['nvoStatus']) && isset($_POST['nvoRol']) && isset($_POST['nvaFecha_creacion']) && isset($_POST['nvaHora_creacion']) && isset($_POST['nvaFecha_confirmacion']) && isset($_POST['nvaHora_confirmacion'])){
 
-				if(!empty($_POST['nvoNombre'])){
+				if(!empty($_POST['nvoNombre']) && !empty($_POST['nvosApellidos']) && !empty($_POST['nvoSexo']) && !empty($_POST['nvaFecha_nac']) && !empty($_POST['nvoTel']) && !empty($_POST['nvaLocali']) && !empty($_POST['nvoEstado']) && !empty($_POST['nvoDomic']) && !empty($_POST['nvoCorre']) && !empty($_POST['nvaContra']) && !empty($_POST['nvoStatus']) && !empty($_POST['nvoRol']) && !empty($_POST['nvaFecha_creacion']) && !empty($_POST['nvaHora_creacion']) && !empty($_POST['nvaFecha_confirmacion']) && !empty($_POST['nvaHora_confirmacion'])){
 
-					$datos = array('valor_categoria'=>$categoria, 'valor_nvoNombre'=>$_POST['nvoNombre']);
+					$datos = array('valor_nvoNombre'=>$_POST['nvoNombre'], 'valor_nvosApellidos'=>$_POST['nvosApellidos'], 'valor_nvoSexo'=>$_POST['nvoSexo'], 'valor_nvaFecha_nac'=>$_POST['nvaFecha_nac'], 'valor_nvoTel'=>$_POST['nvoTel'], 'valor_nvaLocali'=>$_POST['nvaLocali'], 'valor_nvoEstado'=>$_POST['nvoEstado'], 'valor_nvoDomic'=>$_POST['nvoDomic'], 'valor_nvoCorre'=>$_POST['nvoCorre'], 'valor_nvaContra'=>$_POST['nvaContra'], 'valor_nvoStatus'=>$_POST['nvoStatus'], 'valor_nvoRol'=>$_POST['nvoRol'], 'valor_nvaFecha_creacion'=>$_POST['nvaFecha_creacion'], 'valor_nvaHora_creacion'=>$_POST['nvaHora_creacion'], 'valor_nvaFecha_confirmacion'=>$_POST['nvaFecha_confirmacion'], 'valor_nvaHora_confirmacion'=>$_POST['nvaHora_confirmacion']);
 
 					$respuesta = Model::editarUsuarioModelo($datos, "usuario");
 
@@ -1687,8 +1687,7 @@
 							(async () => {
 							const a = await Swal.fire({
 								icon: "success",
-								title: "La categoría fue modificada con éxito 😄👍",
-								html: "La categoría <b>'.$categoria.'</b>, fue renombrada como: <b>'.$_POST['nvoNombre'].'</b>",
+								title: "El usuario fue modificado con éxito 😄👍",
 								footer: "Presiona OK para continuar."
 							});
 							
@@ -1708,7 +1707,7 @@
 								icon: "info",
 								timer: 5000,
 								timerProgressBar: true,
-								title: "La categoría: '.$categoria.', no existe",
+								title: "El usuario: '.$nombreUsuario.', no existe",
 								text: "Ingrese una categoría existe",
 								footer: "Este mensaje cerrará automáticamente en 5s."
 							});

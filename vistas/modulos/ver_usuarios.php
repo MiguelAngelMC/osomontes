@@ -3,7 +3,7 @@
 </div>
 <div style="margin-left: 3%; margin-right: 3%; box-shadow: 0px 0px 30px 1px black; border-radius: 10px; border: none;">
 	<div class="table-responsive" style="padding: 1%;">
-		<button class="btn btn-primary" id="btn-agregar" onclick="window.location='index.php?opcion=registro_manual'" style="margin-bottom: 10px;">Agregar usuario</button><br>
+		<button class="btn btn-primary" id="btn-agregar" title="Agregar usuario" onclick="window.location='index.php?opcion=registro_manual'" style="margin-bottom: 10px;">Agregar usuario</button><br>
 		<table id="tablaUsuario" class="table table-hover table-sm display" style="white-space: nowrap; width: 100%;">
 			<thead>
 				<tr>
