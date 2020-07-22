@@ -6,22 +6,22 @@
     <div></div>
     <form method="POST" accept="UTF-8" class="needs-validation" novalidate>
       <div class="form-group">
-        <label for="nombre">Nombre(s):</label>
-        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Miguel Angel" required="" minlength="3" maxlength="30" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+">
+        <label for="nombre"><b>Nombre(s):</b></label>
+        <input type="text" style="border-radius: 17px;" class="form-control" id="nombre" name="nombre" placeholder="Miguel Angel" required="" minlength="3" maxlength="30" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+">
         <div class="invalid-feedback">
         Porfavor ingrese su(s) nombre(s) (almenos 3 caracteres).
         </div>
       </div>
       <div class="form-group">
-        <label for="ape">Apellidos:</label>
-        <input type="text" class="form-control" id="ape" name="ape" placeholder="Pérez López" required="" minlength="6" maxlength="30" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+">
+        <label for="ape"><b>Apellidos:</b></label>
+        <input type="text" style="border-radius: 17px;" class="form-control" id="ape" name="ape" placeholder="Pérez López" required="" minlength="6" maxlength="30" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+">
         <div class="invalid-feedback">
         Porfavor ingrese sus apellidos (almenos 6 caracteres).
         </div>
       </div>
       <div class="form-group">
-        <label for="sexo">Sexo:</label>
-        <select class="form-control" required="true" name="sexo" id="sexo">
+        <label for="sexo"><b>Sexo:</b></label>
+        <select class="form-control" style="border-radius: 17px;" required="true" name="sexo" id="sexo">
           <option value="">👥 Selecciona tu sexo</option>
           <option value="Femenino">Femenino</option>
           <option value="Masculino">Masculino</option>
@@ -31,8 +31,8 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="fecha_nac">Fecha de nacimiento:</label>
-        <input type="date" class="form-control" max="<?php date_default_timezone_set('America/Mazatlan');
+        <label for="fecha_nac"><b>Fecha de nacimiento:</b></label>
+        <input type="date" style="border-radius: 17px;" class="form-control" max="<?php date_default_timezone_set('America/Mazatlan');
       $fecha = date('Y-m-d');
       $nuevafecha = strtotime ( '-18 year' , strtotime ( $fecha ) ) ;
       $nuevafecha = date ( 'Y-m-d' , $nuevafecha );
@@ -42,22 +42,22 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="tel">Teléfono celular:</label>
-        <input type="text" class="form-control" id="tel" name="tel" placeholder="&#128241; 3231009892" required="" pattern="\d*" minlength="10" maxlength="10">
+        <label for="tel"><b>Teléfono celular:</b></label>
+        <input type="text" style="border-radius: 17px;" class="form-control" id="tel" name="tel" placeholder="&#128241; 3231009892" required="" pattern="\d*" minlength="10" maxlength="10">
         <div class="invalid-feedback">
         Porfavor ingrese su número de teléfono celular.
         </div>
       </div>
       <div class="form-group">
-        <label for="locali">Ciudad / Localidad:</label>
-        <input type="text" class="form-control" id="locali" name="locali" placeholder="&#127751; Santiago Ixc." required="" minlength="4" maxlength="20">
+        <label for="locali"><b>Ciudad / Localidad:</b></label>
+        <input type="text" style="border-radius: 17px;" class="form-control" id="locali" name="locali" placeholder="&#127751; Santiago Ixc." required="" minlength="4" maxlength="20">
         <div class="invalid-feedback">
         Porfavor ingrese la ciudad/localidad en la que vive.
         </div>
       </div>
       <div class="form-group">
-        <label for="estado">Estado:</label>
-        <select class="form-control" required="true" name="estado" id="estado">
+        <label for="estado"><b>Estado:</b></label>
+        <select class="form-control" style="border-radius: 17px;" required="true" name="estado" id="estado">
           <option value="">&#x1F1F2;&#x1F1FD; Selecciona tu estado &#xFE0F;</option>
           <option value="Aguascalientes">Aguascalientes</option>
           <option value="Baja California">Baja California</option>
@@ -97,22 +97,22 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="exampleDropdownFormEmail1">Domicilio:</label>
-        <input type="text" class="form-control" id="domic" name="domic" placeholder="&#127968; Amado Nervo #260" minlength="6" maxlength="40" required="">
+        <label for="domic"><b>Domicilio:</b></label>
+        <input type="text" style="border-radius: 17px;" class="form-control" id="domic" name="domic" placeholder="&#127968; Amado Nervo #260" minlength="6" maxlength="40" required="">
         <div class="invalid-feedback">
         Porfavor ingrese el domicilio donde vive.
         </div>
       </div>
       <div class="form-group">
-        <label for="corre">Correo electrónico:</label>
-        <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" id="corre" name="corre" placeholder="correo@ejemplo.com" required="" maxlength="45">
+        <label for="corre"><b>Correo electrónico:</b></label>
+        <input type="email" style="border-radius: 17px;" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" id="corre" name="corre" placeholder="correo@ejemplo.com" required="" maxlength="45">
         <div class="invalid-feedback">
         Porfavor ingrese su correo electrónico.
         </div>
       </div>
       <div class="form-group">
-        <label for="contra">Contraseña:</label>
-        <input type="password" class="form-control" id="contra" name="contra" placeholder="********" minlength="4" maxlength="20" required="">
+        <label for="contra"><b>Contraseña:</b></label>
+        <input type="password" style="border-radius: 17px;" class="form-control" id="contra" name="contra" placeholder="********" minlength="4" maxlength="20" required="">
         <div class="invalid-feedback">
         Porfavor ingrese su contraseña (almenos 4 caracteres).
         </div>
@@ -135,10 +135,10 @@
           }
         } 
       </script>
-      <button type="submit" class="btn btn-outline-success btn-lg btn-block">Registrarte</button>
+      <button type="submit" style="border-radius: 17px;" class="btn btn-outline-success btn-lg btn-block">Registrarte</button>
       Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.<br><br>
       <div style="font-size: 1.08em;">
-      ¿Ya tienes una cuenta?&nbsp; <a href="index.php?opcion=login">Iniciar Sesión</a>
+      <b>¿Ya tienes una cuenta?</b> <a href="index.php?opcion=login">Iniciar Sesión</a>
       </div>
     </form>
   </div>

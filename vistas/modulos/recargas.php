@@ -3,7 +3,7 @@
 	Recargas Oso Montes.
 </div>
 <div align="center">
-	<img src="vistas/img/menu/recarga.png" width="115vw">
+	<img src="vistas/img/menu/recarga.png" alt="Logo Recargas" width="115vw">
 </div>
 <div class="container">
 	<form method="POST" accept-charset="utf-8">

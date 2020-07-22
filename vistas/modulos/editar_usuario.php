@@ -4,8 +4,8 @@
     <form method="POST" accept="UTF-8" class="needs-validation" novalidate>
 
       <div class="form-group">
-        <label for="nvoNombre">Nombre(s):</label>
-        <input type="text" class="form-control" id="nvoNombre" name="nvoNombre" placeholder="Miguel Angel" required="" minlength="3" maxlength="30" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+" value="<?php if(isset($_GET['nombre'])){
+        <label for="nvoNombre"><b>Nombre(s):</b></label>
+        <input type="text" style="border-radius: 17px;" class="form-control" id="nvoNombre" name="nvoNombre" placeholder="Miguel Angel" required="" minlength="3" maxlength="30" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+" value="<?php if(isset($_GET['nombre'])){
           echo $_GET['nombre'];
         }?>">
         <div class="invalid-feedback">
@@ -14,8 +14,8 @@
       </div>
 
       <div class="form-group">
-        <label for="nvosApellidos">Apellidos:</label>
-        <input type="text" class="form-control" id="nvosApellidos" name="nvosApellidos" placeholder="Pérez López" required="" minlength="6" maxlength="30" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+" value="<?php if(isset($_GET['apellidos'])){
+        <label for="nvosApellidos"><b>Apellidos:</b></label>
+        <input type="text" style="border-radius: 17px;" class="form-control" id="nvosApellidos" name="nvosApellidos" placeholder="Pérez López" required="" minlength="6" maxlength="30" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+" value="<?php if(isset($_GET['apellidos'])){
           echo $_GET['apellidos'];
         }?>">
         <div class="invalid-feedback">
@@ -24,8 +24,8 @@
       </div>
 
       <div class="form-group">
-        <label for="nvoSexo">Sexo:</label>
-        <select class="form-control" required="true" name="nvoSexo" id="nvoSexo">
+        <label for="nvoSexo"><b>Sexo:</b></label>
+        <select class="form-control" style="border-radius: 17px;" required="true" name="nvoSexo" id="nvoSexo">
           <option value="">👥 Selecciona el sexo</option>
           <option value="Femenino" <?php if(isset($_GET['sexo']) && ($_GET['sexo'] == 'Femenino')){
           echo 'selected="selected"';
@@ -40,8 +40,8 @@
       </div>
 
       <div class="form-group">
-        <label for="nvaFecha_nac">Fecha de nacimiento:</label>
-        <input type="date" class="form-control" max="<?php date_default_timezone_set('America/Mazatlan');
+        <label for="nvaFecha_nac"><b>Fecha de nacimiento:</b></label>
+        <input type="date" style="border-radius: 17px;" class="form-control" max="<?php date_default_timezone_set('America/Mazatlan');
       $fecha = date('Y-m-d');
       $nuevafecha = strtotime ( '-18 year' , strtotime ( $fecha ) ) ;
       $nuevafecha = date ( 'Y-m-d' , $nuevafecha );
@@ -54,8 +54,8 @@
       </div>
 
       <div class="form-group">
-        <label for="nvoTel">Teléfono celular:</label>
-        <input type="text" class="form-control" id="nvoTel" name="nvoTel" placeholder="&#128241; 3231009892" required="" pattern="\d*" minlength="10" maxlength="10" value="<?php if(isset($_GET['celular'])){
+        <label for="nvoTel"><b>Teléfono celular:</b></label>
+        <input type="text" style="border-radius: 17px;" class="form-control" id="nvoTel" name="nvoTel" placeholder="&#128241; 3231009892" required="" pattern="\d*" minlength="10" maxlength="10" value="<?php if(isset($_GET['celular'])){
           echo $_GET['celular'];
         }?>">
         <div class="invalid-feedback">
@@ -64,8 +64,8 @@
       </div>
 
       <div class="form-group">
-        <label for="nvaLocali">Ciudad / Localidad:</label>
-        <input type="text" class="form-control" id="nvaLocali" name="nvaLocali" placeholder="&#127751; Santiago Ixc." required="" minlength="4" maxlength="20" value="<?php if(isset($_GET['localidad'])){
+        <label for="nvaLocali"><b>Ciudad / Localidad:</b></label>
+        <input type="text" style="border-radius: 17px;" class="form-control" id="nvaLocali" name="nvaLocali" placeholder="&#127751; Santiago Ixc." required="" minlength="4" maxlength="20" value="<?php if(isset($_GET['localidad'])){
           echo $_GET['localidad'];
         }?>">
         <div class="invalid-feedback">
@@ -74,8 +74,8 @@
       </div>
 
       <div class="form-group">
-        <label for="nvoEstado">Estado:</label>
-        <select class="form-control" required="true" name="nvoEstado" id="nvoEstado">
+        <label for="nvoEstado"><b>Estado:</b></label>
+        <select class="form-control" style="border-radius: 17px;" required="true" name="nvoEstado" id="nvoEstado">
           <option value="">&#x1F1F2;&#x1F1FD; Selecciona el estado &#xFE0F;</option>
           <option value="Aguascalientes" <?php if(isset($_GET['estado']) && ($_GET['estado'] == 'Aguascalientes')){
             echo 'selected="selected"';
@@ -180,8 +180,8 @@
       </div>
 
       <div class="form-group">
-        <label for="nvoDomic">Domicilio:</label>
-        <input type="text" class="form-control" id="nvoDomic" name="nvoDomic" placeholder="&#127968; Amado Nervo #260" minlength="6" maxlength="40" required="" value="<?php if(isset($_GET['domicilio'])){
+        <label for="nvoDomic"><b>Domicilio:</b></label>
+        <input type="text" style="border-radius: 17px;" class="form-control" id="nvoDomic" name="nvoDomic" placeholder="&#127968; Amado Nervo #260" minlength="6" maxlength="40" required="" value="<?php if(isset($_GET['domicilio'])){
           echo $_GET['domicilio'];
         } ?>">
         <div class="invalid-feedback">
@@ -190,8 +190,8 @@
       </div>
 
       <div class="form-group">
-        <label for="nvoCorre">Correo electrónico:</label>
-        <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" id="nvoCorre" name="nvoCorre" placeholder="correo@ejemplo.com" required="" maxlength="45" value="<?php if(isset($_GET['correo'])){
+        <label for="nvoCorre"><b>Correo electrónico:</b></label>
+        <input type="email" style="border-radius: 17px;" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" id="nvoCorre" name="nvoCorre" placeholder="correo@ejemplo.com" required="" maxlength="45" value="<?php if(isset($_GET['correo'])){
           echo $_GET['correo'];
         } ?>">
         <div class="invalid-feedback">
@@ -200,8 +200,8 @@
       </div>
 
       <div class="form-group">
-        <label for="nvaContra">Contraseña:</label>
-        <input type="password" class="form-control" id="nvaContra" name="nvaContra" placeholder="********" minlength="4" maxlength="20" required="">
+        <label for="nvaContra"><b>Contraseña:</b></label>
+        <input type="password" style="border-radius: 17px;" class="form-control" id="nvaContra" name="nvaContra" placeholder="********" minlength="4" maxlength="20" required="">
         <div class="invalid-feedback">
         Porfavor ingrese una nueva contraseña para el usuario (almenos 4 caracteres).
         </div>
@@ -216,8 +216,8 @@
       </div>
 
       <div class="form-group">
-        <label for="nvoStatus">Estatus:</label>
-        <select class="form-control" required="true" name="nvoStatus" id="nvoStatus">
+        <label for="nvoStatus"><b>Estatus:</b></label>
+        <select class="form-control" style="border-radius: 17px;" required="true" name="nvoStatus" id="nvoStatus">
           <option value="">Selecciona el estatus</option>
           <option value="activo" <?php if(isset($_GET['status']) && ($_GET['status'] == 'activo')){
           echo 'selected="selected"';
@@ -232,8 +232,8 @@
       </div>
 
       <div class="form-group">
-        <label for="nvoRol">Rol:</label>
-        <select class="form-control" required="true" name="nvoRol" id="nvoRol">
+        <label for="nvoRol"><b>Rol:</b></label>
+        <select class="form-control" style="border-radius: 17px;" required="true" name="nvoRol" id="nvoRol">
           <option value="">Selecciona el rol</option>
           <option value="1" <?php if(isset($_GET['num_rol']) && ($_GET['num_rol'] == '1')){
           echo 'selected="selected"';
@@ -248,8 +248,8 @@
       </div>
 
       <div class="form-group">
-        <label for="nvaFecha_creacion">Fecha de creación:</label>
-        <input type="date" class="form-control" max="<?php date_default_timezone_set('America/Mazatlan');
+        <label for="nvaFecha_creacion"><b>Fecha de creación:</b></label>
+        <input type="date" style="border-radius: 17px;" class="form-control" max="<?php date_default_timezone_set('America/Mazatlan');
       $fecha = date('Y-m-d');
       echo $fecha; ?>" value="<?php if(isset($_GET['fecha'])){
           echo $_GET['fecha'];
@@ -260,8 +260,8 @@
       </div>
 
       <div class="form-group">
-        <label for="nvaHora_creacion">Hora de creación:</label>
-        <input type="time" class="form-control" value="<?php if(isset($_GET['hora'])){
+        <label for="nvaHora_creacion"><b>Hora de creación:</b></label>
+        <input type="time" style="border-radius: 17px;" class="form-control" value="<?php if(isset($_GET['hora'])){
           echo $_GET['hora'];
         }?>" id="nvaHora_creacion" name="nvaHora_creacion" required="">
         <div class="invalid-feedback">
@@ -270,8 +270,8 @@
       </div>
 
       <div class="form-group">
-        <label for="nvaFecha_confirmacion">Fecha de confirmación:</label>
-        <input type="date" class="form-control" max="<?php date_default_timezone_set('America/Mazatlan');
+        <label for="nvaFecha_confirmacion"><b>Fecha de confirmación:</b></label>
+        <input type="date" style="border-radius: 17px;" class="form-control" max="<?php date_default_timezone_set('America/Mazatlan');
       $fecha = date('Y-m-d');
       echo $fecha; ?>" value="<?php if(isset($_GET['fecha_confirmacion'])){
           echo $_GET['fecha_confirmacion'];
@@ -282,8 +282,8 @@
       </div>
 
       <div class="form-group">
-        <label for="nvaHora_confirmacion">Hora de confirmación:</label>
-        <input type="time" class="form-control" value="<?php if(isset($_GET['hora_confirmacion'])){
+        <label for="nvaHora_confirmacion"><b>Hora de confirmación:</b></label>
+        <input type="time" style="border-radius: 17px;" class="form-control" value="<?php if(isset($_GET['hora_confirmacion'])){
           echo $_GET['hora_confirmacion'];
         }?>" id="nvaHora_confirmacion" name="nvaHora_confirmacion" required="">
         <div class="invalid-feedback">
@@ -301,7 +301,7 @@
           }
         } 
       </script>
-      <button type="submit" class="btn btn-outline-success btn-lg btn-block">Aplicar cambio</button>
+      <button type="submit" style="border-radius: 17px;" class="btn btn-outline-success btn-lg btn-block">Aplicar cambio</button>
       <div style="font-size: 1.08em;">
       ¿Ya editaste un usuario?&nbsp; <a href="index.php?opcion=ver_usuarios">Ver Usuarios</a>
       </div>
@@ -332,10 +332,12 @@
 
 <?php
 
-  if(isset($_GET['id_usuario']) && isset($_GET['nombre']) && isset($_GET['apellidos']) && isset($_GET['correo'])){
+  if(isset($_GET['id_usuario']) && isset($_GET['nombre']) && isset($_GET['apellidos']) && isset($_GET['sexo']) && isset($_GET['fecha_nac']) && isset($_GET['celular']) && isset($_GET['localidad']) && isset($_GET['estado']) && isset($_GET['domicilio']) && isset($_GET['correo']) && isset($_GET['status']) && isset($_GET['num_rol']) && isset($_GET['fecha']) && isset($_GET['hora']) && isset($_GET['fecha_confirmacion']) && isset($_GET['hora_confirmacion'])){
+
+    $datosUsuario = array('valor_id'=>$_GET['id_usuario'], 'valor_nombre'=>$_GET['nombre'], 'valor_apellidos'=>$_GET['apellidos'], 'valor_sexo'=>$_GET['sexo'], 'valor_fecha_nac'=>$_GET['fecha_nac'], 'valor_celular'=>$_GET['celular'], 'valor_localidad'=>$_GET['localidad'], 'valor_estado'=>$_GET['estado'], 'valor_domicilio'=>$_GET['domicilio'], 'valor_correo'=>$_GET['correo'], 'valor_status'=>$_GET['status'], 'valor_num_rol'=>$_GET['num_rol'], 'valor_fecha'=>$_GET['fecha'], 'valor_hora'=>$_GET['hora'], 'valor_fecha_confirmacion'=>$_GET['fecha_confirmacion'], 'valor_hora_confirmacion'=>$_GET['hora_confirmacion']);
 
     $calcular = new Controller();
-    $calcular -> editarUsuarioController($_GET['id_usuario'], $_GET['nombre'], $_GET['apellidos'], $_GET['correo']);
+    $calcular -> editarUsuarioController($datosUsuario);
 
   }
 

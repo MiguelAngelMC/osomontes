@@ -1,5 +1,5 @@
 <center>
-  <img src="vistas/img/menu/add_categoria.png" width="100vw" style="margin-top: 25px;">
+  <img src="vistas/img/menu/add_categoria.png" alt="Logo Registrar Categoría" width="100vw" style="margin-top: 25px;">
 </center>
 <div class="col-sm-6 offset-sm-3 offset-md-4 col-md-4">
   <div class="px-4 py-3">
@@ -7,8 +7,8 @@
     <form method="POST" accept="UTF-8" class="needs-validation" novalidate>
 
       <div class="form-group">
-        <label for="nombre">Nombre:</label>
-        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Teléfono Celular" required="" minlength="3" maxlength="30" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+" autofocus="" value="<?php if(isset($_POST['nombre'])){
+        <label for="nombre"><b>Nombre:</b></label>
+        <input type="text" style="border-radius: 17px;" class="form-control" id="nombre" name="nombre" placeholder="Teléfono Celular" required="" minlength="3" maxlength="30" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+" autofocus="" value="<?php if(isset($_POST['nombre'])){
           echo $_POST['nombre'];
         } ?>">
         <div class="invalid-feedback">
@@ -16,9 +16,9 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn-outline-success btn-lg btn-block">Registrar</button>
+      <button type="submit" style="border-radius: 17px;" class="btn btn-outline-success btn-lg btn-block">Registrar</button>
       <div style="font-size: 1.08em;">
-      ¿Ya registraste una categoría?&nbsp; <a href="index.php?opcion=ver_categorias">Ver Categorías</a>
+      <b>¿Ya registraste una categoría?</b> <a href="index.php?opcion=ver_categorias">Ver Categorías</a>
       </div>
     </form>
   </div>

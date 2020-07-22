@@ -338,7 +338,7 @@
 							    </td>
 							    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 							    <td>
-							        <button type="button" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_nombre';">Editar</button>
+							        <button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_nombre';">Editar</button>
 							    </td>
 
 							</tr>
@@ -352,7 +352,7 @@
 						        </td>
 						        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 						        <td>
-						        	<button type="button" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_apellidos';">Editar</button>
+						        	<button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_apellidos';">Editar</button>
 						        </td>
 						    </tr>
 
@@ -365,7 +365,7 @@
 						    	</td>
 						    	<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 						    	<td>
-						    		<button type="button" class="btn btn-primary" onclick="window.location.href='index.php?opcion=verificar_contra';">Editar</button>
+						    		<button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=verificar_contra';">Editar</button>
 						    	</td>
 						    </tr>
 					    </table>
@@ -404,6 +404,20 @@
 							}
 
 							})()
+							</script>';
+
+					}
+					else if($respuesta == "esigual"){
+
+						echo '<script>
+							Swal.fire({
+								icon: "info",
+								timer: 5000,
+								timerProgressBar: true,
+								title: "Usted ya tiene ese nombre",
+								text: "Ingrese un nuevo nombre",
+								footer: "Este mensaje cerrará automáticamente en 5s."
+							});
 							</script>';
 
 					}
@@ -463,6 +477,20 @@
 							}
 
 							})()
+							</script>';
+
+					}
+					else if($respuesta == 'esigual'){
+
+						echo '<script>
+							Swal.fire({
+								icon: "info",
+								timer: 5000,
+								timerProgressBar: true,
+								title: "Usted ya tiene esos apellidos",
+								text: "Ingrese unos apellidos diferentes",
+								footer: "Este mensaje cerrará automáticamente en 5s."
+							});
 							</script>';
 
 					}
@@ -845,11 +873,11 @@
 				?>
 								<tr>
 								<td><?php echo $dato['nombre_categoria']; ?></td>
-								<td><?php echo $dato['fecha']." &nbsp;&nbsp;&nbsp;".$dato['hora']; ?></td>
+								<td><?php echo $dato['fecha']." ".$dato['hora']; ?></td>
 								<td><?php if(($dato['fecha_modificacion'] == NULL) && ($dato['hora_modificacion'] == NULL)){
 									echo 'Sin modificaciones';
 								}else{
-										echo $dato['fecha_modificacion']." &nbsp;&nbsp;&nbsp;".$dato['hora_modificacion'];
+										echo $dato['fecha_modificacion']." ".$dato['hora_modificacion'];
 									} ?></td>
 								<td><button class="btn btn-warning" onclick="window.location='index.php?opcion=editar_categoria&categoria=<?php echo $dato['nombre_categoria']; ?>'">Editar</button> <button class="btn btn-danger" onclick="confirmar('<?php echo $dato['nombre_categoria']; ?>')">🗑️</button></td>
 								</tr>
@@ -1091,11 +1119,11 @@
 				?> 
 				<tr>
 					<td><?php echo $dato['nombre_marca']; ?></td>
-					<td><?php echo $dato['fecha']." &nbsp;&nbsp;&nbsp;".$dato['hora']; ?></td>
+					<td><?php echo $dato['fecha']." ".$dato['hora']; ?></td>
 					<td><?php if(($dato['fecha_modificacion'] == NULL) && ($dato['hora_modificacion'] == NULL)){
 						echo 'Sin modificaciones';
 					}else{
-						echo $dato['fecha_modificacion']." &nbsp;&nbsp;&nbsp;".$dato['hora_modificacion'];
+						echo $dato['fecha_modificacion']." ".$dato['hora_modificacion'];
 					} ?></td>
 					<td><button id="btn-editar" class="btn btn-warning" onclick="window.location='index.php?opcion=editar_marca&marca=<?php echo $dato['nombre_marca']; ?>'">Editar</button> <button class="btn btn-danger" onclick="confirmar('<?php echo $dato['nombre_marca']; ?>')">🗑️</button></td>
 				</tr>
@@ -1371,11 +1399,11 @@
 					<td><?php echo $dato['nombre_proveedor'].' '.$dato['apellidos_proveedor']; ?></td>
 					<td><?php echo $dato['localidad_proveedor'] ?></td>
 					<td><?php echo $dato['celular_proveedor'] ?></td>
-					<td><?php echo $dato['fecha_registro']." &nbsp;&nbsp;&nbsp;".$dato['hora_registro']; ?></td>
+					<td><?php echo $dato['fecha_registro']." ".$dato['hora_registro']; ?></td>
 					<td><?php if(($dato['fecha_modificacion'] == NULL) && ($dato['hora_modificacion'] == NULL)){
 						echo 'Sin modificaciones';
 					}else{
-						echo $dato['fecha_modificacion']." &nbsp;&nbsp;&nbsp;".$dato['hora_modificacion'];
+						echo $dato['fecha_modificacion']." ".$dato['hora_modificacion'];
 					} ?></td>
 					<td><button class="btn btn-warning" onclick="window.location='index.php?opcion=editar_proveedor&nombre=<?php echo $dato['nombre_proveedor']; ?>&apellidos=<?php echo $dato['apellidos_proveedor']; ?>&locali=<?php echo $dato['localidad_proveedor']; ?>&id_proveedor=<?php echo $dato['id_proveedor']; ?>&celular_proveedor=<?php echo $dato['celular_proveedor']; ?>'">Editar</button> <button class="btn btn-danger" onclick="confirmar1('<?php echo $dato['id_proveedor']; ?>', '<?php echo $dato['nombre_proveedor']; ?>', '<?php echo $dato['apellidos_proveedor']; ?>')">🗑️</button></td>
 				</tr>
@@ -1652,17 +1680,17 @@
 					<td><?php echo $dato['contra']; ?></td>
 					<td><?php echo $dato['status']; ?></td>
 					<td><?php echo $dato['num_rol']; ?></td>
-					<td><?php echo $dato['fecha']." &nbsp;&nbsp;&nbsp;".$dato['hora']; ?></td>
-					<td><?php echo $dato['fecha_confirmacion']." &nbsp;&nbsp;&nbsp;".$dato['hora_confirmacion']; ?></td>
+					<td><?php echo $dato['fecha']." ".$dato['hora']; ?></td>
+					<td><?php echo $dato['fecha_confirmacion']." ".$dato['hora_confirmacion']; ?></td>
 					<td><?php if(($dato['fecha_ultima_sesion'] == NULL) && ($dato['hora_ultima_sesion'] == NULL)){
 						echo 'Nunca ha iniciado sesión';
 					}else{
-						echo $dato['fecha_ultima_sesion']." &nbsp;&nbsp;&nbsp;".$dato['hora_ultima_sesion'];
+						echo $dato['fecha_ultima_sesion']." ".$dato['hora_ultima_sesion'];
 					} ?></td>
 					<td><?php if(($dato['fecha_modificacion'] == NULL) && ($dato['hora_modificacion'] == NULL)){
 						echo 'Sin modificaciones';
 					}else{
-						echo $dato['fecha_modificacion']." &nbsp;&nbsp;&nbsp;".$dato['hora_modificacion'];
+						echo $dato['fecha_modificacion']." ".$dato['hora_modificacion'];
 					} ?></td>
 					<td><button class="btn btn-warning" onclick="window.location='index.php?opcion=editar_usuario&nombre=<?php echo $dato['nombre'].'&apellidos='.$dato['apellidos'].'&sexo='.$dato['sexo'].'&fecha_nac='.$dato['fecha_nac'].'&celular='.$dato['celular'].'&localidad='.$dato['localidad'].'&estado='.$dato['estado'].'&domicilio='.urlencode($dato['domicilio']).'&id_usuario='.$dato['id_user'].'&correo='.$dato['correo'].'&status='.$dato['status'].'&num_rol='.$dato['num_rol'].'&fecha='.$dato['fecha'].'&hora='.$dato['hora'].'&fecha_confirmacion='.$dato['fecha_confirmacion'].'&hora_confirmacion='.$dato['hora_confirmacion']; ?>'">Editar</button> <button class="btn btn-danger" onclick="confirmar2('<?php echo $dato['id_user']; ?>', '<?php echo $dato['nombre']; ?>', '<?php echo $dato['apellidos']; ?>', '<?php echo $dato['correo']; ?>')">🗑️</button></td>
 				</tr>
@@ -1671,7 +1699,9 @@
 		}
 
 		// Método que recibe los valores de editar_usuario.php
-		static public function editarUsuarioController($idUsuario, $nombreUsuario, $apellidosUsuario, $correoUsuario){
+		static public function editarUsuarioController($datosUsuario){
+
+
 
 			if(isset($_POST['nvoNombre']) && isset($_POST['nvosApellidos']) && isset($_POST['nvoSexo']) && isset($_POST['nvaFecha_nac']) && isset($_POST['nvoTel']) && isset($_POST['nvaLocali']) && isset($_POST['nvoEstado']) && isset($_POST['nvoDomic']) && isset($_POST['nvoCorre']) && isset($_POST['nvaContra']) && isset($_POST['nvoStatus']) && isset($_POST['nvoRol']) && isset($_POST['nvaFecha_creacion']) && isset($_POST['nvaHora_creacion']) && isset($_POST['nvaFecha_confirmacion']) && isset($_POST['nvaHora_confirmacion'])){
 

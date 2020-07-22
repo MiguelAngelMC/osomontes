@@ -7,14 +7,14 @@
     <form method="POST" accept="UTF-8" class="needs-validation" novalidate>
 
       <div class="form-group">
-        <label for="nombre">Apellidos:</label>
-        <input type="text" class="form-control" id="apellidos" name="apellidos" value="<?php echo $_SESSION['apellidos']; ?>" required="" minlength="3" maxlength="30" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+">
+        <label for="nombre"><b>Apellidos:</b></label>
+        <input type="text" style="border-radius: 17px;" class="form-control" id="apellidos" name="apellidos" value="<?php echo $_SESSION['apellidos']; ?>" required="" minlength="3" maxlength="30" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+">
         <div class="invalid-feedback">
         Porfavor ingrese los apellidos.
         </div>
       </div>
 
-      <button type="submit" class="btn btn-outline-success btn-lg btn-block">Aplicar cambio</button>
+      <button type="submit" style="border-radius: 17px;" class="btn btn-outline-success btn-lg btn-block">Aplicar cambio</button>
 
     </form>
   </div>

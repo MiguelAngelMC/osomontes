@@ -5,8 +5,8 @@
   <div class="px-4 py-3">
     <form method="POST" class="needs-validation" novalidate>
       <div class="form-group" title="Correo electrónico">
-        <label for="corr">Correo electrónico:</label>
-        <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" id="corr" name="corre" placeholder="correo@ejemplo.com" required="" maxlength="45" value="<?php if(isset($_POST['corre'])){
+        <label for="corr"><b>Correo electrónico:</b></label>
+        <input type="email" style="border-radius: 17px;" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" id="corr" name="corre" required="" maxlength="45" value="<?php if(isset($_POST['corre'])){
           echo $_POST['corre'];
         } ?>">
         <div class="invalid-feedback">
@@ -14,8 +14,8 @@
         </div>
       </div>
       <div class="form-group" title="Contraseña">
-        <label for="contra">Contraseña:</label>
-        <input type="password" class="form-control" id="contra" name="contra" placeholder="********" minlength="4" maxlength="20" required="" value="<?php if(isset($_POST['corre'])){
+        <label for="contra"><b>Contraseña:</b></label>
+        <input type="password" style="border-radius: 17px;" class="form-control" id="contra" name="contra" minlength="4" maxlength="20" required="" value="<?php if(isset($_POST['corre'])){
           echo $_POST['contra'];
         } ?>">
         <div class="invalid-feedback">
@@ -40,10 +40,10 @@
           }
         } 
       </script>
-      <button type="submit" class="btn btn-outline-primary btn-lg btn-block" title="Entrar">Entrar</button>
+      <button type="submit" style="border-radius: 17px;" class="btn btn-outline-primary btn-lg btn-block" title="Entrar">Entrar</button>
     </form>
     <div style="font-size: 1.08em; margin-top: 2px;">
-      ¿No tienes una cuenta?&nbsp; <a href="index.php?opcion=registro" title="Crear cuenta nueva">Crear cuenta nueva</a>
+      <b>¿No tienes una cuenta?</b> <a href="index.php?opcion=registro" title="Crear cuenta nueva">Crear cuenta nueva</a>
     </div>
   </div>
 </div>

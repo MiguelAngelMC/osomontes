@@ -1,5 +1,5 @@
 <center>
-  <img src="vistas/img/menu/user.png" width="100vw" style="margin-top: 25px;">
+  <img src="vistas/img/menu/user.png" alt="Logo Usuario" width="100vw" style="margin-top: 25px;">
 </center>
 <div class="col-sm-6 offset-sm-3 offset-md-4 col-md-4">
   <div class="px-4 py-3">
@@ -7,8 +7,8 @@
     <form method="POST" accept="UTF-8" class="needs-validation" novalidate>
 
       <div class="form-group">
-        <label for="contra">Contraseña actual:</label>
-        <input type="password" class="form-control" id="contra" name="contra" placeholder="********" required="" minlength="3" maxlength="30" autofocus="" value="<?php if(isset($_POST['contra'])){
+        <label for="contra"><b>Contraseña actual:</b></label>
+        <input type="password" style="border-radius: 17px;" class="form-control" id="contra" name="contra" placeholder="********" required="" minlength="3" maxlength="30" autofocus="" value="<?php if(isset($_POST['contra'])){
           echo $_POST['contra'];
         } ?>">
         <div class="invalid-feedback">
@@ -35,7 +35,7 @@
         } 
       </script>
 
-      <button type="submit" class="btn btn-outline-success btn-lg btn-block">Verificar</button>
+      <button type="submit" style="border-radius: 17px;" class="btn btn-outline-success btn-lg btn-block">Verificar</button>
 
     </form>
   </div>

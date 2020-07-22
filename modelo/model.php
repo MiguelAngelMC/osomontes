@@ -193,23 +193,31 @@ class Model extends Conexion{
 		$hora = date("H:i:s");
 		$fecha = date("Y-m-d");
 
-		$datos = Conexion::conectar()->prepare("UPDATE $tabla SET nombre=:nombre_usuario WHERE id_user=:id");
-		$datos -> bindParam(':id', $id);
-		$datos -> bindParam(':nombre_usuario', $nombreNvo);
-		$datos->execute();
+		// Verificar que sea un nombre diferente al existente
+		if($nombreNvo == $_SESSION['usuario']){
 
-		if($datos->execute()){
-
-			$_SESSION['usuario'] = $nombreNvo;
-
-			return "ok";
+			return "esigual";
 		}
 		else{
 
-			return "error";
-		}
+			$datos = Conexion::conectar()->prepare("UPDATE $tabla SET nombre=:nombre_usuario WHERE id_user=:id");
+			$datos -> bindParam(':id', $id);
+			$datos -> bindParam(':nombre_usuario', $nombreNvo);
+			$datos->execute();
 
-		$datos->close();
+			if($datos->execute()){
+
+				$_SESSION['usuario'] = $nombreNvo;
+
+				return "ok";
+			}
+			else{
+
+				return "error";
+			}
+
+			$datos->close();
+		}
 		
 	}
 
@@ -221,23 +229,30 @@ class Model extends Conexion{
 		$hora = date("H:i:s");
 		$fecha = date("Y-m-d");
 
-		$datos = Conexion::conectar()->prepare("UPDATE $tabla SET apellidos=:apellidos_usuario WHERE id_user=:id");
-		$datos -> bindParam(':id', $id);
-		$datos -> bindParam(':apellidos_usuario', $apellidosNvos);
-		$datos->execute();
+		if($apellidosNvos == $_SESSION['apellidos']){
 
-		if($datos->execute()){
-
-			$_SESSION['apellidos'] = $apellidosNvos;
-
-			return "ok";
+			return 'esigual';
 		}
 		else{
 
-			return "error";
-		}
+			$datos = Conexion::conectar()->prepare("UPDATE $tabla SET apellidos=:apellidos_usuario WHERE id_user=:id");
+			$datos -> bindParam(':id', $id);
+			$datos -> bindParam(':apellidos_usuario', $apellidosNvos);
+			$datos->execute();
 
-		$datos->close();
+			if($datos->execute()){
+
+				$_SESSION['apellidos'] = $apellidosNvos;
+
+				return "ok";
+			}
+			else{
+
+				return "error";
+			}
+
+			$datos->close();
+		}
 		
 	}
 

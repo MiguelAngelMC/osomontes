@@ -12,10 +12,9 @@
           <img src="vistas/img/menu/herramientas.png" alt="Logo Herramientas" width="32px"><b> Servicios</b>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="index.php?opcion=desicion3" title="Recargas"><img src="vistas/img/menu/recarga.png" width="32px"> Recargas</a>
-          <a class="dropdown-item" href="index.php?opcion=desicion3" title="Recargas"><img src="vistas/img/menu/recarga.png" width="32px"> Activar chips</a><br>
-          <a class="dropdown-item" href="index.php?opcion=desicion2" title="Liberaciones"><img src="vistas/img/menu/liberar.png" width="32px"> Liberaciones</a>
-          <a class="dropdown-item" href="index.php?opcion=desicion2" title="Liberaciones"><img src="vistas/img/menu/liberar.png" width="32px"> Cuenta de Google</a>
+          <a class="dropdown-item" href="index.php?opcion=recargas" title="Recargas"><img src="vistas/img/menu/recarga.png" width="32px"> Recargas</a>
+          <a class="dropdown-item" href="index.php?opcion=liberaciones" title="Liberaciones"><img src="vistas/img/menu/liberar.png" width="32px"> Liberaciones</a>
+          <a class="dropdown-item" href="index.php?opcion=estatus_servicio" title="Liberaciones"><img src="vistas/img/menu/liberar.png" width="32px"> Estatus de liberación/reparación</a>
         </div>
       </li>
 
