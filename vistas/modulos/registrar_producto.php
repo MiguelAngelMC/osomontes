@@ -4,10 +4,10 @@
 <div class="col-sm-6 offset-sm-3 offset-md-4 col-md-4">
   <div class="px-4 py-3">
     <div></div>
-    <form method="POST" accept="UTF-8" class="needs-validation" novalidate>
+    <form method="POST" enctype="multipart/form-data" accept="UTF-8" class="needs-validation" novalidate>
 
       <div class="form-group">
-        <label for="estado"><b>Categoría:</b></label>
+        <label for="categoria"><b>Categoría:</b></label>
         <select class="form-control" style="border-radius: 17px;" required="true" name="categoria" id="categoria">
           <option value="">Selecciona la categoría</option>
           <?php
@@ -21,9 +21,33 @@
         Porfavor seleccione la categoría del producto.
         </div>
       </div>
+
+      <script type="text/javascript">
+        // Mostrar el campo de imei o no
+        function seleccion(){
+          div = document.getElementById('group__imei');
+          val = document.getElementById('categoria').value;
+          imei = document.getElementById('imei'); 
+          if((val == "Teléfono Celular") || (val == "Teléfono de Casa")){
+            div.setAttribute("style", "display: block;");
+            imei.required = true;
+          }
+          else{
+            div.setAttribute("style", "display: none;");
+          }
+        }
+      </script>
+
+      <div class="form-group" style="display: none" id="group__imei">
+        <label for="imei"><b>IMEI:</b></label>
+        <input type="text" style="border-radius: 17px;" class="form-control" id="imei" name="imei" placeholder="&#128241; 123456789101112" pattern="\d*" minlength="15" maxlength="15">
+        <div class="invalid-feedback">
+        Porfavor ingrese el IMEI del teléfono celular.
+        </div>
+      </div>
       
       <div class="form-group">
-        <label for="estado"><b>Marca:</b></label>
+        <label for="marca"><b>Marca:</b></label>
         <select class="form-control" style="border-radius: 17px;" required="true" name="marca" id="marca">
           <option value="">Selecciona la marca</option>
           <?php
@@ -55,8 +79,8 @@
       </div>
 
       <div class="form-group">
-        <label for="locali"><b>Foto:</b></label>
-        <input type="file" style="border-radius: 17px;" class="form-control" id="locali" name="locali" required="">
+        <label for="foto"><b>Foto:</b></label>
+        <input type="file" style="border-radius: 17px;" class="form-control" id="foto" name="foto" required="">
         <div class="invalid-feedback">
         Porfavor ingrese una foto del producto.
         </div>
@@ -79,14 +103,6 @@
       </div>
 
       <div class="form-group">
-        <label for="imei"><b>IMEI:</b></label>
-        <input type="text" style="border-radius: 17px;" class="form-control" id="imei" name="imei" placeholder="&#128241; 323100989215365" pattern="\d*" minlength="15" maxlength="15">
-        <div class="invalid-feedback">
-        Porfavor ingrese el IMEI del teléfono celular.
-        </div>
-      </div>
-
-      <div class="form-group">
         <label for="precio_venta"><b>Precio de venta:</b></label><br>
         <input type="number" style="border-radius: 17px;" placeholder="$" name="precio_venta" id="precio_venta" class="form-control" required="" min="1" max="1000000" step="0.01">
         <div class="invalid-feedback">
@@ -101,17 +117,6 @@
         Porfavor ingrese el precio del producto.
         </div>
       </div>
-
-      <script type="text/javascript">
-        function mostrar() {
-        var x = document.getElementById("contra");
-          if (x.type == "password") {
-              x.type = "text";
-          } else {
-              x.type = "password";
-          }
-        } 
-      </script>
 
       <button type="submit" style="border-radius: 17px;" class="btn btn-outline-success btn-lg btn-block">Registrar</button>
       <div style="font-size: 1.08em;">

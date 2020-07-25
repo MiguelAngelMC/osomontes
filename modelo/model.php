@@ -20,6 +20,7 @@ class Model extends Conexion{
 		$localidad = $datos['valor_localidad'];
 		$estado = $datos['valor_estado'];
 		$domicilio = $datos['valor_domicilio'];
+		$cp = $datos['valor_cp'];
 		$correo = $datos['valor_correo'];
 		$contra = password_hash($datos['valor_contra'], PASSWORD_BCRYPT);
 
@@ -36,7 +37,7 @@ class Model extends Conexion{
 		}
 		else{
 			// Insertar en la base de datos si no existe el correo
-		$dato2 = Conexion::conectar()->prepare("INSERT INTO $tabla (nombre, apellidos, sexo, fecha_nac, celular, localidad, estado, domicilio, correo, contra, status, num_rol, fecha, hora, fecha_confirmacion, hora_confirmacion) VALUES (:nombre, :apellidos, :sexo, :fecha_nacimiento, :telefono, :localidad, :estado, :domicilio, :correo, :contra, 'desactivado', 2, :fecha, :hora, '0000-00-00', '00:00', NULL, NULL, NULL, NULL)");
+		$dato2 = Conexion::conectar()->prepare("INSERT INTO $tabla (nombre, apellidos, sexo, fecha_nac, celular, localidad, estado, domicilio, cp, correo, contra, status, num_rol, fecha, hora, fecha_confirmacion, hora_confirmacion, fecha_ultima_sesion, hora_ultima_sesion, fecha_modificacion, hora_modificacion) VALUES (:nombre, :apellidos, :sexo, :fecha_nacimiento, :telefono, :localidad, :estado, :domicilio, :cp, :correo, :contra, 'desactivado', 2, :fecha, :hora, '0000-00-00', '00:00', NULL, NULL, NULL, NULL)");
 		$dato2 -> bindParam(':nombre', $nombre);
 		$dato2 -> bindParam(':apellidos', $apellidos);
 		$dato2 -> bindParam(':sexo', $sexo);
@@ -45,6 +46,7 @@ class Model extends Conexion{
 		$dato2 -> bindParam(':localidad', $localidad);
 		$dato2 -> bindParam(':estado', $estado);
 		$dato2 -> bindParam(':domicilio', $domicilio);
+		$dato2 -> bindParam(':cp', $cp);
 		$dato2 -> bindParam(':correo', $correo);
 		$dato2 -> bindParam(':contra', $contra);
 		$dato2 -> bindParam(':fecha', $fecha);
@@ -893,6 +895,7 @@ class Model extends Conexion{
 		$localidad = $datos['valor_localidad'];
 		$estado = $datos['valor_estado'];
 		$domicilio = $datos['valor_domicilio'];
+		$cp = $datos['valor_cp'];
 		$correo = $datos['valor_correo'];
 		$contra = password_hash($datos['valor_contra'], PASSWORD_BCRYPT);
 		$status = 'activo';
@@ -911,7 +914,7 @@ class Model extends Conexion{
 		}
 		else{
 			// Insertar en la base de datos si no existe el correo
-		$dato2 = Conexion::conectar()->prepare("INSERT INTO $tabla (nombre, apellidos, sexo, fecha_nac, celular, localidad, estado, domicilio, correo, contra, status, num_rol, fecha, hora, fecha_confirmacion, hora_confirmacion, fecha_ultima_sesion, hora_ultima_sesion, fecha_modificacion, hora_modificacion) VALUES (:nombre, :apellidos, :sexo, :fecha_nacimiento, :telefono, :localidad, :estado, :domicilio, :correo, :contra, :status, :num_rol, :fecha, :hora, :fecha_confirmacion, :hora_confirmacion, NULL, NULL, NULL, NULL)");
+		$dato2 = Conexion::conectar()->prepare("INSERT INTO $tabla (nombre, apellidos, sexo, fecha_nac, celular, localidad, estado, domicilio, cp, correo, contra, status, num_rol, fecha, hora, fecha_confirmacion, hora_confirmacion, fecha_ultima_sesion, hora_ultima_sesion, fecha_modificacion, hora_modificacion) VALUES (:nombre, :apellidos, :sexo, :fecha_nacimiento, :telefono, :localidad, :estado, :domicilio, :cp, :correo, :contra, :status, :num_rol, :fecha, :hora, :fecha_confirmacion, :hora_confirmacion, NULL, NULL, NULL, NULL)");
 		$dato2 -> bindParam(':nombre', $nombre);
 		$dato2 -> bindParam(':apellidos', $apellidos);
 		$dato2 -> bindParam(':sexo', $sexo);
@@ -920,6 +923,7 @@ class Model extends Conexion{
 		$dato2 -> bindParam(':localidad', $localidad);
 		$dato2 -> bindParam(':estado', $estado);
 		$dato2 -> bindParam(':domicilio', $domicilio);
+		$dato2 -> bindParam(':cp', $cp);
 		$dato2 -> bindParam(':correo', $correo);
 		$dato2 -> bindParam(':contra', $contra);
 		$dato2 -> bindParam(':status', $status);
@@ -970,25 +974,46 @@ class Model extends Conexion{
 		$hora = date("H:i:s");
 		$fecha = date("Y-m-d");
 
-		// Información actual del proveedor
-		$idUsuario = $datos['valor_idUsuario'];
-		$nombreProveedor = $datos['valor_nombreProveedor'];
-		$apellidosProveedor = $datos['valor_apellidosProveedor'];
-		$localidadProveedor = $datos['valor_localidadProveedor'];
-		$telProveedor = $datos['valor_telProveedor'];
+		// Información actual del usuario
+		$idUsuario = $datos['valor_id'];
+		$nombreUsuario = $datos['valor_nombre'];
+		$apellidosUsuario = $datos['valor_apellidos'];
+		$sexoUsuario = $datos['valor_sexo'];
+		$fechaNacUsuario = $datos['valor_fecha_nac'];
+		$celularUsuario = $datos['valor_celular'];
+		$localidadUsuario = $datos['valor_localidad'];
+		$estadoUsuario = $datos['valor_estado'];
+		$domicilioUsuario = $datos['valor_domicilio'];
+		$cpUsuario = $datos['valor_cp'];
+		$correoUsuario = $datos['valor_correo'];
+		$statusUsuario = $datos['valor_status'];
+		$rolUsuario = $datos['valor_num_rol'];
+		$fechaConfirmacionUsuario = $datos['valor_fecha_confirmacion'];
+		$horaConfirmacionUsuario = $datos['valor_hora_confirmacion'];
 
 		// Nuevos valores que se establecerán
 		$nvoNombre = $datos['valor_nvoNombre'];
 		$nvosApellidos = $datos['valor_nvosApellidos'];
-		$nvaLocali = $datos['valor_nvaLocali'];
+		$nvoSexo = $datos['valor_nvoSexo'];
+		$nvaFecha_nac = $datos['valor_nvaFecha_nac'];
 		$nvoTel = $datos['valor_nvoTel'];
+		$nvaLocali = $datos['valor_nvaLocali'];
+		$nvoEstado = $datos['valor_nvoEstado'];
+		$nvoDomic = $datos['valor_nvoDomic'];
+		$nvoCp = $datos['valor_nvoCp'];
+		$nvoCorre = $datos['valor_nvoCorre'];
+		$nvaContra = password_hash($datos['valor_nvaContra'], PASSWORD_BCRYPT);
+		$nvoStatus = $datos['valor_nvoStatus'];
+		$nvoRol = $datos['valor_nvoRol'];
+		$nvaFecha_confirmacion = $datos['valor_nvaFecha_confirmacion'];
+		$nvaHora_confirmacion = $datos['valor_nvaHora_confirmacion'];
 
 		// Verificar que almenos se modificó un campo
-		if(($nombreProveedor != $nvoNombre) || ($apellidosProveedor != $nvosApellidos) || ($localidadProveedor != $nvaLocali) || ($telProveedor != $nvoTel)){
+		if(($nombreUsuario != $nvoNombre) || ($apellidosUsuario != $nvosApellidos) || ($sexoUsuario != $nvoSexo) || ($fechaNacUsuario != $nvaFecha_nac) || ($celularUsuario != $nvoTel) || ($localidadUsuario != $nvaLocali) || ($estadoUsuario != $nvoEstado) || ($domicilioUsuario != $nvoDomic) || ($cpUsuario != $nvoCp) || ($correoUsuario != $nvoCorre) || ($statusUsuario != $nvoStatus) || ($rolUsuario != $nvoRol) || ($fechaConfirmacionUsuario != $nvaFecha_confirmacion) || ($horaConfirmacionUsuario != $nvaHora_confirmacion)){
 
-			$datos = Conexion::conectar()->prepare("SELECT nombre_proveedor FROM $tabla WHERE id_proveedor=:id AND nombre_proveedor=:nombreProveedor");
-			$datos -> bindParam(':id', $idProveedor);
-			$datos -> bindParam(':nombreProveedor', $nombreProveedor);
+			$datos = Conexion::conectar()->prepare("SELECT id_user FROM $tabla WHERE id_user=:id AND nombre=:nombreUsuario");
+			$datos -> bindParam(':id', $idUsuario);
+			$datos -> bindParam(':nombreUsuario', $nombreUsuario);
 			$datos -> execute();
 			$resultados = $datos->fetch(PDO::FETCH_ASSOC);
 
@@ -997,13 +1022,24 @@ class Model extends Conexion{
 				return "noexiste";
 			}
 			else{
-				$datos2 = Conexion::conectar()->prepare("UPDATE $tabla SET nombre_proveedor=:nuevoNombre, apellidos_proveedor=:nuevosApellidos, localidad_proveedor=:nuevaLocalidad, celular_proveedor=:nuevoCelular, fecha_modificacion=:fecha, hora_modificacion=:hora WHERE id_proveedor=:id AND nombre_proveedor=:nombreProveedor");
-				$datos2 -> bindParam(':id', $idProveedor);
-				$datos2 -> bindParam(':nombreProveedor', $nombreProveedor);
+				$datos2 = Conexion::conectar()->prepare("UPDATE $tabla SET nombre=:nuevoNombre, apellidos=:nuevosApellidos, sexo=:nuevoSexo, fecha_nac=:nuevaFecha_nac, celular=:nuevoTel, localidad=:nuevaLocalidad, estado=:nuevoEstado, domicilio=:nuevoDomicilio, cp=:nuevoCp, correo=:nuevoCorreo, contra=:nuevaContra, status=:nuevoStatus, num_rol=:nuevoRol, fecha_confirmacion=:nuevaFechaConfirmacion, hora_confirmacion=:nuevaHoraConfirmacion, fecha_modificacion=:fecha, hora_modificacion=:hora WHERE id_user=:id AND nombre=:nombreUsuario");
+				$datos2 -> bindParam(':id', $idUsuario);
+				$datos2 -> bindParam(':nombreUsuario', $nombreUsuario);
 				$datos2 -> bindParam(':nuevoNombre', $nvoNombre);
 				$datos2 -> bindParam(':nuevosApellidos', $nvosApellidos);
+				$datos2 -> bindParam(':nuevoSexo', $nvoSexo);
+				$datos2 -> bindParam(':nuevaFecha_nac', $nvaFecha_nac);
+				$datos2 -> bindParam(':nuevoTel', $nvoTel);
 				$datos2 -> bindParam(':nuevaLocalidad', $nvaLocali);
-				$datos2 -> bindParam(':nuevoCelular', $nvoTel);
+				$datos2 -> bindParam(':nuevoEstado', $nvoEstado);
+				$datos2 -> bindParam(':nuevoDomicilio', $nvoDomic);
+				$datos2 -> bindParam(':nuevoCp', $nvoCp);
+				$datos2 -> bindParam(':nuevoCorreo', $nvoCorre);
+				$datos2 -> bindParam(':nuevaContra', $nvaContra);
+				$datos2 -> bindParam(':nuevoStatus', $nvoStatus);
+				$datos2 -> bindParam(':nuevoRol', $nvoRol);
+				$datos2 -> bindParam(':nuevaFechaConfirmacion', $nvaFecha_confirmacion);
+				$datos2 -> bindParam(':nuevaHoraConfirmacion', $nvaHora_confirmacion);
 				$datos2 -> bindParam(':fecha', $fecha);
 				$datos2 -> bindParam(':hora', $hora);
 				$datos2->execute();

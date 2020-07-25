@@ -1,7 +1,7 @@
 <div class="alert alert-primary">
 	Usuarios existentes
 </div>
-<div style="margin-left: 3%; margin-right: 3%; box-shadow: 0px 0px 30px 1px black; border-radius: 10px; border: none;">
+<div style="margin-left: 3%; margin-right: 3%; box-shadow: 0px 0px 5px 1px black; border-radius: 10px; border: none;">
 	<div class="table-responsive" style="padding: 1%;">
 		<button class="btn btn-primary" id="btn-agregar" title="Agregar usuario" onclick="window.location='index.php?opcion=registro_manual'" style="margin-bottom: 10px;">Agregar usuario</button><br>
 		<table id="tablaUsuario" class="table table-hover table-sm display" style="white-space: nowrap; width: 100%;">
@@ -16,6 +16,7 @@
 					<th>LOCALIDAD</th>
 					<th>ESTADO</th>
 					<th>DOMICILIO</th>
+					<th>CÓDIGO POSTAL</th>
 					<th>CORREO</th>
 					<th>CONTRASEÑA</th>
 					<th>ESTATUS</th>
@@ -75,7 +76,7 @@
 				titleAttr: 'Copiar',
 				title: "Usuarios Existentes ("+fecha+")",
 				exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ]
+                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ]
                 }
 			},
 			{
@@ -86,7 +87,7 @@
 				charset: "utf-8",
 				bom: "true",
 				exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ]
+                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ]
                 }
 			},
 			{
@@ -98,7 +99,7 @@
 				sheetName: "Usuarios ("+fecha+")", 
 				title: "Usuarios Existentes ("+fecha+")",
 				exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ]
+                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ]
                 }
 			},
 			{
@@ -110,7 +111,7 @@
 				filename: "Usuarios existentes ("+fecha+")",
 				title: "Usuarios Existentes ("+fecha+")",
 				exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ]
+                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ]
                 },
                 customize: function(doc) {
 						        	//pageMargins [left, top, right, bottom] 
@@ -130,7 +131,7 @@
 				filename: "Usuarios existentes ("+fecha+")",
 				title: "Usuarios Existentes ("+fecha+")",
 				exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ]
+                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ]
                 }
 			},
 		],

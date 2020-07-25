@@ -190,6 +190,16 @@
       </div>
 
       <div class="form-group">
+        <label for="nvoCp"><b>Código Postal (CP):</b></label>
+        <input type="text" style="border-radius: 17px;" class="form-control" id="nvoCp" name="nvoCp" placeholder="&#128236; 63500" required="" pattern="\d*" minlength="5" maxlength="5" value="<?php if(isset($_GET['cp'])){
+            echo $_GET['cp'];
+          } ?>">
+        <div class="invalid-feedback">
+        Porfavor ingrese el código postal (cp) de donde vive.
+        </div>
+      </div>
+
+      <div class="form-group">
         <label for="nvoCorre"><b>Correo electrónico:</b></label>
         <input type="email" style="border-radius: 17px;" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" id="nvoCorre" name="nvoCorre" placeholder="correo@ejemplo.com" required="" maxlength="45" value="<?php if(isset($_GET['correo'])){
           echo $_GET['correo'];
@@ -248,28 +258,6 @@
       </div>
 
       <div class="form-group">
-        <label for="nvaFecha_creacion"><b>Fecha de creación:</b></label>
-        <input type="date" style="border-radius: 17px;" class="form-control" max="<?php date_default_timezone_set('America/Mazatlan');
-      $fecha = date('Y-m-d');
-      echo $fecha; ?>" value="<?php if(isset($_GET['fecha'])){
-          echo $_GET['fecha'];
-        }?>" id="nvaFecha_creacion" name="nvaFecha_creacion" required="">
-        <div class="invalid-feedback">
-        Porfavor ingrese la fecha de creación del usuario.
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="nvaHora_creacion"><b>Hora de creación:</b></label>
-        <input type="time" style="border-radius: 17px;" class="form-control" value="<?php if(isset($_GET['hora'])){
-          echo $_GET['hora'];
-        }?>" id="nvaHora_creacion" name="nvaHora_creacion" required="">
-        <div class="invalid-feedback">
-        Porfavor ingrese la hora de creación del usuario.
-        </div>
-      </div>
-
-      <div class="form-group">
         <label for="nvaFecha_confirmacion"><b>Fecha de confirmación:</b></label>
         <input type="date" style="border-radius: 17px;" class="form-control" max="<?php date_default_timezone_set('America/Mazatlan');
       $fecha = date('Y-m-d');
@@ -293,7 +281,7 @@
 
       <script type="text/javascript">
         function mostrar() {
-        var x = document.getElementById("contra");
+        var x = document.getElementById("nvaContra");
           if (x.type == "password") {
               x.type = "text";
           } else {
@@ -332,9 +320,9 @@
 
 <?php
 
-  if(isset($_GET['id_usuario']) && isset($_GET['nombre']) && isset($_GET['apellidos']) && isset($_GET['sexo']) && isset($_GET['fecha_nac']) && isset($_GET['celular']) && isset($_GET['localidad']) && isset($_GET['estado']) && isset($_GET['domicilio']) && isset($_GET['correo']) && isset($_GET['status']) && isset($_GET['num_rol']) && isset($_GET['fecha']) && isset($_GET['hora']) && isset($_GET['fecha_confirmacion']) && isset($_GET['hora_confirmacion'])){
+  if(isset($_GET['id_usuario']) && isset($_GET['nombre']) && isset($_GET['apellidos']) && isset($_GET['sexo']) && isset($_GET['fecha_nac']) && isset($_GET['celular']) && isset($_GET['localidad']) && isset($_GET['estado']) && isset($_GET['domicilio']) && isset($_GET['cp']) && isset($_GET['correo']) && isset($_GET['status']) && isset($_GET['num_rol']) && isset($_GET['fecha_confirmacion']) && isset($_GET['hora_confirmacion'])){
 
-    $datosUsuario = array('valor_id'=>$_GET['id_usuario'], 'valor_nombre'=>$_GET['nombre'], 'valor_apellidos'=>$_GET['apellidos'], 'valor_sexo'=>$_GET['sexo'], 'valor_fecha_nac'=>$_GET['fecha_nac'], 'valor_celular'=>$_GET['celular'], 'valor_localidad'=>$_GET['localidad'], 'valor_estado'=>$_GET['estado'], 'valor_domicilio'=>$_GET['domicilio'], 'valor_correo'=>$_GET['correo'], 'valor_status'=>$_GET['status'], 'valor_num_rol'=>$_GET['num_rol'], 'valor_fecha'=>$_GET['fecha'], 'valor_hora'=>$_GET['hora'], 'valor_fecha_confirmacion'=>$_GET['fecha_confirmacion'], 'valor_hora_confirmacion'=>$_GET['hora_confirmacion']);
+    $datosUsuario = array('valor_id'=>$_GET['id_usuario'], 'valor_nombre'=>$_GET['nombre'], 'valor_apellidos'=>$_GET['apellidos'], 'valor_sexo'=>$_GET['sexo'], 'valor_fecha_nac'=>$_GET['fecha_nac'], 'valor_celular'=>$_GET['celular'], 'valor_localidad'=>$_GET['localidad'], 'valor_estado'=>$_GET['estado'], 'valor_domicilio'=>$_GET['domicilio'], 'valor_cp'=>$_GET['cp'], 'valor_correo'=>$_GET['correo'], 'valor_status'=>$_GET['status'], 'valor_num_rol'=>$_GET['num_rol'], 'valor_fecha_confirmacion'=>$_GET['fecha_confirmacion'], 'valor_hora_confirmacion'=>$_GET['hora_confirmacion']);
 
     $calcular = new Controller();
     $calcular -> editarUsuarioController($datosUsuario);

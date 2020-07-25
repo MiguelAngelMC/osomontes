@@ -7,8 +7,8 @@
     <form method="POST" accept="UTF-8" class="needs-validation" novalidate>
 
       <div class="form-group">
-        <label for="nombre"><b>Nombre:</b></label>
-        <input type="text" style="border-radius: 17px;" class="form-control" id="nombre" name="nombre" placeholder="José Juan" required="" minlength="3" maxlength="30" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+" value="<?php if(isset($_POST['nombre'])){
+        <label for="nombre"><b>Nombre(s):</b></label>
+        <input type="text" style="border-radius: 17px;" autofocus="" class="form-control" id="nombre" name="nombre" placeholder="José Juan" required="" minlength="3" maxlength="30" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+" value="<?php if(isset($_POST['nombre'])){
           echo $_POST['nombre'];
         } ?>">
         <div class="invalid-feedback">

@@ -1,10 +1,10 @@
 <div class="alert alert-primary" role="alert">
-    Celulares Samsung
+    Celulares
 </div>
 <center>
   <a href="#" style="color: black; text-decoration: none;">
   <div>
-    <img src="vistas/img/celulares/a10.jpg" width="130px" alt="...">
+    <img src="vistas/img/celulares/a10.jpg" loading="lazy" width="130px" alt="...">
     <div id="arti" class="media-body" style="width: 350px;">
       <h3 class="mt-2">Samsung A10</h3>
       <p>32 GB, 2 GB de RAM

@@ -12,7 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="vistas/css/bootstrap.css">
 	<script type="text/javascript" src="vistas/js/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript" src="vistas/js/bootstrap.js"></script>
-	<link rel="stylesheet" href="fonts/style.css">
+	<link rel="stylesheet" href="vistas/fonts/style.css">
 	<link rel="stylesheet" type="text/css" href="vistas/css/main.css">
   <script src="vistas/js/sweetalert2.min.js"></script>
   <link rel="stylesheet" href="vistas/css/sweetalert2.min.css">
@@ -62,9 +62,10 @@
 		?>
 	</div>
 	<div style="background-color: black;">
+    
 		<!------------------------------ aqui va el footer ---------------------------------->
 	<center>
-	<img src="vistas/img/logocelosomontes2.png" alt="Logo Oso Montes" width="100vw" style="margin-top: 25px;"><br>
+	<img src="vistas/img/logocelosomontes2.png" loading="lazy" alt="Logo Oso Montes" width="100vw" style="margin-top: 25px;"><br>
 	</center>
     <hr class="my-4">
 

@@ -5,6 +5,8 @@
 		session_destroy();
 		echo '<script>
 				(async () => {
+					var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+					notificacion.play();
 					const a = await Swal.fire({
 						icon: "success",
 						timer: 4000,

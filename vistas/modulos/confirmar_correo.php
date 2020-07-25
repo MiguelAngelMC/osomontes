@@ -28,7 +28,7 @@
 			}
 			else{
 
-				echo '<br><br><center><h4>No tienes permisos para acceder aquí 🚫<br>💩</h4><br><h5>Te busca la NASA🚀 y Cuacua🕵️‍♂️</h5></center><br><br><br><br><br><br><br>';
+				echo '<script>window.location="index.php?opcion=login";</script><br><br><br><br><br><br><br><br><br><br><br><br>';
 
 			}
 	?>

@@ -307,6 +307,15 @@
 					$contenido = "vistas/modulos/confirmar_correo.php";
 				}
 			}
+			else if($enlaces == 'info_usuario'){
+
+				if(!empty($_SESSION['usuario']) && ($_SESSION['tipo'] == 1)){
+					$contenido = "vistas/modulos/info_usuario.php";
+				}
+				else{
+					$contenido = "vistas/modulos/confirmar_correo.php";
+				}
+			}
 			else{
 				$contenido = "vistas/modulos/principal.php";
 			}

@@ -6,7 +6,7 @@
   </ol>
 <div class="carousel-inner">
   <div class="carousel-item active">
-      <img src="vistas/img/principal/card1.png" class="d-block w-100" alt="Card Comunidad Oso Montes">
+      <img src="vistas/img/principal/card1.png" loading="lazy" class="d-block w-100" alt="Card Comunidad Oso Montes">
       <div class="carousel-caption d-none d-md-block">
         <h5>Únete a nuestra comunidad</h5>
         <p>Regístrate para comprar con nosotros y obtener acceso a toda una comunidad</p>

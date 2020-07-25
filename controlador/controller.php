@@ -23,15 +23,17 @@
 		static public function registroController(){
 			if(isset($_POST['nombre'])){
 
-				if(!empty($_POST['nombre']) && !empty($_POST['ape']) && !empty($_POST['sexo']) && !empty($_POST['fecha_nac']) && !empty($_POST['tel']) && !empty($_POST['locali']) && !empty($_POST['estado']) && !empty($_POST['domic']) && !empty($_POST['corre']) && !empty($_POST['contra'])){
+				if(!empty($_POST['nombre']) && !empty($_POST['ape']) && !empty($_POST['sexo']) && !empty($_POST['fecha_nac']) && !empty($_POST['tel']) && !empty($_POST['locali']) && !empty($_POST['estado']) && !empty($_POST['domic']) && !empty($_POST['cp']) && !empty($_POST['corre']) && !empty($_POST['contra'])){
 
-					$datos = array('valor_nombre'=>$_POST['nombre'], 'valor_apellidos'=>$_POST['ape'], 'valor_sexo'=>$_POST['sexo'], 'valor_fecha_nacimiento'=>$_POST['fecha_nac'], 'valor_telefono'=>$_POST['tel'], 'valor_localidad'=>$_POST['locali'], 'valor_estado'=>$_POST['estado'], 'valor_domicilio'=>$_POST['domic'], 'valor_correo'=>$_POST['corre'], 'valor_contra'=>$_POST['contra']);
+					$datos = array('valor_nombre'=>$_POST['nombre'], 'valor_apellidos'=>$_POST['ape'], 'valor_sexo'=>$_POST['sexo'], 'valor_fecha_nacimiento'=>$_POST['fecha_nac'], 'valor_telefono'=>$_POST['tel'], 'valor_localidad'=>$_POST['locali'], 'valor_estado'=>$_POST['estado'], 'valor_domicilio'=>$_POST['domic'], 'valor_cp'=>$_POST['cp'], 'valor_correo'=>$_POST['corre'], 'valor_contra'=>$_POST['contra']);
 
 					$respuesta = Model::registroModelo($datos, "usuario");
 					
 					if($respuesta == "ok"){
 						echo '<script>
 						(async () => {
+							var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+							notificacion.play();
 							const a = await Swal.fire({
 								icon: "success",
 								timer: 5000,
@@ -98,6 +100,8 @@
 				if($respuesta == "ok"){
 					echo '<script>
 						(async () => {
+							var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+							notificacion.play();
 							const a = await Swal.fire({
 								icon: "success",
 								timer: 5000,
@@ -142,7 +146,11 @@
 				
 				if($respuesta == "ok"){
 					echo '<script>
+						var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+						notificacion.load();
 						(async () => {
+
+							notificacion.play();
 							const a = await Swal.fire({
 								icon: "success",
 								title: "Bienvenido '.$_SESSION["usuario"].'",
@@ -160,6 +168,13 @@
 				}
 				else if($respuesta == "no"){
 					echo '<script>
+					var siVibra= "vibrate" in navigator;
+					if(siVibra){
+						navigator.vibrate(200);
+					}
+					var notificacion = new Audio("vistas/audio/notificacion_error.mp3");
+					notificacion.load();
+					notificacion.play();
 					Swal.fire({
 							icon: "info",
 							timer: 5000,
@@ -173,6 +188,12 @@
 				}
 				else{
 					echo '<script>
+					var siVibra= "vibrate" in navigator;
+					if(siVibra){
+						navigator.vibrate(200);
+					}
+					var notificacion = new Audio("vistas/audio/notificacion_error.mp3");
+					notificacion.play();
 					Swal.fire({
 							icon: "error",
 							timer: 5000,
@@ -198,6 +219,16 @@
 				if($respuesta == "ok"){
 					echo '<script>
 						(async () => {
+							var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+							notificacion.load();
+							notificacion.play();
+
+							if("webkitAudioContext" in window) {
+
+							    var myAudioContext = new webkitAudioContext();
+
+							}
+
 							const a = await Swal.fire({
 								icon: "success",
 								title: "La contraseña es correcta",
@@ -240,6 +271,8 @@
 				if($respuesta == "ok"){
 					echo '<script>
 						(async () => {
+							var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+							notificacion.play();
 							const a = await Swal.fire({
 								icon: "success",
 								title: "La nueva contraseña ha sido establecida con éxito 😄👍",
@@ -393,6 +426,8 @@
 
 						echo '<script>
 							(async () => {
+							var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+							notificacion.play();
 							const a = await Swal.fire({
 								icon: "success",
 								title: "El nombre: '.$_POST['nombre'].', ha sido establecido con éxito 😄👍",
@@ -466,6 +501,8 @@
 
 						echo '<script>
 							(async () => {
+					var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+					notificacion.play();
 							const a = await Swal.fire({
 								icon: "success",
 								title: "Los apellidos: '.$_POST['apellidos'].', han sido establecidos con éxito 😄👍",
@@ -568,11 +605,11 @@
 		}
 
 		// Método que recibe los valores del registro de un producto
-		static public function RegistrarProductoController(){
+		static public function registrarProductoController(){
 
-			if(!empty($_POST['corre'])){
+			if(!empty($_POST['categoria']) && !empty($_POST['marca']) && !empty($_POST['proveedor']) && !empty($_POST['foto']) && !empty($_POST['nombre']) && !empty($_POST['descripcion']) && !empty($_POST['precio_venta']) && !empty($_POST['precio_compra'])){
 
-				$respuesta = Model::RegistrarProductoModelo($_POST['corre'], "usuario");
+				$respuesta = Model::registrarProductoModelo($_POST['corre'], "usuario");
 				
 				if($respuesta == "ok"){
 					echo '<script>
@@ -621,6 +658,8 @@
 
 						echo '<script>
 							(async () => {
+					var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+					notificacion.play();
 							const a = await Swal.fire({
 									icon: "success",
 									title: "La categoría: '.$_POST['nombre'].', fue registrada con éxito 😄👍",
@@ -698,6 +737,8 @@
 
 						echo '<script>
 							(async () => {
+							var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+							notificacion.play();
 							const a = await Swal.fire({
 								icon: "success",
 								title: "La categoría fue modificada con éxito 😄👍",
@@ -789,6 +830,8 @@
 
 						echo '<script>
 							(async () => {
+							var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+							notificacion.play();
 							const a = await Swal.fire({
 								icon: "success",
 								title: "La categoría fue eliminada con éxito 😄👍",
@@ -1031,7 +1074,7 @@
 			$respuesta = Model::vistaCategoriasSelectModelo("categoria");
 			foreach($respuesta as $renglon => $dato){
 				?> 
-				<option value="<?php echo $dato['nombre_categoria']; ?>"><?php echo $dato['nombre_categoria']; ?></option>
+				<option value="<?php echo $dato['nombre_categoria']; ?>" onclick="seleccion();"><?php echo $dato['nombre_categoria']; ?></option>
 				<?php 
 			}
 		}
@@ -1049,6 +1092,8 @@
 
 						echo '<script>
 							(async () => {
+							var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+							notificacion.play();
 							const a = await Swal.fire({
 									icon: "success",
 									title: "La marca: '.$_POST['nombre'].', fue registrada con éxito 😄👍",
@@ -1146,6 +1191,8 @@
 
 						echo '<script>
 							(async () => {
+							var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+							notificacion.play();
 							const a = await Swal.fire({
 								icon: "success",
 								title: "La marca fue modificada con éxito 😄👍",
@@ -1237,6 +1284,8 @@
 
 						echo '<script>
 							(async () => {
+					var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+					notificacion.play();
 							const a = await Swal.fire({
 								icon: "success",
 								title: "La marca fue eliminada con éxito 😄👍",
@@ -1326,6 +1375,8 @@
 
 						echo '<script>
 							(async () => {
+							var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+							notificacion.play();
 							const a = await Swal.fire({
 									icon: "success",
 									title: "El proveedor: '.$_POST['nombre'].' '.$_POST['apellidos'].', fue registrado con éxito 😄👍",
@@ -1426,6 +1477,8 @@
 
 						echo '<script>
 							(async () => {
+							var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+							notificacion.play();
 							const a = await Swal.fire({
 								icon: "success",
 								title: "El proveedor fue modificado con éxito 😄👍",
@@ -1517,6 +1570,8 @@
 
 						echo '<script>
 							(async () => {
+							var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+							notificacion.play();
 							const a = await Swal.fire({
 								icon: "success",
 								title: "El proveedor fue eliminado con éxito 😄👍",
@@ -1595,21 +1650,22 @@
 		static public function registroManualController(){
 			if(isset($_POST['nombre'])){
 
-				if(!empty($_POST['nombre']) && !empty($_POST['ape']) && !empty($_POST['sexo']) && !empty($_POST['fecha_nac']) && !empty($_POST['tel']) && !empty($_POST['locali']) && !empty($_POST['estado']) && !empty($_POST['domic']) && !empty($_POST['corre']) && !empty($_POST['contra']) && !empty($_POST['rol'])){
+				if(!empty($_POST['nombre']) && !empty($_POST['ape']) && !empty($_POST['sexo']) && !empty($_POST['fecha_nac']) && !empty($_POST['tel']) && !empty($_POST['locali']) && !empty($_POST['estado']) && !empty($_POST['domic']) && !empty($_POST['cp']) && !empty($_POST['corre']) && !empty($_POST['contra']) && !empty($_POST['rol'])){
 
-					$datos = array('valor_nombre'=>$_POST['nombre'], 'valor_apellidos'=>$_POST['ape'], 'valor_sexo'=>$_POST['sexo'], 'valor_fecha_nacimiento'=>$_POST['fecha_nac'], 'valor_telefono'=>$_POST['tel'], 'valor_localidad'=>$_POST['locali'], 'valor_estado'=>$_POST['estado'], 'valor_domicilio'=>$_POST['domic'], 'valor_correo'=>$_POST['corre'], 'valor_contra'=>$_POST['contra'], 'valor_rol'=>$_POST['rol']);
+					$datos = array('valor_nombre'=>$_POST['nombre'], 'valor_apellidos'=>$_POST['ape'], 'valor_sexo'=>$_POST['sexo'], 'valor_fecha_nacimiento'=>$_POST['fecha_nac'], 'valor_telefono'=>$_POST['tel'], 'valor_localidad'=>$_POST['locali'], 'valor_estado'=>$_POST['estado'], 'valor_domicilio'=>$_POST['domic'], 'valor_cp'=>$_POST['cp'], 'valor_correo'=>$_POST['corre'], 'valor_contra'=>$_POST['contra'], 'valor_rol'=>$_POST['rol']);
 
 					$respuesta = Model::registroManualModelo($datos, "usuario");
 					
 					if($respuesta == "ok"){
 						echo '<script>
 						(async () => {
+							var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+							notificacion.play();
 							const a = await Swal.fire({
 								icon: "success",
 								timer: 5000,
 								timerProgressBar: true,
 								title: "Usuario registrado con éxito",
-								text: "Se le envió un correo de aviso al usuario",
 								footer: "Redireccionando a la vista de usuarios."
 							});
 							
@@ -1676,6 +1732,7 @@
 					<td><?php echo $dato['localidad']; ?></td>
 					<td><?php echo $dato['estado']; ?></td>
 					<td><?php echo $dato['domicilio']; ?></td>
+					<td><?php echo $dato['cp']; ?></td>
 					<td><?php echo $dato['correo']; ?></td>
 					<td><?php echo $dato['contra']; ?></td>
 					<td><?php echo $dato['status']; ?></td>
@@ -1692,7 +1749,10 @@
 					}else{
 						echo $dato['fecha_modificacion']." ".$dato['hora_modificacion'];
 					} ?></td>
-					<td><button class="btn btn-warning" onclick="window.location='index.php?opcion=editar_usuario&nombre=<?php echo $dato['nombre'].'&apellidos='.$dato['apellidos'].'&sexo='.$dato['sexo'].'&fecha_nac='.$dato['fecha_nac'].'&celular='.$dato['celular'].'&localidad='.$dato['localidad'].'&estado='.$dato['estado'].'&domicilio='.urlencode($dato['domicilio']).'&id_usuario='.$dato['id_user'].'&correo='.$dato['correo'].'&status='.$dato['status'].'&num_rol='.$dato['num_rol'].'&fecha='.$dato['fecha'].'&hora='.$dato['hora'].'&fecha_confirmacion='.$dato['fecha_confirmacion'].'&hora_confirmacion='.$dato['hora_confirmacion']; ?>'">Editar</button> <button class="btn btn-danger" onclick="confirmar2('<?php echo $dato['id_user']; ?>', '<?php echo $dato['nombre']; ?>', '<?php echo $dato['apellidos']; ?>', '<?php echo $dato['correo']; ?>')">🗑️</button></td>
+					<td style="text-align: right;"><?php if($dato['fecha_confirmacion'] == "0000-00-00" || $dato['hora_confirmacion'] == "00:00"){
+						echo '<button class="btn btn-primary" title="Enviar correo de confirmación">📩</button> ';
+					} ?>
+					<button class="btn btn-dark" title="Ver perfil" onclick="window.location='index.php?opcion=info_usuario&nombre=<?php echo $dato['nombre'].'&apellidos='.$dato['apellidos'].'&sexo='.$dato['sexo'].'&fecha_nac='.$dato['fecha_nac'].'&celular='.$dato['celular'].'&localidad='.$dato['localidad'].'&estado='.$dato['estado'].'&domicilio='.urlencode($dato['domicilio']).'&cp='.$dato['cp'].'&id_usuario='.$dato['id_user'].'&correo='.$dato['correo'].'&contra='.$dato['contra'].'&status='.$dato['status'].'&num_rol='.$dato['num_rol'].'&fecha='.$dato['fecha'].'&hora='.$dato['hora'].'&fecha_confirmacion='.$dato['fecha_confirmacion'].'&hora_confirmacion='.$dato['hora_confirmacion'].'&fecha_ultima_sesion='.$dato['fecha_ultima_sesion'].'&hora_ultima_sesion='.$dato['hora_ultima_sesion'].'&fecha_modificacion='.$dato['fecha_modificacion'].'&hora_modificacion='.$dato['hora_modificacion']; ?>'">Ver perfil</button> <button class="btn btn-warning" onclick="window.location='index.php?opcion=editar_usuario&nombre=<?php echo $dato['nombre'].'&apellidos='.$dato['apellidos'].'&sexo='.$dato['sexo'].'&fecha_nac='.$dato['fecha_nac'].'&celular='.$dato['celular'].'&localidad='.$dato['localidad'].'&estado='.$dato['estado'].'&domicilio='.urlencode($dato['domicilio']).'&cp='.$dato['cp'].'&id_usuario='.$dato['id_user'].'&correo='.$dato['correo'].'&status='.$dato['status'].'&num_rol='.$dato['num_rol'].'&fecha='.$dato['fecha'].'&hora='.$dato['hora'].'&fecha_confirmacion='.$dato['fecha_confirmacion'].'&hora_confirmacion='.$dato['hora_confirmacion']; ?>'" title="Editar">Editar</button> <button class="btn btn-danger" onclick="confirmar2('<?php echo $dato['id_user']; ?>', '<?php echo $dato['nombre']; ?>', '<?php echo $dato['apellidos']; ?>', '<?php echo $dato['correo']; ?>')" title="Eliminar">🗑️</button></td>
 				</tr>
 				<?php 
 			}
@@ -1701,13 +1761,29 @@
 		// Método que recibe los valores de editar_usuario.php
 		static public function editarUsuarioController($datosUsuario){
 
+			// Valores actuales del usuario
+			$idUsuario = $datosUsuario['valor_id'];
+			$nombreUsuario = $datosUsuario['valor_nombre'];
+			$apellidosUsuario = $datosUsuario['valor_apellidos'];
+			$sexoUsuario = $datosUsuario['valor_sexo'];
+			$fechaNacUsuario = $datosUsuario['valor_fecha_nac'];
+			$celularUsuario = $datosUsuario['valor_celular'];
+			$localidadUsuario = $datosUsuario['valor_localidad'];
+			$estadoUsuario = $datosUsuario['valor_estado'];
+			$domicilioUsuario = $datosUsuario['valor_domicilio'];
+			$cpUsuario = $datosUsuario['valor_cp'];
+			$correoUsuario = $datosUsuario['valor_correo'];
+			$statusUsuario = $datosUsuario['valor_status'];
+			$rolUsuario = $datosUsuario['valor_num_rol'];
+			$fechaConfirmacionUsuario = $datosUsuario['valor_fecha_confirmacion'];
+			$horaConfirmacionUsuario = $datosUsuario['valor_hora_confirmacion'];
 
 
-			if(isset($_POST['nvoNombre']) && isset($_POST['nvosApellidos']) && isset($_POST['nvoSexo']) && isset($_POST['nvaFecha_nac']) && isset($_POST['nvoTel']) && isset($_POST['nvaLocali']) && isset($_POST['nvoEstado']) && isset($_POST['nvoDomic']) && isset($_POST['nvoCorre']) && isset($_POST['nvaContra']) && isset($_POST['nvoStatus']) && isset($_POST['nvoRol']) && isset($_POST['nvaFecha_creacion']) && isset($_POST['nvaHora_creacion']) && isset($_POST['nvaFecha_confirmacion']) && isset($_POST['nvaHora_confirmacion'])){
+			if(isset($_POST['nvoNombre']) && isset($_POST['nvosApellidos']) && isset($_POST['nvoSexo']) && isset($_POST['nvaFecha_nac']) && isset($_POST['nvoTel']) && isset($_POST['nvaLocali']) && isset($_POST['nvoEstado']) && isset($_POST['nvoDomic']) && isset($_POST['nvoCp']) && isset($_POST['nvoCorre']) && isset($_POST['nvaContra']) && isset($_POST['nvoStatus']) && isset($_POST['nvoRol']) && isset($_POST['nvaFecha_confirmacion']) && isset($_POST['nvaHora_confirmacion'])){
 
-				if(!empty($_POST['nvoNombre']) && !empty($_POST['nvosApellidos']) && !empty($_POST['nvoSexo']) && !empty($_POST['nvaFecha_nac']) && !empty($_POST['nvoTel']) && !empty($_POST['nvaLocali']) && !empty($_POST['nvoEstado']) && !empty($_POST['nvoDomic']) && !empty($_POST['nvoCorre']) && !empty($_POST['nvaContra']) && !empty($_POST['nvoStatus']) && !empty($_POST['nvoRol']) && !empty($_POST['nvaFecha_creacion']) && !empty($_POST['nvaHora_creacion']) && !empty($_POST['nvaFecha_confirmacion']) && !empty($_POST['nvaHora_confirmacion'])){
+				if(!empty($_POST['nvoNombre']) && !empty($_POST['nvosApellidos']) && !empty($_POST['nvoSexo']) && !empty($_POST['nvaFecha_nac']) && !empty($_POST['nvoTel']) && !empty($_POST['nvaLocali']) && !empty($_POST['nvoEstado']) && !empty($_POST['nvoDomic']) && !empty($_POST['nvoCp']) && !empty($_POST['nvoCorre']) && !empty($_POST['nvaContra']) && !empty($_POST['nvoStatus']) && !empty($_POST['nvoRol']) && !empty($_POST['nvaFecha_confirmacion']) && !empty($_POST['nvaHora_confirmacion'])){
 
-					$datos = array('valor_nvoNombre'=>$_POST['nvoNombre'], 'valor_nvosApellidos'=>$_POST['nvosApellidos'], 'valor_nvoSexo'=>$_POST['nvoSexo'], 'valor_nvaFecha_nac'=>$_POST['nvaFecha_nac'], 'valor_nvoTel'=>$_POST['nvoTel'], 'valor_nvaLocali'=>$_POST['nvaLocali'], 'valor_nvoEstado'=>$_POST['nvoEstado'], 'valor_nvoDomic'=>$_POST['nvoDomic'], 'valor_nvoCorre'=>$_POST['nvoCorre'], 'valor_nvaContra'=>$_POST['nvaContra'], 'valor_nvoStatus'=>$_POST['nvoStatus'], 'valor_nvoRol'=>$_POST['nvoRol'], 'valor_nvaFecha_creacion'=>$_POST['nvaFecha_creacion'], 'valor_nvaHora_creacion'=>$_POST['nvaHora_creacion'], 'valor_nvaFecha_confirmacion'=>$_POST['nvaFecha_confirmacion'], 'valor_nvaHora_confirmacion'=>$_POST['nvaHora_confirmacion']);
+					$datos = array('valor_id'=>$idUsuario,'valor_nombre'=>$nombreUsuario, 'valor_apellidos'=>$apellidosUsuario, 'valor_sexo'=>$sexoUsuario, 'valor_fecha_nac'=>$fechaNacUsuario, 'valor_celular'=>$celularUsuario, 'valor_localidad'=>$localidadUsuario, 'valor_estado'=>$estadoUsuario, 'valor_domicilio'=>$domicilioUsuario, 'valor_cp'=>$cpUsuario, 'valor_correo'=>$correoUsuario, 'valor_status'=>$statusUsuario, 'valor_num_rol'=>$rolUsuario, 'valor_fecha_confirmacion'=>$fechaConfirmacionUsuario, 'valor_hora_confirmacion'=>$horaConfirmacionUsuario, 'valor_nvoNombre'=>$_POST['nvoNombre'], 'valor_nvosApellidos'=>$_POST['nvosApellidos'], 'valor_nvoSexo'=>$_POST['nvoSexo'], 'valor_nvaFecha_nac'=>$_POST['nvaFecha_nac'], 'valor_nvoTel'=>$_POST['nvoTel'], 'valor_nvaLocali'=>$_POST['nvaLocali'], 'valor_nvoEstado'=>$_POST['nvoEstado'], 'valor_nvoDomic'=>$_POST['nvoDomic'], 'valor_nvoCp'=>$_POST['nvoCp'], 'valor_nvoCorre'=>$_POST['nvoCorre'], 'valor_nvaContra'=>$_POST['nvaContra'], 'valor_nvoStatus'=>$_POST['nvoStatus'], 'valor_nvoRol'=>$_POST['nvoRol'], 'valor_nvaFecha_confirmacion'=>$_POST['nvaFecha_confirmacion'], 'valor_nvaHora_confirmacion'=>$_POST['nvaHora_confirmacion']);
 
 					$respuesta = Model::editarUsuarioModelo($datos, "usuario");
 
@@ -1715,6 +1791,8 @@
 
 						echo '<script>
 							(async () => {
+							var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+							notificacion.play();
 							const a = await Swal.fire({
 								icon: "success",
 								title: "El usuario fue modificado con éxito 😄👍",
@@ -1722,7 +1800,7 @@
 							});
 							
 							if(a){
-								window.location="index.php?opcion=ver_categorias";
+								window.location="index.php?opcion=ver_usuarios";
 							}
 
 							})()
@@ -1737,8 +1815,8 @@
 								icon: "info",
 								timer: 5000,
 								timerProgressBar: true,
-								title: "El usuario: '.$nombreUsuario.', no existe",
-								text: "Ingrese una categoría existe",
+								title: "El usuario: '.$nombreUsuario.' '.$apellidosUsuario.', no existe",
+								text: "Ingrese un usuario existente",
 								footer: "Este mensaje cerrará automáticamente en 5s."
 							});
 						</script>
@@ -1752,8 +1830,7 @@
 								icon: "info",
 								timer: 5000,
 								timerProgressBar: true,
-								title: "La categoría ya tiene ese nombre",
-								text: "Ingrese un nuevo nombre para la categoría",
+								title: "Modifique por lo menos un campo del usuario",
 								footer: "Este mensaje cerrará automáticamente en 5s."
 							});
 						</script>
@@ -1767,8 +1844,8 @@
 								icon: "error",
 								timer: 5000,
 								timerProgressBar: true,
-								title: "Ups!😢<br> Ocurrió un error al modificar la categoría:",
-								html: "<b>'.$categoria.'</b>"
+								title: "Ups!😢<br> Ocurrió un error al modificar el usuario:",
+								html: "<b>'.$nombreUsuario.' '.$apellidosUsuario.'</b>"
 							});
 						</script>
 						';
@@ -1807,6 +1884,8 @@
 
 						echo '<script>
 							(async () => {
+							var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+							notificacion.play();
 							const a = await Swal.fire({
 								icon: "success",
 								title: "El usuario fue eliminado con éxito 😄👍",
