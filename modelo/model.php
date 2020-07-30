@@ -180,7 +180,7 @@ class Model extends Conexion{
 
 	// Método que consulta a la bd la información del perfil del usuario con su id
 	static public function vistaPerfilModelo($id_usuario, $tabla){
-		$consulta = Conexion::conectar()->prepare("SELECT nombre, apellidos FROM $tabla WHERE id_user = :id");
+		$consulta = Conexion::conectar()->prepare("SELECT nombre, apellidos, celular, localidad, estado, domicilio, cp FROM $tabla WHERE id_user = :id");
 		$consulta -> bindParam(':id', $id_usuario);
 		$consulta -> execute();
 		return $consulta -> fetchAll();
@@ -516,34 +516,6 @@ class Model extends Conexion{
 
 		return $consulta -> fetchAll();
 		$consulta -> close();
-	}
-
-	static public function paginacion($tabla, $articulosXPagina){
-
-		$consulta = Conexion::conectar()->prepare("SELECT nombre_categoria, fecha, hora, fecha_modificacion, hora_modificacion FROM $tabla ORDER BY fecha, hora ASC");
-
-		$consulta -> execute();
-
-		// Contar filas de la consulta
-		$totalArticulosBD = $consulta->rowCount();
-		echo '&nbsp;&nbsp;<b>Total de categorías: </b>'.$totalArticulosBD;
-
-		// Contar el número de páginas
-		$paginas = ($totalArticulosBD / $articulosXPagina);
-		$paginas = ceil($paginas);
-		//echo '<br>&nbsp;&nbsp;<b>Total de páginas: </b>'.$paginas;
-		if(($_GET['pagina']*$articulosXPagina) < $totalArticulosBD){
-			echo '<br>&nbsp;&nbsp;<b>Mostrando </b>'.($_GET['pagina']*$articulosXPagina).'<b> de </b>'.$totalArticulosBD;
-		}
-		else{
-			echo '<br>&nbsp;&nbsp;<b>Mostrando </b>'.$totalArticulosBD.'<b> de </b>'.$totalArticulosBD;
-		}
-
-		// Comprobar si está vacía la tabla categoria
-		if($paginas == 0){
-			$paginas = 1;
-		}
-		return $paginas;
 	}
 
 	// Método que consulta a la bd las categorías para ordenarlas por órden alfabético y mostrarlas en el select
@@ -1110,6 +1082,155 @@ class Model extends Conexion{
 		$resultados->closeCursor();
 		$datos->close();
 		
+	}
+
+	// Método que registra los valores de registrar_producto.php en la BD
+	static public function registrarProductoModelo($datos, $tabla){
+
+		//obtener fecha y hora
+		date_default_timezone_set("America/Mazatlan");
+		$hora = date("H:i:s");
+		$fecha = date("Y-m-d");
+		
+		// Variables de la foto
+		$nombre_foto = $_FILES['foto']['name'];
+		$tipo_foto = $_FILES['foto']['type'];
+		$tamano_foto = $_FILES['foto']['size'];
+		$nombre_tmp = $_FILES['foto']['tmp_name'];
+
+		// Variables del arreglo
+		$categoria = $datos['valor_categoria'];
+		$imei = $datos['valor_imei'];
+		$marca = $datos['valor_marca'];
+		$proveedor = $datos['valor_proveedor'];
+		$nombreProducto = $datos['valor_nombre_producto'];
+		$almacenamiento = $datos['valor_almacenamiento'];
+		$descripcionProducto = $datos['valor_descripcion'];
+		$precioCompra = $datos['valor_precio_compra'];
+		$precioVenta = $datos['valor_precio_venta'];
+
+		if($categoria == 'Mica de Cristal'){
+
+			$ruta = "vistas/img/micas/".$nombre_foto;
+
+		}
+		else if($categoria == 'PopSocket'){
+
+			$ruta = "vistas/img/popsockets/".$nombre_foto;
+
+		}
+		else if($categoria == 'Teléfono Celular'){
+
+			$ruta = "vistas/img/celulares/".$nombre_foto;
+
+		}
+		else if($categoria == 'Teléfono de Casa'){
+
+			$ruta = "vistas/img/telefonos de casa/".$nombre_foto;
+
+		}
+
+		// Comprobar si existe un producto con ese IMEI
+		$dato1 = Conexion::conectar()->prepare("SELECT imei FROM $tabla WHERE imei=:imei");
+		$dato1 -> bindParam(':imei', $imei);
+		$dato1 -> execute();
+		$resultados = $dato1->fetch(PDO::FETCH_ASSOC);
+
+		if(!empty($resultados)){
+			
+			return "existe";
+
+		}
+		else{
+
+			if(move_uploaded_file($_FILES['foto']['tmp_name'], $ruta)){
+
+				// Insertar en la base de datos si se movio la foto
+				$dato2 = Conexion::conectar()->prepare("INSERT INTO $tabla (fk_categoria, imei, fk_marca, fk_id_proveedor, ruta_imagen, nombre_producto, almacenamiento, descripcion_producto, costo_compra_unitario, costo_venta_unitario, fecha_creacion, hora_creacion, fecha_modificacion, hora_modificacion) VALUES (:categoria, :imei, :marca, :proveedor, :ruta, :nombre, :almacenamiento, :descripcion, :precio_compra, :precio_venta, :fecha_creacion, :hora_creacion, NULL, NULL)");
+				$dato2 -> bindParam(':categoria', $categoria);
+				$dato2 -> bindParam(':imei', $imei);
+				$dato2 -> bindParam(':marca', $marca);
+				$dato2 -> bindParam(':proveedor', $proveedor);
+				$dato2 -> bindParam(':ruta', $ruta);
+				$dato2 -> bindParam(':nombre', $nombreProducto);
+				$dato2 -> bindParam(':almacenamiento', $almacenamiento);
+				$dato2 -> bindParam(':descripcion', $descripcionProducto);
+				$dato2 -> bindParam(':precio_compra', $precioCompra);
+				$dato2 -> bindParam(':precio_venta', $precioVenta);
+				$dato2 -> bindParam(':fecha_creacion', $fecha);
+				$dato2 -> bindParam(':hora_creacion', $hora);
+
+				if($dato2->execute()){
+
+					return "ok";
+				}
+				else{
+
+					return "error";
+				}
+				$dato2->close();
+
+			}
+			else{
+
+				return "error";
+			}
+
+		}
+		$resultados->closeCursor();
+		$dato1->close();
+	}
+
+	// Método que consulta a la bd los productos
+	static public function vistaProductosModelo($tabla){
+
+		$consulta = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+
+		$consulta -> execute();
+		return $consulta -> fetchAll();
+		$consulta -> close();
+	}
+
+	// Método que consulta a la bd los celulares
+	static public function vistaCelularesModelo($tabla, $articulosXPagina){
+
+		$iniciar = ($_GET['pagina']-1)*$articulosXPagina;
+		
+		$consulta = Conexion::conectar()->prepare("SELECT COUNT(nombre_producto) AS 'productos_disponibles', MAX(costo_venta_unitario) AS 'max_costo_venta_unitario', id_producto, nombre_producto, almacenamiento, ruta_imagen, descripcion_producto FROM producto WHERE fk_categoria='Teléfono Celular' GROUP BY nombre_producto, almacenamiento LIMIT :iniciar, :articulosXPagina;");
+		$consulta -> bindParam(':iniciar', $iniciar, PDO::PARAM_INT);
+		$consulta -> bindParam(':articulosXPagina', $articulosXPagina, PDO::PARAM_INT);
+		$consulta -> execute();
+
+		return $consulta -> fetchAll();
+		$consulta -> close();
+
+	}
+
+	// Método que pagina celulares.php
+	static public function paginacionCelularesModelo($tabla, $articulosXPagina){
+		
+		$consulta = Conexion::conectar()->prepare("SELECT COUNT(nombre_producto) AS 'productos_disponibles', MAX(costo_venta_unitario) AS 'max_costo_venta_unitario', id_producto, nombre_producto, almacenamiento, ruta_imagen, descripcion_producto FROM producto WHERE fk_categoria='Teléfono Celular' GROUP BY nombre_producto, almacenamiento;");
+
+		$consulta -> execute();
+
+		// Contar filas de la consulta
+		$totalArticulosBD = $consulta->rowCount();
+
+		// Contar el número de páginas
+		$paginas = ($totalArticulosBD / $articulosXPagina);
+		$paginas = ceil($paginas);
+		//echo '<br>&nbsp;&nbsp;<b>Total de páginas: </b>'.$paginas;
+
+		// Comprobar si está vacía la tabla producto
+		if($paginas == 0){
+			$paginas = 1;
+		}
+
+		$datos = array('valor_totalArticulosBD' => $totalArticulosBD, 'valor_articulosXPagina' => $articulosXPagina, 'valor_paginas' => $paginas);
+
+		return $datos;
+		$consulta -> close();
+
 	}
 
 }

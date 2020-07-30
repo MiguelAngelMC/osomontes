@@ -316,6 +316,15 @@
 					$contenido = "vistas/modulos/confirmar_correo.php";
 				}
 			}
+			else if($enlaces == 'ver_productos'){
+
+				if(!empty($_SESSION['usuario']) && ($_SESSION['tipo'] == 1)){
+					$contenido = "vistas/modulos/ver_productos.php";
+				}
+				else{
+					$contenido = "vistas/modulos/confirmar_correo.php";
+				}
+			}
 			else{
 				$contenido = "vistas/modulos/principal.php";
 			}

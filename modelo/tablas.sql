@@ -57,16 +57,19 @@ CREATE TABLE marca
 
 CREATE TABLE producto
 (
-	id_producto VARCHAR(40) PRIMARY KEY NOT NULL,
+	id_producto INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 	fk_categoria VARCHAR(30) NOT NULL,
-	imei VARCHAR(15) NOT NULL,
+	imei VARCHAR(15),
 	fk_marca VARCHAR(30) NOT NULL,
 	fk_id_proveedor INT NOT NULL,
-	ruta_imagen VARCHAR(40),
+	ruta_imagen VARCHAR(60),
 	nombre_producto TEXT NOT NULL,
+	almacenamiento TEXT,
 	descripcion_producto TEXT NOT NULL,
 	costo_compra_unitario FLOAT(8,2),
 	costo_venta_unitario FLOAT(8,2),
+	fecha_creacion DATE,
+	hora_creacion TIME,
 	fecha_modificacion DATE,
 	hora_modificacion TIME,
 	FOREIGN KEY (fk_categoria) REFERENCES categoria(nombre_categoria),

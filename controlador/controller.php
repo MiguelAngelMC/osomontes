@@ -393,6 +393,71 @@
 
 						    <tr>
 						    	<td>
+						        	<label for="apellidos"><b>Celular:</b></label>
+						        	<div name="apellidos"><?php echo $dato['celular']; ?></div>
+						        </td>
+						        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						        <td>
+						        	<button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_celular';">Editar</button>
+						        </td>
+						    </tr>
+
+						    <tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr>
+
+						    <tr>
+						    	<td>
+						        	<label for="apellidos"><b>Localidad:</b></label>
+						        	<div name="apellidos"><?php echo $dato['localidad']; ?></div>
+						        </td>
+						        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						        <td>
+						        	<button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_localidad';">Editar</button>
+						        </td>
+						    </tr>
+
+						    <tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr>
+
+						    <tr>
+						    	<td>
+						        	<label for="apellidos"><b>Estado:</b></label>
+						        	<div name="apellidos"><?php echo $dato['estado']; ?></div>
+						        </td>
+						        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						        <td>
+						        	<button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_estado';">Editar</button>
+						        </td>
+						    </tr>
+
+						    <tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr>
+
+						    <tr>
+						    	<td>
+						        	<label for="apellidos"><b>Domicilio:</b></label>
+						        	<div name="apellidos"><?php echo $dato['domicilio']; ?></div>
+						        </td>
+						        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						        <td>
+						        	<button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_domicilio';">Editar</button>
+						        </td>
+						    </tr>
+
+						    <tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr>
+
+						    <tr>
+						    	<td>
+						        	<label for="apellidos"><b>Código Postal (CP):</b></label>
+						        	<div name="apellidos"><?php echo $dato['cp']; ?></div>
+						        </td>
+						        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						        <td>
+						        	<button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_cp';">Editar</button>
+						        </td>
+						    </tr>
+
+						    <tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr>
+
+						    <tr>
+						    	<td>
 							        <label for="contra"><b>Contraseña:</b></label>
 							        <div name="contra">********</div>
 						    	</td>
@@ -607,40 +672,78 @@
 		// Método que recibe los valores del registro de un producto
 		static public function registrarProductoController(){
 
-			if(!empty($_POST['categoria']) && !empty($_POST['marca']) && !empty($_POST['proveedor']) && !empty($_POST['foto']) && !empty($_POST['nombre']) && !empty($_POST['descripcion']) && !empty($_POST['precio_venta']) && !empty($_POST['precio_compra'])){
+			if(isset($_POST['categoria'])){
 
-				$respuesta = Model::registrarProductoModelo($_POST['corre'], "usuario");
-				
-				if($respuesta == "ok"){
-					echo '<script>
-					window.location="index.php?opcion=principal";
-					</script>
-					';
-				}
-				else if($respuesta == "no"){
-					echo '<script>
-					Swal.fire({
-							icon: "info",
-							timer: 5000,
-							timerProgressBar: true,
-							title: "Porfavor verifica tu cuenta",
-							text: "Ve a tu correo electrónico y abre el enlace que te mandamos",
-							footer: "Revisa tu bandeja de entrada (incluyendo la de SPAM)."
-						});
-					</script>
-					';
+				if(!empty($_POST['categoria']) && !empty($_POST['marca']) && !empty($_POST['proveedor']) && !empty($_POST['nombre']) && !empty($_POST['descripcion']) && !empty($_POST['precio_compra']) && !empty($_POST['precio_venta'])){
+
+					// Creación del Arreglo
+					$datos = array("valor_categoria"=>$_POST['categoria'], "valor_marca"=>$_POST['marca'], "valor_imei"=>$_POST['imei'], "valor_proveedor"=>$_POST['proveedor'], "valor_nombre_producto"=>$_POST['nombre'], "valor_almacenamiento"=>$_POST['almacenamiento'], "valor_descripcion"=>$_POST['descripcion'], "valor_precio_compra"=>$_POST['precio_compra'], "valor_precio_venta"=>$_POST['precio_venta']);
+
+					$respuesta = Model::registrarProductoModelo($datos, "producto");
+					
+					if($respuesta == "ok"){
+						echo '<script>
+								(async () => {
+								var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+								notificacion.play();
+								const a = await Swal.fire({
+									icon: "success",
+									title: "El producto: '.$_POST['nombre'].', fue registrado con éxito 😄👍",
+									footer: "Presiona OK para continuar."
+								});
+								
+								if(a){
+									window.location="index.php?opcion=registrar_producto";
+								}
+
+								})()
+						</script>';
+					}
+					else if($respuesta == "existe"){
+
+							echo '<script>
+							Swal.fire({
+									icon: "info",
+									timer: 5000,
+									timerProgressBar: true,
+									title: "El producto con el imei: '.$_POST['imei'].' ya existe",
+									text: "Ingrese un producto con un IMEI diferente",
+									footer: "Este mensaje cerrará automáticamente en 5s."
+								});
+							</script>
+							';
+
+					}
+					else{
+
+							echo '<script>
+							Swal.fire({
+									icon: "error",
+									timer: 5000,
+									timerProgressBar: true,
+									title: "Ups!😢<br> Ocurrió un error al registrar el producto:<br>",
+									text: "'.$_POST['nombre'].'"
+								});
+							</script>
+							';
+
+					}
+
 				}
 				else{
-					echo '<script>
-					Swal.fire({
-							icon: "error",
-							timer: 5000,
-							timerProgressBar: true,
-							title: "Usuario y/o contraseña inválidos"
-						});
-					</script>
-					';
+
+						echo '<script>
+								Swal.fire({
+									icon: "warning",
+									timer: 5000,
+									timerProgressBar: true,
+									title: "Porfavor llene todos los campos del formulario"
+								});
+							</script>
+							';
+						
 				}
+
 			}
 
 		}
@@ -1355,7 +1458,9 @@
 			$respuesta = Model::vistaMarcasSelectModelo("marca");
 			foreach($respuesta as $renglon => $dato){
 				?> 
-				<option value="<?php echo $dato['nombre_marca']; ?>"><?php echo $dato['nombre_marca']; ?></option>
+				<option value="<?php echo $dato['nombre_marca']; ?>" <?php if(isset($_POST['marca']) && $_POST['marca'] == $dato['nombre_marca']){
+					echo 'selected="selected"';
+				} ?>><?php echo $dato['nombre_marca']; ?></option>
 				<?php 
 			}
 		}
@@ -1641,7 +1746,9 @@
 			$respuesta = Model::vistaProveedoresSelectModelo("proveedor");
 			foreach($respuesta as $renglon => $dato){
 				?> 
-				<option value="<?php echo $dato['id_proveedor']; ?>"><?php echo $dato['nombre_proveedor'].' '.$dato['apellidos_proveedor']; ?></option>
+				<option value="<?php echo $dato['id_proveedor']; ?>" <?php if(isset($_POST['proveedor']) && $_POST['proveedor'] == $dato['id_proveedor']){
+					echo 'selected="selected"';
+				} ?>><?php echo $dato['nombre_proveedor'].' '.$dato['apellidos_proveedor']; ?></option>
 				<?php 
 			}
 		}
@@ -1947,6 +2054,102 @@
 				}
 
 			}
+		}
+
+		// Método para mostrar los productos de la BD
+		static public function vistaProductos(){
+
+			$respuesta = Model::vistaProductosModelo("producto");
+			foreach($respuesta as $renglon => $dato){
+				?> 
+				<tr>
+					<td><?php echo $dato['id_producto']; ?></td>
+					<td><?php echo $dato['fk_categoria']; ?></td>
+					<td><?php echo $dato['imei']; ?></td>
+					<td><?php echo $dato['fk_marca']; ?></td>
+					<td><?php echo $dato['fk_id_proveedor']; ?></td>
+					<td><?php echo '<img src="'.$dato['ruta_imagen'].'" width="200px;">'; ?></td>
+					<td><?php echo $dato['nombre_producto']; ?></td>
+					<td><?php echo $dato['descripcion_producto']; ?></td>
+					<td><?php echo $dato['costo_compra_unitario']; ?></td>
+					<td><?php echo $dato['costo_venta_unitario']; ?></td>
+					<td><?php echo $dato['fecha_creacion'].' '.$dato['hora_creacion']; ?></td>
+					<td><?php if(($dato['fecha_modificacion'] == NULL) && ($dato['hora_modificacion'] == NULL)){
+						echo 'Sin modificaciones';
+					}else{
+						echo $dato['fecha_modificacion']." ".$dato['hora_modificacion'];
+					} ?></td>
+					<td style="text-align: right;"><button class="btn btn-warning" onclick="window.location='index.php?opcion=editar_usuario&nombre=<?php echo $dato['nombre'].'&apellidos='.$dato['apellidos'].'&sexo='.$dato['sexo'].'&fecha_nac='.$dato['fecha_nac'].'&celular='.$dato['celular'].'&localidad='.$dato['localidad'].'&estado='.$dato['estado'].'&domicilio='.urlencode($dato['domicilio']).'&cp='.$dato['cp'].'&id_usuario='.$dato['id_user'].'&correo='.$dato['correo'].'&status='.$dato['status'].'&num_rol='.$dato['num_rol'].'&fecha='.$dato['fecha'].'&hora='.$dato['hora'].'&fecha_confirmacion='.$dato['fecha_confirmacion'].'&hora_confirmacion='.$dato['hora_confirmacion']; ?>'" title="Editar">Editar</button> <button class="btn btn-danger" onclick="confirmar2('<?php echo $dato['id_user']; ?>', '<?php echo $dato['nombre']; ?>', '<?php echo $dato['apellidos']; ?>', '<?php echo $dato['correo']; ?>')" title="Eliminar">🗑️</button></td>
+				</tr>
+				<?php 
+			}
+		}
+
+		// Método para mostrar los celulares de la BD
+		static public function vistaCelulares(){
+
+			$respuesta = Model::vistaCelularesModelo("producto", 5);
+			foreach($respuesta as $renglon => $dato){
+				?> 
+				<a href="<?php echo $dato['id_producto']; ?>" style="color: black; text-decoration: none;">
+				<div>
+			    <img src="<?php echo $dato['ruta_imagen']; ?>" loading="lazy" width="130px" alt="<?php echo $dato['nombre_producto']; ?>">
+			    <div id="arti" class="media-body" style="width: 350px;">
+			      <h3 class="mt-2"><?php echo $dato['nombre_producto'].' <button class="btn btn-outline-secondary" style="display: inline;">'.$dato['almacenamiento'].'</button>'; ?></h3>
+			      <p><?php echo $dato['descripcion_producto']; ?>
+			      <h3 style="color: red;">$<?php
+			      $precio_f = number_format($dato['max_costo_venta_unitario'], $decimals = 2 , $dec_point = "." , $thousands_sep = "," );
+			      $precio = explode(".", $precio_f); 
+			      echo $precio[0]; ?><sup><?php echo '.'.$precio[1]; ?>&nbsp;
+			      		<div style="color: black; display: inline-flex; font-size: 0.8em;">MXN</div></sup></h3></p>
+			    </div>
+			  	</div></a>
+				<button type="submit" class="btn btn-outline-primary" style="font-size: 1.2em; border-radius: 17px;">Añadir al carrito</button></p>
+				<div class="card" style="margin-bottom: 10px;"></div>
+				<?php 
+			}
+		}
+
+		// Método para paginar los celulares
+		static public function paginacionCelulares(){
+
+			$respuesta = Model::paginacionCelularesModelo("producto", 5);
+			if($_GET['pagina']>$respuesta['valor_paginas']){
+					echo '<script>
+					window.location="index.php?opcion=celulares&pagina=1";
+					</script>';
+			}
+			?> 
+				<nav aria-label="">
+			  	<ul class="pagination justify-content-center">
+				    <li class="page-item
+				    <?php echo $_GET['pagina']<=1 ? 'disabled' : '' ?>">
+				      <a class="page-link" href="<?php echo 'index.php?opcion=celulares&pagina='.($_GET['pagina']-1) ?>" tabindex="-1">Anterior</a>
+				    </li>
+
+					<?php for($i=0; $i<$respuesta['valor_paginas']; $i++): ?>
+				    <li class="page-item
+				    <?php echo $_GET['pagina']==$i+1 ? 'active' : '' ?>">
+				    	<a class="page-link" href="<?php echo 'index.php?opcion=celulares&pagina='.($i+1) ?>"><?php echo ($i+1); ?></a>
+				    </li>
+					<?php endfor ?>
+
+				    <li class="page-item
+				    <?php echo $_GET['pagina']>=$respuesta['valor_paginas'] ? 'disabled' : '' ?>">
+				      <a class="page-link" href="<?php echo 'index.php?opcion=celulares&pagina='.($_GET['pagina']+1) ?>">Siguiente</a>
+					</li>
+				</ul>
+				</nav>
+			<?php
+				echo '&nbsp;&nbsp;<b>Total de celulares: </b>'.$respuesta['valor_totalArticulosBD'].'<br>';
+
+				if(($_GET['pagina']*$respuesta['valor_articulosXPagina']) < $respuesta['valor_totalArticulosBD']){
+					echo '&nbsp;&nbsp;<b>Mostrando </b>'.($_GET['pagina']*$respuesta['valor_articulosXPagina']).'<b> de </b>'.$respuesta['valor_totalArticulosBD'];
+				}
+				else{
+					echo '&nbsp;&nbsp;<b>Mostrando </b>'.$respuesta['valor_totalArticulosBD'].'<b> de </b>'.$respuesta['valor_totalArticulosBD'];
+				}
+
 		}
 
 	}

@@ -35,7 +35,7 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Productos" style="margin-right: 10vw;"><img src="vistas/img/menu/productos.png" alt="Logo Producto" width="32px"><b> Productos</b></a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="index.php?opcion=celulares" title="Celulares"><img src="vistas/img/menu/celular.png" alt="Logo Celulares" width="32px"> Celulares</a>
+          <a class="dropdown-item" href="index.php?opcion=celulares&pagina=1" title="Celulares"><img src="vistas/img/menu/celular.png" alt="Logo Celulares" width="32px"> Celulares</a>
           <a class="dropdown-item" href="index.php?opcion=fundas" title="Fundas"><img src="vistas/img/menu/funda.png" alt="Logo Fundas" width="32px"> Fundas</a>
           <a class="dropdown-item" href="index.php?opcion=micas" title="Micas"><img src="vistas/img/menu/mica.png" alt="Logo Micas" width="32px"> Micas</a>
           <a class="dropdown-item" href="index.php?opcion=audifonos" title="Audífonos"><img src="vistas/img/menu/audifonos.png" alt="Logo Audífonos" width="32px"> Audífonos</a>
