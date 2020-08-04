@@ -360,7 +360,15 @@
 				if(!empty($respuesta)){
 					foreach($respuesta as $renglon => $dato){
 						?>
-						<table>
+						<table style="white-space: nowrap; width: 100%;">
+
+							<tr>
+									<center><img src="vistas/img/menu/user.png" alt="Logo Usuario" width="100vw" style="margin-top: 25px;"></center><button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_foto_perfil';" title="Editar foto de perfil">Editar</button>
+
+							</tr>
+
+							<tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr>
+
 							<tr>
 
 								<td>
@@ -371,7 +379,7 @@
 							    </td>
 							    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 							    <td>
-							        <button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_nombre';">Editar</button>
+							        <button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_nombre';" title="Editar nombre">Editar</button>
 							    </td>
 
 							</tr>
@@ -385,7 +393,7 @@
 						        </td>
 						        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 						        <td>
-						        	<button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_apellidos';">Editar</button>
+						        	<button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_apellidos';" title="Editar apellidos">Editar</button>
 						        </td>
 						    </tr>
 
@@ -398,7 +406,7 @@
 						        </td>
 						        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 						        <td>
-						        	<button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_celular';">Editar</button>
+						        	<button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_celular';" title="Editar celular">Editar</button>
 						        </td>
 						    </tr>
 
@@ -411,7 +419,7 @@
 						        </td>
 						        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 						        <td>
-						        	<button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_localidad';">Editar</button>
+						        	<button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_localidad';" title="Editar localidad">Editar</button>
 						        </td>
 						    </tr>
 
@@ -424,7 +432,7 @@
 						        </td>
 						        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 						        <td>
-						        	<button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_estado';">Editar</button>
+						        	<button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_estado';" title="Editar estado">Editar</button>
 						        </td>
 						    </tr>
 
@@ -437,7 +445,7 @@
 						        </td>
 						        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 						        <td>
-						        	<button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_domicilio';">Editar</button>
+						        	<button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_domicilio';" title="Editar domicilio">Editar</button>
 						        </td>
 						    </tr>
 
@@ -450,7 +458,7 @@
 						        </td>
 						        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 						        <td>
-						        	<button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_cp';">Editar</button>
+						        	<button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_cp';" title="Editar código postal">Editar</button>
 						        </td>
 						    </tr>
 
@@ -463,7 +471,7 @@
 						    	</td>
 						    	<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 						    	<td>
-						    		<button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=verificar_contra';">Editar</button>
+						    		<button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=verificar_contra';" title="Editar contraseña">Editar</button>
 						    	</td>
 						    </tr>
 					    </table>
@@ -2068,18 +2076,19 @@
 					<td><?php echo $dato['imei']; ?></td>
 					<td><?php echo $dato['fk_marca']; ?></td>
 					<td><?php echo $dato['fk_id_proveedor']; ?></td>
-					<td><?php echo '<img src="'.$dato['ruta_imagen'].'" width="200px;">'; ?></td>
+					<td><?php echo '<img src="'.$dato['ruta_imagen'].'" width="150px;">'; ?></td>
 					<td><?php echo $dato['nombre_producto']; ?></td>
+					<td><?php echo $dato['almacenamiento']; ?></td>
 					<td><?php echo $dato['descripcion_producto']; ?></td>
-					<td><?php echo $dato['costo_compra_unitario']; ?></td>
-					<td><?php echo $dato['costo_venta_unitario']; ?></td>
+					<td><?php echo '$'.$dato['costo_compra_unitario']; ?></td>
+					<td><?php echo '$'.$dato['costo_venta_unitario']; ?></td>
 					<td><?php echo $dato['fecha_creacion'].' '.$dato['hora_creacion']; ?></td>
 					<td><?php if(($dato['fecha_modificacion'] == NULL) && ($dato['hora_modificacion'] == NULL)){
 						echo 'Sin modificaciones';
 					}else{
 						echo $dato['fecha_modificacion']." ".$dato['hora_modificacion'];
 					} ?></td>
-					<td style="text-align: right;"><button class="btn btn-warning" onclick="window.location='index.php?opcion=editar_usuario&nombre=<?php echo $dato['nombre'].'&apellidos='.$dato['apellidos'].'&sexo='.$dato['sexo'].'&fecha_nac='.$dato['fecha_nac'].'&celular='.$dato['celular'].'&localidad='.$dato['localidad'].'&estado='.$dato['estado'].'&domicilio='.urlencode($dato['domicilio']).'&cp='.$dato['cp'].'&id_usuario='.$dato['id_user'].'&correo='.$dato['correo'].'&status='.$dato['status'].'&num_rol='.$dato['num_rol'].'&fecha='.$dato['fecha'].'&hora='.$dato['hora'].'&fecha_confirmacion='.$dato['fecha_confirmacion'].'&hora_confirmacion='.$dato['hora_confirmacion']; ?>'" title="Editar">Editar</button> <button class="btn btn-danger" onclick="confirmar2('<?php echo $dato['id_user']; ?>', '<?php echo $dato['nombre']; ?>', '<?php echo $dato['apellidos']; ?>', '<?php echo $dato['correo']; ?>')" title="Eliminar">🗑️</button></td>
+					<td style="text-align: right;"><button class="btn btn-warning" onclick="window.location='index.php?opcion=editar_producto'" title="Editar">Editar</button> <button class="btn btn-danger" onclick="confirmar3('<?php echo $dato['id_producto']; ?>', '<?php echo $dato['nombre_producto']; ?>', '<?php echo $dato['almacenamiento']; ?>', '<?php echo $dato['ruta_imagen']; ?>')" title="Eliminar">🗑️</button></td>
 				</tr>
 				<?php 
 			}
@@ -2107,6 +2116,85 @@
 				<button type="submit" class="btn btn-outline-primary" style="font-size: 1.2em; border-radius: 17px;">Añadir al carrito</button></p>
 				<div class="card" style="margin-bottom: 10px;"></div>
 				<?php 
+			}
+		}
+
+		// Método que recibe los valores de eliminar_usuario.php
+		static public function eliminarProductoController($idProducto){
+
+			if(isset($idProducto)){
+
+				if(!empty($idProducto)){
+
+
+					$respuesta = Model::eliminarProductoModelo($idProducto, "producto");
+
+					if($respuesta == "ok"){
+
+						echo '<script>
+							(async () => {
+							var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+							notificacion.play();
+							const a = await Swal.fire({
+								icon: "success",
+								title: "El producto fue eliminado con éxito 😄👍",
+								html: "El producto fue eliminado",
+								footer: "Presiona OK para continuar."
+							});
+							
+							if(a){
+								window.location="index.php?opcion=ver_productos";
+							}
+
+							})()
+
+							</script>';
+
+					}
+					else if($respuesta == "noexiste"){
+
+						echo '<script>
+						Swal.fire({
+								icon: "info",
+								timer: 5000,
+								timerProgressBar: true,
+								title: "El producto no existe",
+								text: "Ingrese un producto existente",
+								footer: "Este mensaje cerrará automáticamente en 5s."
+							});
+						</script>
+						';
+
+					}
+					else{
+
+						echo '<script>
+						Swal.fire({
+								icon: "error",
+								timer: 5000,
+								timerProgressBar: true,
+								title: "Ups!😢<br> Ocurrió un error al eliminar el producto con el ID:",
+								html: "<b>'.$idProducto.'</b>"
+							});
+						</script>
+						';
+
+					}
+
+				}else{
+
+					echo '<script>
+							Swal.fire({
+								icon: "warning",
+								timer: 5000,
+								timerProgressBar: true,
+								title: "Porfavor ingrese la información del productos"
+							});
+						</script>
+						';
+					
+				}
+
 			}
 		}
 

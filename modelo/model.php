@@ -1191,6 +1191,45 @@ class Model extends Conexion{
 		$consulta -> close();
 	}
 
+	// Método que elimina un producto con el ID
+	static public function eliminarProductoModelo($idProducto, $tabla){
+
+		//obtener fecha y hora
+		date_default_timezone_set("America/Mazatlan");
+		$hora = date("H:i:s");
+		$fecha = date("Y-m-d");
+
+		$datos = Conexion::conectar()->prepare("SELECT id_producto, ruta_imagen FROM $tabla WHERE id_producto=:id");
+		$datos->bindParam(':id', $idProducto);
+		$datos -> execute();
+		$resultados = $datos->fetch(PDO::FETCH_ASSOC);
+
+		if(empty($resultados)){
+
+			return "noexiste";
+		}
+		else{
+			$datos2 = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id_producto=:id");
+			$datos2 -> bindParam(':id', $idProducto);
+			$datos2->execute();
+
+			if($datos2->execute()){
+				unlink($resultados["ruta_imagen"]);
+				return "ok";
+			}
+			else{
+
+				return "error";
+			}
+
+			$datos2->close();
+		}
+
+		$resultados->closeCursor();
+		$datos->close();
+		
+	}
+
 	// Método que consulta a la bd los celulares
 	static public function vistaCelularesModelo($tabla, $articulosXPagina){
 

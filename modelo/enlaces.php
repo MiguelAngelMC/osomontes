@@ -325,6 +325,15 @@
 					$contenido = "vistas/modulos/confirmar_correo.php";
 				}
 			}
+			else if($enlaces == 'eliminar_producto'){
+
+				if(!empty($_SESSION['usuario']) && ($_SESSION['tipo'] == 1)){
+					$contenido = "vistas/modulos/eliminar_producto.php";
+				}
+				else{
+					$contenido = "vistas/modulos/confirmar_correo.php";
+				}
+			}
 			else{
 				$contenido = "vistas/modulos/principal.php";
 			}

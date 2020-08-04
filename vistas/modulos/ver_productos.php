@@ -14,6 +14,7 @@
 					<th>#ID PROVEEDOR</th>
 					<th>IMÁGEN</th>
 					<th>NOMBRE</th>
+					<th>ALMACENAMIENTO</th>
 					<th>DESCRIPCIÓN</th>
 					<th>COSTO DE COMPRA</th>
 					<th>COSTO DE VENTA</th>
@@ -35,10 +36,10 @@
 	<img src="vistas/img/deslizar.png" width="40px">
 </center><br>
 <script type="text/javascript">
-					function confirmar2(id_usuario, nombre_usuario, apellidos_usuario, correo_usuario){
+					function confirmar3(id_producto, nombre_producto, almacenamiento_producto, imagen_producto){
 						Swal.fire({
 						  title: 'Estás seguro?',
-						  html: "Se eliminará <br>Usuario: <b>"+nombre_usuario+" "+apellidos_usuario+"</b><br> Correo: <b>"+correo_usuario+"</b>",
+						  html: '<img src='+imagen_producto+' width="150px;"><br><b>#ID: </b>'+id_producto+"<br><b>Nombre: </b>"+nombre_producto+"<br><b>Almacenamiento: </b>"+almacenamiento_producto+'<br>',
 						  icon: 'warning',
 						  showCancelButton: true,
 						  cancelButtonText: "Cancelar",
@@ -47,7 +48,32 @@
 						  confirmButtonText: 'Si, eliminar!'
 						}).then((result) => {
 						  if (result.value) {
-						    window.location="index.php?opcion=eliminar_usuario&id_usuario="+id_usuario+"&nombre_usuario="+nombre_usuario+"&apellidos_usuario="+apellidos_usuario+"&correo_usuario="+correo_usuario;
+						  	var ajax = new XMLHttpRequest();
+						  	ajax.open('GET', 'index.php?opcion=eliminar_producto&id='+id_producto, true);
+						  	ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+						  	ajax.onreadystatechange = function (){
+						  		console.log(ajax.responseText);
+						  		// Comprobar si se ejecutó correctamente
+							  	if (this.readyState == 4 && this.status == 200) {
+	    							(async () => {
+									var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+									notificacion.play();
+									const a = await Swal.fire({
+										icon: "success",
+										title: "El producto fue eliminado con éxito 😄👍",
+										html: "El producto fue eliminado",
+										footer: "Presiona OK para continuar."
+									});
+									
+									if(a){
+										window.location="index.php?opcion=ver_productos";
+									}
+
+									})();
+	  							}
+						  	}
+						  	ajax.send();
+						  	
 						  }
 						})
 					};
@@ -70,7 +96,7 @@
 				titleAttr: 'Copiar',
 				title: "Productos Existentes ("+fecha+")",
 				exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ]
+                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 ]
                 }
 			},
 			{
@@ -81,7 +107,7 @@
 				charset: "utf-8",
 				bom: "true",
 				exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ]
+                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 ]
                 }
 			},
 			{
@@ -93,7 +119,7 @@
 				sheetName: "Productos ("+fecha+")", 
 				title: "Productos Existentes ("+fecha+")",
 				exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ]
+                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 ]
                 }
 			},
 			{
@@ -105,7 +131,7 @@
 				filename: "Productos existentes ("+fecha+")",
 				title: "Productos Existentes ("+fecha+")",
 				exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ]
+                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 ]
                 },
                 customize: function(doc) {
 						        	//pageMargins [left, top, right, bottom] 
@@ -125,7 +151,7 @@
 				filename: "Productos existentes ("+fecha+")",
 				title: "Productos Existentes ("+fecha+")",
 				exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ]
+                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 ]
                 }
 			},
 		],
