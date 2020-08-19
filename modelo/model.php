@@ -1114,6 +1114,11 @@ class Model extends Conexion{
 			$ruta = "vistas/img/micas/".$nombre_foto;
 
 		}
+		else if($categoria == 'Funda'){
+
+			$ruta = "vistas/img/fundas/".$nombre_foto;
+
+		}
 		else if($categoria == 'PopSocket'){
 
 			$ruta = "vistas/img/popsockets/".$nombre_foto;
@@ -1130,19 +1135,60 @@ class Model extends Conexion{
 
 		}
 
-		// Comprobar si existe un producto con ese IMEI
-		$dato1 = Conexion::conectar()->prepare("SELECT imei FROM $tabla WHERE imei=:imei");
-		$dato1 -> bindParam(':imei', $imei);
-		$dato1 -> execute();
-		$resultados = $dato1->fetch(PDO::FETCH_ASSOC);
+		// comprobar si es un telefono o no
+		if($categoria == 'Teléfono Celular' || $categoria == 'Teléfono de Casa'){
+			// Comprobar si existe un producto con ese IMEI
+			$dato1 = Conexion::conectar()->prepare("SELECT imei FROM $tabla WHERE imei=:imei");
+			$dato1 -> bindParam(':imei', $imei);
+			$dato1 -> execute();
+			$resultados = $dato1->fetch(PDO::FETCH_ASSOC);
 
-		if(!empty($resultados)){
-			
-			return "existe";
+			if(!empty($resultados)){
+				
+				return "existe";
 
+			}
+			else{
+
+				if(move_uploaded_file($_FILES['foto']['tmp_name'], $ruta)){
+
+					// Insertar en la base de datos si se movio la foto
+					$dato2 = Conexion::conectar()->prepare("INSERT INTO $tabla (fk_categoria, imei, fk_marca, fk_id_proveedor, ruta_imagen, nombre_producto, almacenamiento, descripcion_producto, costo_compra_unitario, costo_venta_unitario, fecha_creacion, hora_creacion, fecha_modificacion, hora_modificacion) VALUES (:categoria, :imei, :marca, :proveedor, :ruta, :nombre, :almacenamiento, :descripcion, :precio_compra, :precio_venta, :fecha_creacion, :hora_creacion, NULL, NULL)");
+					$dato2 -> bindParam(':categoria', $categoria);
+					$dato2 -> bindParam(':imei', $imei);
+					$dato2 -> bindParam(':marca', $marca);
+					$dato2 -> bindParam(':proveedor', $proveedor);
+					$dato2 -> bindParam(':ruta', $ruta);
+					$dato2 -> bindParam(':nombre', $nombreProducto);
+					$dato2 -> bindParam(':almacenamiento', $almacenamiento);
+					$dato2 -> bindParam(':descripcion', $descripcionProducto);
+					$dato2 -> bindParam(':precio_compra', $precioCompra);
+					$dato2 -> bindParam(':precio_venta', $precioVenta);
+					$dato2 -> bindParam(':fecha_creacion', $fecha);
+					$dato2 -> bindParam(':hora_creacion', $hora);
+
+					if($dato2->execute()){
+
+						return "ok";
+					}
+					else{
+
+						return "error";
+					}
+					$dato2->close();
+
+				}
+				else{
+
+					return "error";
+				}
+
+			}
+			$resultados->closeCursor();
+			$dato1->close();
 		}
 		else{
-
+			
 			if(move_uploaded_file($_FILES['foto']['tmp_name'], $ruta)){
 
 				// Insertar en la base de datos si se movio la foto
@@ -1169,16 +1215,13 @@ class Model extends Conexion{
 					return "error";
 				}
 				$dato2->close();
-
 			}
 			else{
 
 				return "error";
 			}
-
+		
 		}
-		$resultados->closeCursor();
-		$dato1->close();
 	}
 
 	// Método que consulta a la bd los productos
@@ -1245,10 +1288,94 @@ class Model extends Conexion{
 
 	}
 
+	// Método que consulta a la bd las fundas
+	static public function vistaFundasModelo($tabla, $articulosXPagina){
+
+		$iniciar = ($_GET['pagina']-1)*$articulosXPagina;
+		
+		$consulta = Conexion::conectar()->prepare("SELECT COUNT(nombre_producto) AS 'productos_disponibles', MAX(costo_venta_unitario) AS 'max_costo_venta_unitario', id_producto, nombre_producto, almacenamiento, ruta_imagen, descripcion_producto FROM producto WHERE fk_categoria='Funda' GROUP BY nombre_producto LIMIT :iniciar, :articulosXPagina;");
+		$consulta -> bindParam(':iniciar', $iniciar, PDO::PARAM_INT);
+		$consulta -> bindParam(':articulosXPagina', $articulosXPagina, PDO::PARAM_INT);
+		$consulta -> execute();
+
+		return $consulta -> fetchAll();
+		$consulta -> close();
+
+	}
+
+	// Método que consulta a la bd las micas
+	static public function vistaMicasModelo($tabla, $articulosXPagina){
+
+		$iniciar = ($_GET['pagina']-1)*$articulosXPagina;
+		
+		$consulta = Conexion::conectar()->prepare("SELECT COUNT(nombre_producto) AS 'productos_disponibles', MAX(costo_venta_unitario) AS 'max_costo_venta_unitario', id_producto, nombre_producto, almacenamiento, ruta_imagen, descripcion_producto FROM producto WHERE fk_categoria='Mica de Cristal' GROUP BY nombre_producto LIMIT :iniciar, :articulosXPagina;");
+		$consulta -> bindParam(':iniciar', $iniciar, PDO::PARAM_INT);
+		$consulta -> bindParam(':articulosXPagina', $articulosXPagina, PDO::PARAM_INT);
+		$consulta -> execute();
+
+		return $consulta -> fetchAll();
+		$consulta -> close();
+
+	}
+
 	// Método que pagina celulares.php
 	static public function paginacionCelularesModelo($tabla, $articulosXPagina){
 		
 		$consulta = Conexion::conectar()->prepare("SELECT COUNT(nombre_producto) AS 'productos_disponibles', MAX(costo_venta_unitario) AS 'max_costo_venta_unitario', id_producto, nombre_producto, almacenamiento, ruta_imagen, descripcion_producto FROM producto WHERE fk_categoria='Teléfono Celular' GROUP BY nombre_producto, almacenamiento;");
+
+		$consulta -> execute();
+
+		// Contar filas de la consulta
+		$totalArticulosBD = $consulta->rowCount();
+
+		// Contar el número de páginas
+		$paginas = ($totalArticulosBD / $articulosXPagina);
+		$paginas = ceil($paginas);
+		//echo '<br>&nbsp;&nbsp;<b>Total de páginas: </b>'.$paginas;
+
+		// Comprobar si está vacía la tabla producto
+		if($paginas == 0){
+			$paginas = 1;
+		}
+
+		$datos = array('valor_totalArticulosBD' => $totalArticulosBD, 'valor_articulosXPagina' => $articulosXPagina, 'valor_paginas' => $paginas);
+
+		return $datos;
+		$consulta -> close();
+
+	}
+
+	// Método que pagina fundas.php
+	static public function paginacionFundasModelo($tabla, $articulosXPagina){
+		
+		$consulta = Conexion::conectar()->prepare("SELECT COUNT(nombre_producto) AS 'productos_disponibles', MAX(costo_venta_unitario) AS 'max_costo_venta_unitario', id_producto, nombre_producto, almacenamiento, ruta_imagen, descripcion_producto FROM producto WHERE fk_categoria='Funda' GROUP BY nombre_producto;");
+
+		$consulta -> execute();
+
+		// Contar filas de la consulta
+		$totalArticulosBD = $consulta->rowCount();
+
+		// Contar el número de páginas
+		$paginas = ($totalArticulosBD / $articulosXPagina);
+		$paginas = ceil($paginas);
+		//echo '<br>&nbsp;&nbsp;<b>Total de páginas: </b>'.$paginas;
+
+		// Comprobar si está vacía la tabla producto
+		if($paginas == 0){
+			$paginas = 1;
+		}
+
+		$datos = array('valor_totalArticulosBD' => $totalArticulosBD, 'valor_articulosXPagina' => $articulosXPagina, 'valor_paginas' => $paginas);
+
+		return $datos;
+		$consulta -> close();
+
+	}
+
+	// Método que pagina micas.php
+	static public function paginacionMicasModelo($tabla, $articulosXPagina){
+		
+		$consulta = Conexion::conectar()->prepare("SELECT COUNT(nombre_producto) AS 'productos_disponibles', MAX(costo_venta_unitario) AS 'max_costo_venta_unitario', id_producto, nombre_producto, almacenamiento, ruta_imagen, descripcion_producto FROM producto WHERE fk_categoria='Mica de Cristal' GROUP BY nombre_producto;");
 
 		$consulta -> execute();
 

@@ -2100,7 +2100,7 @@
 			$respuesta = Model::vistaCelularesModelo("producto", 5);
 			foreach($respuesta as $renglon => $dato){
 				?> 
-				<a href="<?php echo $dato['id_producto']; ?>" style="color: black; text-decoration: none;">
+				<a href="#" style="color: black; text-decoration: none;">
 				<div>
 			    <img src="<?php echo $dato['ruta_imagen']; ?>" loading="lazy" width="130px" alt="<?php echo $dato['nombre_producto']; ?>">
 			    <div id="arti" class="media-body" style="width: 350px;">
@@ -2113,8 +2113,331 @@
 			      		<div style="color: black; display: inline-flex; font-size: 0.8em;">MXN</div></sup></h3></p>
 			    </div>
 			  	</div></a>
-				<button type="submit" class="btn btn-outline-primary" style="font-size: 1.2em; border-radius: 17px;">Añadir al carrito</button></p>
+			  	<?php if($_SESSION['tipo'] == 2){ ?>
+				<button type="submit" onclick="agregarCarrito('<?php echo $dato['id_producto']; ?>', '<?php echo $dato['ruta_imagen']; ?>', '<?php echo $dato['nombre_producto']; ?>', '<?php echo $dato['almacenamiento']; ?>', '<?php echo $dato['max_costo_venta_unitario']; ?>');" class="btn btn-outline-primary" style="font-size: 1.2em; border-radius: 17px;">Añadir al carrito</button></p>
+			<?php }else{ } ?>
 				<div class="card" style="margin-bottom: 10px;"></div>
+				<script type="text/javascript">
+				  function agregarCarrito(id_producto, ruta_imagen_producto, nombre_producto, almacenamiento, precio){
+				            Swal.fire({
+				              title: 'Desea agregar el producto?',
+				              icon: 'info',
+				              showCancelButton: true,
+				              cancelButtonText: "Cancelar",
+				              confirmButtonColor: '#3085d6',
+				              cancelButtonColor: '#d33',
+				              confirmButtonText: 'Si, agreagar al carrito!'
+				            }).then((result) => {
+				              if (result.value) {
+				                var ajax = new XMLHttpRequest();
+				                ajax.open('POST', 'vistas/modulos/agregar_carrito.php', true);
+				                ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				                ajax.onreadystatechange = function (){
+				                  // Comprobar si se ejecutó correctamente
+				                  if (this.readyState == 4 && this.status == 200) {
+
+				                  	if(ajax.responseText == "yaexiste"){
+
+				                  		(async () => {
+					                    	var siVibra= "vibrate" in navigator;
+											if(siVibra){
+												navigator.vibrate(200);
+											}
+											var notificacion = new Audio("vistas/audio/notificacion_error.mp3");
+											notificacion.load();
+											notificacion.play();
+					                      	const a = await Swal.fire({
+						                        icon: "warning",
+						                        timer: 4000,
+						                        timerProgressBar: true,
+						                        title: "Ya lo tienes agregado",
+						                        text: "El producto ya ha sido agregado al carrito anteriormente",
+						                        footer: "Presione OK para cerrar esta alerta o espere."
+					                      	});
+					                            
+					                    	if(a){
+					                        //window.location="index.php?opcion=celulares&pagina=1";
+					                        //console.log(ajax.responseText);
+					                      	}
+
+					                    })()
+				                  	}
+				                  	else{
+				                  		(async () => {
+					                      var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+					                      notificacion.play();
+					                      const a = await Swal.fire({
+					                        icon: "success",
+					                        timer: 4000,
+					                        timerProgressBar: true,
+					                        title: "Producto agregado con éxito",
+					                        text: "El producto se agregó al carrito de compras",
+					                        footer: "Presione OK para cerrar esta alerta o espere."
+					                      });
+					                            
+					                      if(a){
+					                        window.location="index.php?opcion=celulares&pagina=1";
+					                        //console.log(ajax.responseText);
+					                      }
+
+					                    })()
+
+				                  	}
+				                    
+				                  }
+				                }
+				                ajax.send("id_producto="+id_producto+"&ruta_imagen_producto="+ruta_imagen_producto+"&nombre_producto="+nombre_producto+"&almacenamiento="+almacenamiento+"&precio_producto="+precio);
+				                
+				              }
+				            })
+				          };
+				</script>
+				<?php 
+			}
+		}
+
+		// Método para mostrar las fundas de la BD
+		static public function vistaFundas(){
+
+			$respuesta = Model::vistaFundasModelo("producto", 5);
+			foreach($respuesta as $renglon => $dato){
+				?> 
+				<a href="#" style="color: black; text-decoration: none;">
+				<div>
+			    <img src="<?php echo $dato['ruta_imagen']; ?>" loading="lazy" width="130px" alt="<?php echo $dato['nombre_producto']; ?>">
+			    <div id="arti" class="media-body" style="width: 350px;">
+			      <h3 class="mt-2"><?php echo $dato['nombre_producto']; ?></h3>
+			      <p><?php echo $dato['descripcion_producto']; ?>
+			      <h3 style="color: red;">$<?php
+			      $precio_f = number_format($dato['max_costo_venta_unitario'], $decimals = 2 , $dec_point = "." , $thousands_sep = "," );
+			      $precio = explode(".", $precio_f); 
+			      echo $precio[0]; ?><sup><?php echo '.'.$precio[1]; ?>&nbsp;
+			      		<div style="color: black; display: inline-flex; font-size: 0.8em;">MXN</div></sup></h3></p>
+			    </div>
+			  	</div></a>
+			  	<?php if($_SESSION['tipo'] == 2){ ?>
+				<button type="submit" onclick="agregarCarrito('<?php echo $dato['id_producto']; ?>', '<?php echo $dato['ruta_imagen']; ?>', '<?php echo $dato['nombre_producto']; ?>', '<?php echo $dato['almacenamiento']; ?>', '<?php echo $dato['max_costo_venta_unitario']; ?>');" class="btn btn-outline-primary" style="font-size: 1.2em; border-radius: 17px;">Añadir al carrito</button></p>
+				<?php }else{ } ?>
+				<div class="card" style="margin-bottom: 10px;"></div>
+				<script type="text/javascript">
+				  function agregarCarrito(id_producto, ruta_imagen_producto, nombre_producto, almacenamiento, precio){
+				            Swal.fire({
+				              title: 'Desea agregar el producto?',
+				              icon: 'info',
+				              showCancelButton: true,
+				              cancelButtonText: "Cancelar",
+				              confirmButtonColor: '#3085d6',
+				              cancelButtonColor: '#d33',
+				              confirmButtonText: 'Si, agreagar al carrito!'
+				            }).then((result) => {
+				              if (result.value) {
+				                var ajax = new XMLHttpRequest();
+				                ajax.open('POST', 'vistas/modulos/agregar_carrito.php', true);
+				                ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				                ajax.onreadystatechange = function (){
+				                  // Comprobar si se ejecutó correctamente
+				                  if (this.readyState == 4 && this.status == 200) {
+
+				                  	if(ajax.responseText == "yaexiste"){
+
+				                  		(async () => {
+					                    	var siVibra= "vibrate" in navigator;
+											if(siVibra){
+												navigator.vibrate(200);
+											}
+											var notificacion = new Audio("vistas/audio/notificacion_error.mp3");
+											notificacion.load();
+											notificacion.play();
+					                      	const a = await Swal.fire({
+						                        icon: "warning",
+						                        timer: 4000,
+						                        timerProgressBar: true,
+						                        title: "Ya lo tienes agregado",
+						                        text: "El producto ya ha sido agregado al carrito anteriormente",
+						                        footer: "Presione OK para cerrar esta alerta o espere."
+					                      	});
+					                            
+					                    	if(a){
+					                        //window.location="index.php?opcion=celulares&pagina=1";
+					                        //console.log(ajax.responseText);
+					                      	}
+
+					                    })()
+				                  	}
+				                  	else{
+				                  		(async () => {
+					                      var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+					                      notificacion.play();
+					                      const a = await Swal.fire({
+					                        icon: "success",
+					                        timer: 4000,
+					                        timerProgressBar: true,
+					                        title: "Producto agregado con éxito",
+					                        text: "El producto se agregó al carrito de compras",
+					                        footer: "Presione OK para cerrar esta alerta o espere."
+					                      });
+					                            
+					                      if(a){
+					                        window.location="index.php?opcion=fundas&pagina=1";
+					                        //console.log(ajax.responseText);
+					                      }
+
+					                    })()
+
+				                  	}
+				                    
+				                  }
+				                }
+				                ajax.send("id_producto="+id_producto+"&ruta_imagen_producto="+ruta_imagen_producto+"&nombre_producto="+nombre_producto+"&almacenamiento="+almacenamiento+"&precio_producto="+precio);
+				                
+				              }
+				            })
+				          };
+				</script>
+				<?php 
+			}
+		}
+
+		// Método para paginar las fundas
+		static public function paginacionFundas(){
+
+			$respuesta = Model::paginacionFundasModelo("producto", 5);
+			if($_GET['pagina']>$respuesta['valor_paginas']){
+					echo '<script>
+					window.location="index.php?opcion=celulares&pagina=1";
+					</script>';
+			}
+			?> 
+				<nav aria-label="">
+			  	<ul class="pagination justify-content-center">
+				    <li class="page-item
+				    <?php echo $_GET['pagina']<=1 ? 'disabled' : '' ?>">
+				      <a class="page-link" href="<?php echo 'index.php?opcion=fundas&pagina='.($_GET['pagina']-1) ?>" tabindex="-1">Anterior</a>
+				    </li>
+
+					<?php for($i=0; $i<$respuesta['valor_paginas']; $i++): ?>
+				    <li class="page-item
+				    <?php echo $_GET['pagina']==$i+1 ? 'active' : '' ?>">
+				    	<a class="page-link" href="<?php echo 'index.php?opcion=fundas&pagina='.($i+1) ?>"><?php echo ($i+1); ?></a>
+				    </li>
+					<?php endfor ?>
+
+				    <li class="page-item
+				    <?php echo $_GET['pagina']>=$respuesta['valor_paginas'] ? 'disabled' : '' ?>">
+				      <a class="page-link" href="<?php echo 'index.php?opcion=fundas&pagina='.($_GET['pagina']+1) ?>">Siguiente</a>
+					</li>
+				</ul>
+				</nav>
+			<?php
+				echo '&nbsp;&nbsp;<b>Total de fundas: </b>'.$respuesta['valor_totalArticulosBD'].'<br>';
+
+				if(($_GET['pagina']*$respuesta['valor_articulosXPagina']) < $respuesta['valor_totalArticulosBD']){
+					echo '&nbsp;&nbsp;<b>Mostrando </b>'.($_GET['pagina']*$respuesta['valor_articulosXPagina']).'<b> de </b>'.$respuesta['valor_totalArticulosBD'];
+				}
+				else{
+					echo '&nbsp;&nbsp;<b>Mostrando </b>'.$respuesta['valor_totalArticulosBD'].'<b> de </b>'.$respuesta['valor_totalArticulosBD'];
+				}
+
+		}
+
+		// Método para mostrar las fundas de la BD
+		static public function vistaMicas(){
+
+			$respuesta = Model::vistaMicasModelo("producto", 5);
+			foreach($respuesta as $renglon => $dato){
+				?> 
+				<a href="#" style="color: black; text-decoration: none;">
+				<div>
+			    <img src="<?php echo $dato['ruta_imagen']; ?>" loading="lazy" width="130px" alt="<?php echo $dato['nombre_producto']; ?>">
+			    <div id="arti" class="media-body" style="width: 350px;">
+			      <h3 class="mt-2"><?php echo $dato['nombre_producto']; ?></h3>
+			      <p><?php echo $dato['descripcion_producto']; ?>
+			      <h3 style="color: red;">$<?php
+			      $precio_f = number_format($dato['max_costo_venta_unitario'], $decimals = 2 , $dec_point = "." , $thousands_sep = "," );
+			      $precio = explode(".", $precio_f); 
+			      echo $precio[0]; ?><sup><?php echo '.'.$precio[1]; ?>&nbsp;
+			      		<div style="color: black; display: inline-flex; font-size: 0.8em;">MXN</div></sup></h3></p>
+			    </div>
+			  	</div></a>
+			  	<?php if($_SESSION['tipo'] == 2){ ?>
+				<button type="submit" onclick="agregarCarrito('<?php echo $dato['id_producto']; ?>', '<?php echo $dato['ruta_imagen']; ?>', '<?php echo $dato['nombre_producto']; ?>', '<?php echo $dato['almacenamiento']; ?>', '<?php echo $dato['max_costo_venta_unitario']; ?>');" class="btn btn-outline-primary" style="font-size: 1.2em; border-radius: 17px;">Añadir al carrito</button></p>
+				<?php }else{ } ?>
+				<div class="card" style="margin-bottom: 10px;"></div>
+				<script type="text/javascript">
+				  function agregarCarrito(id_producto, ruta_imagen_producto, nombre_producto, almacenamiento, precio){
+				            Swal.fire({
+				              title: 'Desea agregar el producto?',
+				              icon: 'info',
+				              showCancelButton: true,
+				              cancelButtonText: "Cancelar",
+				              confirmButtonColor: '#3085d6',
+				              cancelButtonColor: '#d33',
+				              confirmButtonText: 'Si, agreagar al carrito!'
+				            }).then((result) => {
+				              if (result.value) {
+				                var ajax = new XMLHttpRequest();
+				                ajax.open('POST', 'vistas/modulos/agregar_carrito.php', true);
+				                ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				                ajax.onreadystatechange = function (){
+				                  // Comprobar si se ejecutó correctamente
+				                  if (this.readyState == 4 && this.status == 200) {
+
+				                  	if(ajax.responseText == "yaexiste"){
+
+				                  		(async () => {
+					                    	var siVibra= "vibrate" in navigator;
+											if(siVibra){
+												navigator.vibrate(200);
+											}
+											var notificacion = new Audio("vistas/audio/notificacion_error.mp3");
+											notificacion.load();
+											notificacion.play();
+					                      	const a = await Swal.fire({
+						                        icon: "warning",
+						                        timer: 4000,
+						                        timerProgressBar: true,
+						                        title: "Ya lo tienes agregado",
+						                        text: "El producto ya ha sido agregado al carrito anteriormente",
+						                        footer: "Presione OK para cerrar esta alerta o espere."
+					                      	});
+					                            
+					                    	if(a){
+					                        //window.location="index.php?opcion=celulares&pagina=1";
+					                        //console.log(ajax.responseText);
+					                      	}
+
+					                    })()
+				                  	}
+				                  	else{
+				                  		(async () => {
+					                      var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+					                      notificacion.play();
+					                      const a = await Swal.fire({
+					                        icon: "success",
+					                        timer: 4000,
+					                        timerProgressBar: true,
+					                        title: "Producto agregado con éxito",
+					                        text: "El producto se agregó al carrito de compras",
+					                        footer: "Presione OK para cerrar esta alerta o espere."
+					                      });
+					                            
+					                      if(a){
+					                        window.location="index.php?opcion=micas&pagina=1";
+					                        //console.log(ajax.responseText);
+					                      }
+
+					                    })()
+
+				                  	}
+				                    
+				                  }
+				                }
+				                ajax.send("id_producto="+id_producto+"&ruta_imagen_producto="+ruta_imagen_producto+"&nombre_producto="+nombre_producto+"&almacenamiento="+almacenamiento+"&precio_producto="+precio);
+				                
+				              }
+				            })
+				          };
+				</script>
 				<?php 
 			}
 		}
@@ -2230,6 +2553,48 @@
 				</nav>
 			<?php
 				echo '&nbsp;&nbsp;<b>Total de celulares: </b>'.$respuesta['valor_totalArticulosBD'].'<br>';
+
+				if(($_GET['pagina']*$respuesta['valor_articulosXPagina']) < $respuesta['valor_totalArticulosBD']){
+					echo '&nbsp;&nbsp;<b>Mostrando </b>'.($_GET['pagina']*$respuesta['valor_articulosXPagina']).'<b> de </b>'.$respuesta['valor_totalArticulosBD'];
+				}
+				else{
+					echo '&nbsp;&nbsp;<b>Mostrando </b>'.$respuesta['valor_totalArticulosBD'].'<b> de </b>'.$respuesta['valor_totalArticulosBD'];
+				}
+
+		}
+
+		// Método para paginar las micas
+		static public function paginacionMicas(){
+
+			$respuesta = Model::paginacionMicasModelo("producto", 5);
+			if($_GET['pagina']>$respuesta['valor_paginas']){
+					echo '<script>
+					window.location="index.php?opcion=micas&pagina=1";
+					</script>';
+			}
+			?> 
+				<nav aria-label="">
+			  	<ul class="pagination justify-content-center">
+				    <li class="page-item
+				    <?php echo $_GET['pagina']<=1 ? 'disabled' : '' ?>">
+				      <a class="page-link" href="<?php echo 'index.php?opcion=micas&pagina='.($_GET['pagina']-1) ?>" tabindex="-1">Anterior</a>
+				    </li>
+
+					<?php for($i=0; $i<$respuesta['valor_paginas']; $i++): ?>
+				    <li class="page-item
+				    <?php echo $_GET['pagina']==$i+1 ? 'active' : '' ?>">
+				    	<a class="page-link" href="<?php echo 'index.php?opcion=micas&pagina='.($i+1) ?>"><?php echo ($i+1); ?></a>
+				    </li>
+					<?php endfor ?>
+
+				    <li class="page-item
+				    <?php echo $_GET['pagina']>=$respuesta['valor_paginas'] ? 'disabled' : '' ?>">
+				      <a class="page-link" href="<?php echo 'index.php?opcion=micas&pagina='.($_GET['pagina']+1) ?>">Siguiente</a>
+					</li>
+				</ul>
+				</nav>
+			<?php
+				echo '&nbsp;&nbsp;<b>Total de micas: </b>'.$respuesta['valor_totalArticulosBD'].'<br>';
 
 				if(($_GET['pagina']*$respuesta['valor_articulosXPagina']) < $respuesta['valor_totalArticulosBD']){
 					echo '&nbsp;&nbsp;<b>Mostrando </b>'.($_GET['pagina']*$respuesta['valor_articulosXPagina']).'<b> de </b>'.$respuesta['valor_totalArticulosBD'];

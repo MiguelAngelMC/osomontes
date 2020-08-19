@@ -10,9 +10,6 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Registros"><img src="vistas/img/menu/herramientas.png" alt="Logo Herramientas" width="32px"><b> Registros</b></a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <!-- <a class="dropdown-item" href="index.php?opcion=desicion3" title="Recargas"><img src="vistas/img/menu/recarga.png" width="32px"> Recargas</a>
-          <a class="dropdown-item" href="index.php?opcion=desicion3" title="Recargas"><img src="vistas/img/menu/recarga.png" width="32px"> Activar chips</a>
-          <div class="dropdown-divider"></div> -->
           <a class="dropdown-item" href="index.php?opcion=registrar_producto" title="Registrar producto"><img src="vistas/img/menu/regarti.png" alt="Logo Registrar Producto" width="32px"> Registrar producto</a>
           <a class="dropdown-item" href="index.php?opcion=registrar_categoria" title="Registrar categoría"><img src="vistas/img/menu/add_categoria.png" alt="Logo Registrar Categoría" width="32px"> Registrar categoría</a>
           <a class="dropdown-item" href="index.php?opcion=registrar_marca" title="Registrar marca"><img src="vistas/img/menu/addmarca.png" alt="Logo Registrar Marca" width="32px"> Registrar marca</a>
@@ -36,11 +33,11 @@
         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Productos" style="margin-right: 10vw;"><img src="vistas/img/menu/productos.png" alt="Logo Producto" width="32px"><b> Productos</b></a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="index.php?opcion=celulares&pagina=1" title="Celulares"><img src="vistas/img/menu/celular.png" alt="Logo Celulares" width="32px"> Celulares</a>
-          <a class="dropdown-item" href="index.php?opcion=fundas" title="Fundas"><img src="vistas/img/menu/funda.png" alt="Logo Fundas" width="32px"> Fundas</a>
-          <a class="dropdown-item" href="index.php?opcion=micas" title="Micas"><img src="vistas/img/menu/mica.png" alt="Logo Micas" width="32px"> Micas</a>
-          <a class="dropdown-item" href="index.php?opcion=audifonos" title="Audífonos"><img src="vistas/img/menu/audifonos.png" alt="Logo Audífonos" width="32px"> Audífonos</a>
-          <a class="dropdown-item" href="index.php?opcion=cargadores" title="Cargadores"><img src="vistas/img/menu/cargador.png" alt="Logo Cargadores" width="32px"> Cargadores</a><br>
-          <a class="dropdown-item" href="index.php?opcion=todo" title="Todo"><img src="vistas/img/menu/todo.png" alt="Logo Todo" width="32px"> Todo</a>
+          <a class="dropdown-item" href="index.php?opcion=fundas&pagina=1" title="Fundas"><img src="vistas/img/menu/funda.png" alt="Logo Fundas" width="32px"> Fundas</a>
+          <a class="dropdown-item" href="index.php?opcion=micas&pagina=1" title="Micas"><img src="vistas/img/menu/mica.png" alt="Logo Micas" width="32px"> Micas</a>
+          <a class="dropdown-item" href="index.php?opcion=audifonos&pagina=1" title="Audífonos"><img src="vistas/img/menu/audifonos.png" alt="Logo Audífonos" width="32px"> Audífonos</a>
+          <a class="dropdown-item" href="index.php?opcion=cargadores&pagina=1" title="Cargadores"><img src="vistas/img/menu/cargador.png" alt="Logo Cargadores" width="32px"> Cargadores</a><br>
+          <a class="dropdown-item" href="index.php?opcion=todo" title="Todo&pagina=1"><img src="vistas/img/menu/todo.png" alt="Logo Todo" width="32px"> Todo</a>
         </div>
       </li>
       
@@ -49,7 +46,7 @@
         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Cuenta"><img src="vistas/img/menu/cuenta.png" alt="Logo Cuenta" width="32px"><b> <?php echo $_SESSION['usuario'];?></b></a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="index.php?opcion=ver_perfil" title="Perfil"><img src="vistas/img/menu/user.png" alt="Logo Usuario" width="32px"> <?php echo $_SESSION['usuario'];?></a>
-          <a class="dropdown-item" href="index.php?opcion=cerrar_sesion" title="Cerrar sesión"><img src="vistas/img/menu/register.png" alt="Logo Cerrar Sesión" width="32px" style="transform: rotate(200grad);"> Cerrar sesión</a>
+          <a class="dropdown-item" onclick="cerrarSesion();" href="#" title="Cerrar sesión"><img src="vistas/img/menu/register.png" alt="Logo Cerrar Sesión" width="32px" style="transform: rotate(200grad);"> Cerrar sesión</a>
         </div>
       </li>
       </ul>
@@ -71,3 +68,46 @@
  
   </form>
  </center>
+<script type="text/javascript">
+  function cerrarSesion(){
+            Swal.fire({
+              title: 'Desea salir?',
+              icon: 'warning',
+              showCancelButton: true,
+              cancelButtonText: "Cancelar",
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Si, cerrar sesión!'
+            }).then((result) => {
+              if (result.value) {
+                var ajax = new XMLHttpRequest();
+                ajax.open('GET', 'index.php?opcion=cerrar_sesion', true);
+                ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                ajax.onreadystatechange = function (){
+                  // Comprobar si se ejecutó correctamente
+                  if (this.readyState == 4 && this.status == 200) {
+                    (async () => {
+                      var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+                      notificacion.play();
+                      const a = await Swal.fire({
+                        icon: "success",
+                        timer: 4000,
+                        timerProgressBar: true,
+                        title: "Ha cerrado sesión con éxito",
+                        text: "Esperamos que vuelva pronto 👋",
+                        footer: "Presione OK para cerrar esta alerta o espere."
+                      });
+                            
+                      if(a){
+                        window.location="index.php?opcion=login";
+                      }
+
+                    })()
+                  }
+                }
+                ajax.send();
+                
+              }
+            })
+          };
+</script>

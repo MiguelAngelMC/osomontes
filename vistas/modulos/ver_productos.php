@@ -69,7 +69,7 @@
 										window.location="index.php?opcion=ver_productos";
 									}
 
-									})();
+									})()
 	  							}
 						  	}
 						  	ajax.send();

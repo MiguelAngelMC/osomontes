@@ -27,7 +27,7 @@
 				}
 				else{
 
-					$contenido = "vistas/modulos/login.php";
+					$contenido = "vistas/modulos/confirmar_correo.php";
 
 				}
 
@@ -41,7 +41,7 @@
 				}
 				else{
 
-					$contenido = "vistas/modulos/login.php";
+					$contenido = "vistas/modulos/confirmar_correo.php";
 
 				}
 
@@ -55,7 +55,7 @@
 				}
 				else{
 
-					$contenido = "vistas/modulos/login.php";
+					$contenido = "vistas/modulos/confirmar_correo.php";
 
 				}
 
@@ -69,7 +69,7 @@
 				}
 				else{
 
-					$contenido = "vistas/modulos/login.php";
+					$contenido = "vistas/modulos/confirmar_correo.php";
 
 				}
 
@@ -83,7 +83,7 @@
 				}
 				else{
 
-					$contenido = "vistas/modulos/login.php";
+					$contenido = "vistas/modulos/confirmar_correo.php";
 
 				}
 
@@ -329,6 +329,15 @@
 
 				if(!empty($_SESSION['usuario']) && ($_SESSION['tipo'] == 1)){
 					$contenido = "vistas/modulos/eliminar_producto.php";
+				}
+				else{
+					$contenido = "vistas/modulos/confirmar_correo.php";
+				}
+			}
+			else if($enlaces == 'carrito'){
+
+				if((!empty($_SESSION['usuario'])) && ($_SESSION['tipo'] == 2)){
+					$contenido = "vistas/modulos/carrito.php";
 				}
 				else{
 					$contenido = "vistas/modulos/confirmar_correo.php";
