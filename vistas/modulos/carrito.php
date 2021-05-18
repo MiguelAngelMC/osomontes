@@ -4,9 +4,8 @@
 	<table class="table table-responsive table-bordered" style="margin-top: 15px; white-space: nowrap;">
 		<thead>
 			<tr>
-				<th width="10%" class="text-center">#ID</th>
 				<th width="20%" class="text-center">PRODUCTO</th>
-				<th width="10%">PRECIO</th>
+				<th width="10%" class="text-center">PRECIO</th>
 				<th width="5%" class="text-center"></th>
 			</tr>
 		</thead>
@@ -14,26 +13,33 @@
 		<?php $total=0; ?>
 		<?php foreach($_SESSION['carrito'] as $indice => $dato) { ?>
 		<tr>
-			<td class="text-center"><?php echo $dato['id_producto']; ?></td>
-			<td><img src="<?php echo $dato['ruta_imagen_producto']; ?>" width="125px"> <?php echo $dato['nombre_producto']." ".$dato['almacenamiento']; ?></td>
+			<td><img src="<?php echo $dato['ruta_imagen_producto']; ?>" width="100px"> <?php echo $dato['nombre_producto']." ".$dato['almacenamiento']; ?></td>
 			<td class="text-center"><?php echo "$".number_format($dato['precio'], 2); ?></td>
-			<td><button class="btn btn-danger" style="border-radius: 17px;" onclick="eliminarArticulo()">Eliminar</button></td>
+			<td class="text-center"><button class="btn btn-danger" style="border-radius: 17px;" onclick="eliminarArticulo('<?php echo $dato['id_producto']; ?>')">Eliminar</button></td>
 		</tr>
 		<?php $total = ($total+floatval($dato['precio']));?>
 		<?php } ?>
 		<tr>
-			<td colspan="2" align="right"><h3>Total:</h3></td>
-			<td align="right"><h3><?php echo "$".number_format($total, 2); ?></h3></td>
+			<td align="right"><h3>Total:</h3></td>
+			<td align="center"><h3><?php echo "$".number_format($total, 2); ?></h3></td>
+		</tr>
+		<tr>
+			<td colspan="3"><button onclick="window.location.href='index.php?opcion=pagar';" class="btn btn-primary btn-lg btn-block" width="100">Proceder a pagar &nbsp;<span class="icon-arrow-right2" style="vertical-align: middle;"></span></button></td>
 		</tr>
 		</tbody>
 	</table>
 <?php }else{ ?>
-		<div class="alert alert-warning" role="alert">Tu carrito de compras está vacío :(</div>
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		  <strong>Tu carrito de compras está vacío! :( </strong><br>Deberías ver nuestros diferentes productos y agregar al carrito lo que deseas comprar.
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    <span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
 		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <?php } ?>
 </center>
 <script type="text/javascript">
-	function eliminarArticulo(id_producto, ruta_imagen_producto, nombre_producto, almacenamiento, precio){
+	function eliminarArticulo(id_producto){
 				            Swal.fire({
 				              title: 'Desea eliminar el artículo?',
 				              icon: 'info',
@@ -51,7 +57,7 @@
 				                  // Comprobar si se ejecutó correctamente
 				                  if (this.readyState == 4 && this.status == 200) {
 
-				                  	if(ajax.responseText == "yaexiste"){
+				                  	if(ajax.responseText == "noexiste"){
 
 				                  		(async () => {
 					                    	var siVibra= "vibrate" in navigator;
@@ -65,8 +71,8 @@
 						                        icon: "warning",
 						                        timer: 4000,
 						                        timerProgressBar: true,
-						                        title: "Ya lo tienes agregado",
-						                        text: "El producto ya ha sido agregado al carrito anteriormente",
+						                        title: "EL producto con este ID no existe",
+						                        text: "Ingrese un ID válido",
 						                        footer: "Presione OK para cerrar esta alerta o espere."
 					                      	});
 					                            
@@ -85,13 +91,13 @@
 					                        icon: "success",
 					                        timer: 4000,
 					                        timerProgressBar: true,
-					                        title: "Producto agregado con éxito",
-					                        text: "El producto se agregó al carrito de compras",
+					                        title: "Producto eliminado con éxito",
+					                        text: "El producto se eliminó del carrito de compras",
 					                        footer: "Presione OK para cerrar esta alerta o espere."
 					                      });
 					                            
 					                      if(a){
-					                        window.location="index.php?opcion=celulares&pagina=1";
+					                        window.location="index.php?opcion=carrito";
 					                        //console.log(ajax.responseText);
 					                      }
 
@@ -101,7 +107,7 @@
 				                    
 				                  }
 				                }
-				                ajax.send("id_producto="+id_producto+"&ruta_imagen_producto="+ruta_imagen_producto+"&nombre_producto="+nombre_producto+"&almacenamiento="+almacenamiento+"&precio_producto="+precio);
+				                ajax.send("id_producto="+id_producto);
 				                
 				              }
 				            })

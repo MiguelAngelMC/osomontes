@@ -148,9 +148,10 @@
 					echo '<script>
 						var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
 						notificacion.load();
+                    	notificacion.play();
+
 						(async () => {
 
-							notificacion.play();
 							const a = await Swal.fire({
 								icon: "success",
 								title: "Bienvenido '.$_SESSION["usuario"].'",
@@ -204,6 +205,13 @@
 					';
 				}
 			}
+
+		}
+
+		// Método que muestra la pelicula sin necesidad de un modelo
+		static public function verificarPeliculaController(){
+
+			echo 'Bien';
 
 		}
 
@@ -363,13 +371,15 @@
 						<table style="white-space: nowrap; width: 100%;">
 
 							<tr>
-									<center><img src="vistas/img/menu/user.png" alt="Logo Usuario" width="100vw" style="margin-top: 25px;"></center><button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_foto_perfil';" title="Editar foto de perfil">Editar</button>
+									<center><img src="vistas/img/menu/user.png" alt="Logo Usuario" width="100vw" loading="lazy"></center><!--<button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_foto_perfil';" title="Editar foto de perfil">Editar</button>-->
 
 							</tr>
 
 							<tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr>
 
-							<tr>
+							<tr style="border-top: 1px solid #d2d2d7;">
+
+								<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 
 								<td>
 									<label for="nombre"><b>Nombre:</b></label>
@@ -379,102 +389,117 @@
 							    </td>
 							    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 							    <td>
-							        <button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_nombre';" title="Editar nombre">Editar</button>
+							        <button type="button" style="border-radius: 17px; margin-top: 10px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_nombre';" title="Editar nombre">Editar</button>
 							    </td>
+							    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 
 							</tr>
 
 							<tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr>
 
-						    <tr>
+						    <tr style="border-top: 1px solid #d2d2d7;">
+						    	<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 						    	<td>
 						        	<label for="apellidos"><b>Apellidos:</b></label>
 						        	<div name="apellidos"><?php echo $dato['apellidos']; ?></div>
 						        </td>
 						        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 						        <td>
-						        	<button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_apellidos';" title="Editar apellidos">Editar</button>
+						        	<button type="button" style="border-radius: 17px; margin-top: 10px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_apellidos';" title="Editar apellidos">Editar</button>
 						        </td>
+						        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 						    </tr>
 
 						    <tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr>
 
-						    <tr>
+						    <tr style="border-top: 1px solid #d2d2d7;">
+						    	<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 						    	<td>
-						        	<label for="apellidos"><b>Celular:</b></label>
+						        	<label for="apellidos"><b>Teléfono Celular:</b></label>
 						        	<div name="apellidos"><?php echo $dato['celular']; ?></div>
 						        </td>
 						        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 						        <td>
-						        	<button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_celular';" title="Editar celular">Editar</button>
+						        	<button type="button" style="border-radius: 17px; margin-top: 10px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_celular';" title="Editar celular">Editar</button>
 						        </td>
+						        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 						    </tr>
 
 						    <tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr>
 
-						    <tr>
+						    <tr style="border-top: 1px solid #d2d2d7;">
+						    	<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 						    	<td>
 						        	<label for="apellidos"><b>Localidad:</b></label>
 						        	<div name="apellidos"><?php echo $dato['localidad']; ?></div>
 						        </td>
 						        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 						        <td>
-						        	<button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_localidad';" title="Editar localidad">Editar</button>
+						        	<button type="button" style="border-radius: 17px; margin-top: 10px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_localidad';" title="Editar localidad">Editar</button>
 						        </td>
+						        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 						    </tr>
 
 						    <tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr>
 
-						    <tr>
+						    <tr style="border-top: 1px solid #d2d2d7;">
+						    	<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 						    	<td>
 						        	<label for="apellidos"><b>Estado:</b></label>
 						        	<div name="apellidos"><?php echo $dato['estado']; ?></div>
 						        </td>
 						        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 						        <td>
-						        	<button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_estado';" title="Editar estado">Editar</button>
+						        	<button type="button" style="border-radius: 17px; margin-top: 10px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_estado';" title="Editar estado">Editar</button>
 						        </td>
+						        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 						    </tr>
 
 						    <tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr>
 
-						    <tr>
+						    <tr style="border-top: 1px solid #d2d2d7;">
+						    	<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 						    	<td>
 						        	<label for="apellidos"><b>Domicilio:</b></label>
 						        	<div name="apellidos"><?php echo $dato['domicilio']; ?></div>
 						        </td>
 						        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 						        <td>
-						        	<button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_domicilio';" title="Editar domicilio">Editar</button>
+						        	<button type="button" style="border-radius: 17px; margin-top: 10px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_domicilio';" title="Editar domicilio">Editar</button>
 						        </td>
+						        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 						    </tr>
 
 						    <tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr>
 
-						    <tr>
+						    <tr style="border-top: 1px solid #d2d2d7;">
+						    	<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 						    	<td>
 						        	<label for="apellidos"><b>Código Postal (CP):</b></label>
 						        	<div name="apellidos"><?php echo $dato['cp']; ?></div>
 						        </td>
 						        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 						        <td>
-						        	<button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_cp';" title="Editar código postal">Editar</button>
+						        	<button type="button" style="border-radius: 17px; margin-top: 10px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=cambiar_cp';" title="Editar código postal">Editar</button>
 						        </td>
+						        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 						    </tr>
 
 						    <tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr>
 
-						    <tr>
+						    <tr style="border-top: 1px solid #d2d2d7;">
+						    	<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 						    	<td>
 							        <label for="contra"><b>Contraseña:</b></label>
 							        <div name="contra">********</div>
 						    	</td>
 						    	<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 						    	<td>
-						    		<button type="button" style="border-radius: 17px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=verificar_contra';" title="Editar contraseña">Editar</button>
+						    		<button type="button" style="border-radius: 17px; margin-top: 10px;" class="btn btn-primary" onclick="window.location.href='index.php?opcion=verificar_contra';" title="Editar contraseña">Editar</button>
 						    	</td>
+						    	<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 						    </tr>
-					    </table>
+					    </table><br><br>
 					    <?php
 					}
 				}
@@ -483,6 +508,13 @@
 				}
 				
 			}
+
+		}
+
+		// Método para mostrar el perfil con el ID del usuario
+		static public function verPeliculaController(){
+
+			echo '<a href="#">Ver ahora</a>';
 
 		}
 
@@ -613,6 +645,381 @@
 								timerProgressBar: true,
 								title: "Ups!😢<br> Ocurrió un error al cambiar los apellidos:<br>",
 								text: "'.$_SESSION['apellidos'].'"
+							});
+						</script>
+						';
+
+					}
+
+				}else{
+
+					echo '<script>
+							Swal.fire({
+								icon: "warning",
+								timer: 5000,
+								timerProgressBar: true,
+								title: "Porfavor llene todos los campos del formulario"
+							});
+						</script>
+						';
+					
+				}
+
+			}
+		}
+
+		// Método que recibe los valores de cambiar_celular.php
+		static public function cambiarCelularController(){
+
+			if(isset($_POST['nvoTel'])){
+
+				if(!empty($_SESSION['usuario']) && !empty($_POST['nvoTel'])){
+
+					$respuesta = Model::cambiarCelularModelo($_SESSION['id_usuario'], $_POST['nvoTel'], "usuario");
+
+					if($respuesta == "ok"){
+
+						echo '<script>
+							(async () => {
+					var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+					notificacion.play();
+							const a = await Swal.fire({
+								icon: "success",
+								title: "El número: '.$_POST['nvoTel'].', ha sido establecido con éxito 😄👍",
+								footer: "Presiona OK para continuar."
+							});
+							
+							if(a){
+								window.location="index.php?opcion=ver_perfil";
+							}
+
+							})()
+							</script>';
+
+					}
+					else if($respuesta == 'esigual'){
+
+						echo '<script>
+							Swal.fire({
+								icon: "info",
+								timer: 5000,
+								timerProgressBar: true,
+								title: "Usted ya tiene este número",
+								text: "Ingrese un número diferente",
+								footer: "Este mensaje cerrará automáticamente en 5s."
+							});
+							</script>';
+
+					}
+					else{
+
+						echo '<script>
+						Swal.fire({
+								icon: "error",
+								timer: 5000,
+								timerProgressBar: true,
+								title: "Ups!😢<br> Ocurrió un error al cambiar el número:<br>",
+								text: "'.$_SESSION['celular'].'"
+							});
+						</script>
+						';
+
+					}
+
+				}else{
+
+					echo '<script>
+							Swal.fire({
+								icon: "warning",
+								timer: 5000,
+								timerProgressBar: true,
+								title: "Porfavor llene todos los campos del formulario"
+							});
+						</script>
+						';
+					
+				}
+
+			}
+		}
+
+		// Método que recibe los valores de cambiar_localidad.php
+		static public function cambiarLocalidadController(){
+
+			if(isset($_POST['nvaLocali'])){
+
+				if(!empty($_SESSION['usuario']) && !empty($_POST['nvaLocali'])){
+
+					$respuesta = Model::cambiarLocalidadModelo($_SESSION['id_usuario'], $_POST['nvaLocali'], "usuario");
+
+					if($respuesta == "ok"){
+
+						echo '<script>
+							(async () => {
+					var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+					notificacion.play();
+							const a = await Swal.fire({
+								icon: "success",
+								title: "La localidad: '.$_POST['nvaLocali'].', ha sido establecida con éxito 😄👍",
+								footer: "Presiona OK para continuar."
+							});
+							
+							if(a){
+								window.location="index.php?opcion=ver_perfil";
+							}
+
+							})()
+							</script>';
+
+					}
+					else if($respuesta == 'esigual'){
+
+						echo '<script>
+							Swal.fire({
+								icon: "info",
+								timer: 5000,
+								timerProgressBar: true,
+								title: "Usted ya tiene esta localidad establecida",
+								text: "Ingrese una localidad diferente",
+								footer: "Este mensaje cerrará automáticamente en 5s."
+							});
+							</script>';
+
+					}
+					else{
+
+						echo '<script>
+						Swal.fire({
+								icon: "error",
+								timer: 5000,
+								timerProgressBar: true,
+								title: "Ups!😢<br> Ocurrió un error al cambiar la localidad:<br>",
+								text: "'.$_SESSION['localidad'].'"
+							});
+						</script>
+						';
+
+					}
+
+				}else{
+
+					echo '<script>
+							Swal.fire({
+								icon: "warning",
+								timer: 5000,
+								timerProgressBar: true,
+								title: "Porfavor llene todos los campos del formulario"
+							});
+						</script>
+						';
+					
+				}
+
+			}
+		}
+
+		// Método que recibe los valores de cambiar_estado.php
+		static public function cambiarEstadoController(){
+
+			if(isset($_POST['nvoEstado'])){
+
+				if(!empty($_SESSION['usuario']) && !empty($_POST['nvoEstado'])){
+
+					$respuesta = Model::cambiarEstadoModelo($_SESSION['id_usuario'], $_POST['nvoEstado'], "usuario");
+
+					if($respuesta == "ok"){
+
+						echo '<script>
+							(async () => {
+					var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+					notificacion.play();
+							const a = await Swal.fire({
+								icon: "success",
+								title: "El estado: '.$_POST['nvoEstado'].', ha sido establecido con éxito 😄👍",
+								footer: "Presiona OK para continuar."
+							});
+							
+							if(a){
+								window.location="index.php?opcion=ver_perfil";
+							}
+
+							})()
+							</script>';
+
+					}
+					else if($respuesta == 'esigual'){
+
+						echo '<script>
+							Swal.fire({
+								icon: "info",
+								timer: 5000,
+								timerProgressBar: true,
+								title: "Usted ya tiene este estado establecido",
+								text: "Ingrese un estado diferente",
+								footer: "Este mensaje cerrará automáticamente en 5s."
+							});
+							</script>';
+
+					}
+					else{
+
+						echo '<script>
+						Swal.fire({
+								icon: "error",
+								timer: 5000,
+								timerProgressBar: true,
+								title: "Ups!😢<br> Ocurrió un error al cambiar el estado:<br>",
+								text: "'.$_SESSION['estado'].'"
+							});
+						</script>
+						';
+
+					}
+
+				}else{
+
+					echo '<script>
+							Swal.fire({
+								icon: "warning",
+								timer: 5000,
+								timerProgressBar: true,
+								title: "Porfavor llene todos los campos del formulario"
+							});
+						</script>
+						';
+					
+				}
+
+			}
+		}
+
+		// Método que recibe los valores de cambiar_domicilio.php
+		static public function cambiarDomicilioController(){
+
+			if(isset($_POST['nvoDomic'])){
+
+				if(!empty($_SESSION['usuario']) && !empty($_POST['nvoDomic'])){
+
+					$respuesta = Model::cambiarDomicilioModelo($_SESSION['id_usuario'], $_POST['nvoDomic'], "usuario");
+
+					if($respuesta == "ok"){
+
+						echo '<script>
+							(async () => {
+					var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+					notificacion.play();
+							const a = await Swal.fire({
+								icon: "success",
+								title: "El domicilio: '.$_POST['nvoDomic'].', ha sido establecido con éxito 😄👍",
+								footer: "Presiona OK para continuar."
+							});
+							
+							if(a){
+								window.location="index.php?opcion=ver_perfil";
+							}
+
+							})()
+							</script>';
+
+					}
+					else if($respuesta == 'esigual'){
+
+						echo '<script>
+							Swal.fire({
+								icon: "info",
+								timer: 5000,
+								timerProgressBar: true,
+								title: "Usted ya tiene este domicilio establecido",
+								text: "Ingrese un domicilio diferente",
+								footer: "Este mensaje cerrará automáticamente en 5s."
+							});
+							</script>';
+
+					}
+					else{
+
+						echo '<script>
+						Swal.fire({
+								icon: "error",
+								timer: 5000,
+								timerProgressBar: true,
+								title: "Ups!😢<br> Ocurrió un error al cambiar el domicilio:<br>",
+								text: "'.$_SESSION['domicilio'].'"
+							});
+						</script>
+						';
+
+					}
+
+				}else{
+
+					echo '<script>
+							Swal.fire({
+								icon: "warning",
+								timer: 5000,
+								timerProgressBar: true,
+								title: "Porfavor llene todos los campos del formulario"
+							});
+						</script>
+						';
+					
+				}
+
+			}
+		}
+
+		// Método que recibe los valores de cambiar_cp.php
+		static public function cambiarCpController(){
+
+			if(isset($_POST['nvoCp'])){
+
+				if(!empty($_SESSION['usuario']) && !empty($_POST['nvoCp'])){
+
+					$respuesta = Model::cambiarCpModelo($_SESSION['id_usuario'], $_POST['nvoCp'], "usuario");
+
+					if($respuesta == "ok"){
+
+						echo '<script>
+							(async () => {
+					var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+					notificacion.play();
+							const a = await Swal.fire({
+								icon: "success",
+								title: "El código postal: '.$_POST['nvoCp'].', ha sido establecido con éxito 😄👍",
+								footer: "Presiona OK para continuar."
+							});
+							
+							if(a){
+								window.location="index.php?opcion=ver_perfil";
+							}
+
+							})()
+							</script>';
+
+					}
+					else if($respuesta == 'esigual'){
+
+						echo '<script>
+							Swal.fire({
+								icon: "info",
+								timer: 5000,
+								timerProgressBar: true,
+								title: "Usted ya tiene este código postal establecido",
+								text: "Ingrese un código postal diferente",
+								footer: "Este mensaje cerrará automáticamente en 5s."
+							});
+							</script>';
+
+					}
+					else{
+
+						echo '<script>
+						Swal.fire({
+								icon: "error",
+								timer: 5000,
+								timerProgressBar: true,
+								title: "Ups!😢<br> Ocurrió un error al cambiar el código postal:<br>",
+								text: "'.$_SESSION['cp'].'"
 							});
 						</script>
 						';
@@ -2088,6 +2495,7 @@
 					}else{
 						echo $dato['fecha_modificacion']." ".$dato['hora_modificacion'];
 					} ?></td>
+					<td><?php echo $dato['status']; ?></td>
 					<td style="text-align: right;"><button class="btn btn-warning" onclick="window.location='index.php?opcion=editar_producto'" title="Editar">Editar</button> <button class="btn btn-danger" onclick="confirmar3('<?php echo $dato['id_producto']; ?>', '<?php echo $dato['nombre_producto']; ?>', '<?php echo $dato['almacenamiento']; ?>', '<?php echo $dato['ruta_imagen']; ?>')" title="Eliminar">🗑️</button></td>
 				</tr>
 				<?php 
@@ -2113,9 +2521,13 @@
 			      		<div style="color: black; display: inline-flex; font-size: 0.8em;">MXN</div></sup></h3></p>
 			    </div>
 			  	</div></a>
-			  	<?php if($_SESSION['tipo'] == 2){ ?>
-				<button type="submit" onclick="agregarCarrito('<?php echo $dato['id_producto']; ?>', '<?php echo $dato['ruta_imagen']; ?>', '<?php echo $dato['nombre_producto']; ?>', '<?php echo $dato['almacenamiento']; ?>', '<?php echo $dato['max_costo_venta_unitario']; ?>');" class="btn btn-outline-primary" style="font-size: 1.2em; border-radius: 17px;">Añadir al carrito</button></p>
-			<?php }else{ } ?>
+			  	<?php if(!empty($_SESSION['usuario']) && ($_SESSION['tipo'] == 2)){ ?>
+				<button type="submit" onclick="agregarCarrito('<?php echo $dato['id_producto']; ?>', '<?php echo $dato['ruta_imagen']; ?>', '<?php echo $dato['nombre_producto']; ?>', '<?php echo $dato['almacenamiento']; ?>', '<?php echo $dato['max_costo_venta_unitario']; ?>');" class="btn btn-primary" style="font-size: 1.2em; border-radius: 17px;">Añadir al carrito</button></p>
+			<?php }else if(!empty($_SESSION['usuario']) && ($_SESSION['tipo'] == 1)){
+
+			}else{ ?>
+					<p><button type="submit" onclick="window.location.href='index.php?opcion=login';" class="btn btn-primary" style="font-size: 1.2em; border-radius: 17px;">Comprar</button></p>
+			<?php } ?>
 				<div class="card" style="margin-bottom: 10px;"></div>
 				<script type="text/javascript">
 				  function agregarCarrito(id_producto, ruta_imagen_producto, nombre_producto, almacenamiento, precio){
@@ -2126,7 +2538,7 @@
 				              cancelButtonText: "Cancelar",
 				              confirmButtonColor: '#3085d6',
 				              cancelButtonColor: '#d33',
-				              confirmButtonText: 'Si, agreagar al carrito!'
+				              confirmButtonText: 'Si, agregar al carrito!'
 				            }).then((result) => {
 				              if (result.value) {
 				                var ajax = new XMLHttpRequest();
@@ -2138,14 +2550,16 @@
 
 				                  	if(ajax.responseText == "yaexiste"){
 
+				                  		var siVibra= "vibrate" in navigator;
+										if(siVibra){
+											navigator.vibrate(200);
+										}
+										var notificacion = new Audio("vistas/audio/notificacion_error.mp3");
+										notificacion.load();
+										notificacion.play();
+
 				                  		(async () => {
-					                    	var siVibra= "vibrate" in navigator;
-											if(siVibra){
-												navigator.vibrate(200);
-											}
-											var notificacion = new Audio("vistas/audio/notificacion_error.mp3");
-											notificacion.load();
-											notificacion.play();
+					                    	
 					                      	const a = await Swal.fire({
 						                        icon: "warning",
 						                        timer: 4000,
@@ -2163,9 +2577,11 @@
 					                    })()
 				                  	}
 				                  	else{
+				                  		var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+					                  	notificacion.play();
+
 				                  		(async () => {
-					                      var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
-					                      notificacion.play();
+					                      
 					                      const a = await Swal.fire({
 					                        icon: "success",
 					                        timer: 4000,
@@ -2215,9 +2631,13 @@
 			      		<div style="color: black; display: inline-flex; font-size: 0.8em;">MXN</div></sup></h3></p>
 			    </div>
 			  	</div></a>
-			  	<?php if($_SESSION['tipo'] == 2){ ?>
-				<button type="submit" onclick="agregarCarrito('<?php echo $dato['id_producto']; ?>', '<?php echo $dato['ruta_imagen']; ?>', '<?php echo $dato['nombre_producto']; ?>', '<?php echo $dato['almacenamiento']; ?>', '<?php echo $dato['max_costo_venta_unitario']; ?>');" class="btn btn-outline-primary" style="font-size: 1.2em; border-radius: 17px;">Añadir al carrito</button></p>
-				<?php }else{ } ?>
+			  	<?php if(!empty($_SESSION['usuario']) && $_SESSION['tipo'] == 2){ ?>
+				<button type="submit" onclick="agregarCarrito('<?php echo $dato['id_producto']; ?>', '<?php echo $dato['ruta_imagen']; ?>', '<?php echo $dato['nombre_producto']; ?>', '<?php echo $dato['almacenamiento']; ?>', '<?php echo $dato['max_costo_venta_unitario']; ?>');" class="btn btn-primary" style="font-size: 1.2em; border-radius: 17px;">Añadir al carrito</button></p>
+				<?php }else if(!empty($_SESSION['usuario']) && ($_SESSION['tipo'] == 1)){
+
+				}else{ ?>
+					<p><button type="submit" onclick="window.location.href='index.php?opcion=login';" class="btn btn-primary" style="font-size: 1.2em; border-radius: 17px;">Comprar</button></p>
+				<?php } ?>
 				<div class="card" style="margin-bottom: 10px;"></div>
 				<script type="text/javascript">
 				  function agregarCarrito(id_producto, ruta_imagen_producto, nombre_producto, almacenamiento, precio){
@@ -2228,7 +2648,7 @@
 				              cancelButtonText: "Cancelar",
 				              confirmButtonColor: '#3085d6',
 				              cancelButtonColor: '#d33',
-				              confirmButtonText: 'Si, agreagar al carrito!'
+				              confirmButtonText: 'Si, agregar al carrito!'
 				            }).then((result) => {
 				              if (result.value) {
 				                var ajax = new XMLHttpRequest();
@@ -2359,9 +2779,13 @@
 			      		<div style="color: black; display: inline-flex; font-size: 0.8em;">MXN</div></sup></h3></p>
 			    </div>
 			  	</div></a>
-			  	<?php if($_SESSION['tipo'] == 2){ ?>
-				<button type="submit" onclick="agregarCarrito('<?php echo $dato['id_producto']; ?>', '<?php echo $dato['ruta_imagen']; ?>', '<?php echo $dato['nombre_producto']; ?>', '<?php echo $dato['almacenamiento']; ?>', '<?php echo $dato['max_costo_venta_unitario']; ?>');" class="btn btn-outline-primary" style="font-size: 1.2em; border-radius: 17px;">Añadir al carrito</button></p>
-				<?php }else{ } ?>
+			  	<?php if(!empty($_SESSION['usuario']) && $_SESSION['tipo'] == 2){ ?>
+				<button type="submit" onclick="agregarCarrito('<?php echo $dato['id_producto']; ?>', '<?php echo $dato['ruta_imagen']; ?>', '<?php echo $dato['nombre_producto']; ?>', '<?php echo $dato['almacenamiento']; ?>', '<?php echo $dato['max_costo_venta_unitario']; ?>');" class="btn btn-primary" style="font-size: 1.2em; border-radius: 17px;">Añadir al carrito</button></p>
+				<?php }else if(!empty($_SESSION['usuario']) && ($_SESSION['tipo'] == 1)){
+
+				}else{ ?>
+					<p><button type="submit" onclick="window.location.href='index.php?opcion=login';" class="btn btn-primary" style="font-size: 1.2em; border-radius: 17px;">Comprar</button></p>
+				<?php } ?>
 				<div class="card" style="margin-bottom: 10px;"></div>
 				<script type="text/javascript">
 				  function agregarCarrito(id_producto, ruta_imagen_producto, nombre_producto, almacenamiento, precio){
@@ -2372,7 +2796,7 @@
 				              cancelButtonText: "Cancelar",
 				              confirmButtonColor: '#3085d6',
 				              cancelButtonColor: '#d33',
-				              confirmButtonText: 'Si, agreagar al carrito!'
+				              confirmButtonText: 'Si, agregar al carrito!'
 				            }).then((result) => {
 				              if (result.value) {
 				                var ajax = new XMLHttpRequest();
@@ -2423,6 +2847,324 @@
 					                            
 					                      if(a){
 					                        window.location="index.php?opcion=micas&pagina=1";
+					                        //console.log(ajax.responseText);
+					                      }
+
+					                    })()
+
+				                  	}
+				                    
+				                  }
+				                }
+				                ajax.send("id_producto="+id_producto+"&ruta_imagen_producto="+ruta_imagen_producto+"&nombre_producto="+nombre_producto+"&almacenamiento="+almacenamiento+"&precio_producto="+precio);
+				                
+				              }
+				            })
+				          };
+				</script>
+				<?php 
+			}
+		}
+
+		// Método para mostrar los audifonos de la BD
+		static public function vistaAudifonos(){
+
+			$respuesta = Model::vistaAudifonosModelo("producto", 5);
+			foreach($respuesta as $renglon => $dato){
+				?> 
+				<a href="#" style="color: black; text-decoration: none;">
+				<div>
+			    <img src="<?php echo $dato['ruta_imagen']; ?>" loading="lazy" width="130px" alt="<?php echo $dato['nombre_producto']; ?>">
+			    <div id="arti" class="media-body" style="width: 350px;">
+			      <h3 class="mt-2"><?php echo $dato['nombre_producto']; ?></h3>
+			      <p><?php echo $dato['descripcion_producto']; ?>
+			      <h3 style="color: red;">$<?php
+			      $precio_f = number_format($dato['max_costo_venta_unitario'], $decimals = 2 , $dec_point = "." , $thousands_sep = "," );
+			      $precio = explode(".", $precio_f); 
+			      echo $precio[0]; ?><sup><?php echo '.'.$precio[1]; ?>&nbsp;
+			      		<div style="color: black; display: inline-flex; font-size: 0.8em;">MXN</div></sup></h3></p>
+			    </div>
+			  	</div></a>
+			  	<?php if(!empty($_SESSION['usuario']) && $_SESSION['tipo'] == 2){ ?>
+				<button type="submit" onclick="agregarCarrito('<?php echo $dato['id_producto']; ?>', '<?php echo $dato['ruta_imagen']; ?>', '<?php echo $dato['nombre_producto']; ?>', '<?php echo $dato['almacenamiento']; ?>', '<?php echo $dato['max_costo_venta_unitario']; ?>');" class="btn btn-primary" style="font-size: 1.2em; border-radius: 17px;">Añadir al carrito</button></p>
+				<?php }else if(!empty($_SESSION['usuario']) && ($_SESSION['tipo'] == 1)){
+
+				}else{ ?>
+					<p><button type="submit" onclick="window.location.href='index.php?opcion=login';" class="btn btn-primary" style="font-size: 1.2em; border-radius: 17px;">Comprar</button></p>
+				<?php } ?>
+				<div class="card" style="margin-bottom: 10px;"></div>
+				<script type="text/javascript">
+				  function agregarCarrito(id_producto, ruta_imagen_producto, nombre_producto, almacenamiento, precio){
+				            Swal.fire({
+				              title: 'Desea agregar el producto?',
+				              icon: 'info',
+				              showCancelButton: true,
+				              cancelButtonText: "Cancelar",
+				              confirmButtonColor: '#3085d6',
+				              cancelButtonColor: '#d33',
+				              confirmButtonText: 'Si, agregar al carrito!'
+				            }).then((result) => {
+				              if (result.value) {
+				                var ajax = new XMLHttpRequest();
+				                ajax.open('POST', 'vistas/modulos/agregar_carrito.php', true);
+				                ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				                ajax.onreadystatechange = function (){
+				                  // Comprobar si se ejecutó correctamente
+				                  if (this.readyState == 4 && this.status == 200) {
+
+				                  	if(ajax.responseText == "yaexiste"){
+
+				                  		(async () => {
+					                    	var siVibra= "vibrate" in navigator;
+											if(siVibra){
+												navigator.vibrate(200);
+											}
+											var notificacion = new Audio("vistas/audio/notificacion_error.mp3");
+											notificacion.load();
+											notificacion.play();
+					                      	const a = await Swal.fire({
+						                        icon: "warning",
+						                        timer: 4000,
+						                        timerProgressBar: true,
+						                        title: "Ya lo tienes agregado",
+						                        text: "El producto ya ha sido agregado al carrito anteriormente",
+						                        footer: "Presione OK para cerrar esta alerta o espere."
+					                      	});
+					                            
+					                    	if(a){
+					                        //window.location="index.php?opcion=celulares&pagina=1";
+					                        //console.log(ajax.responseText);
+					                      	}
+
+					                    })()
+				                  	}
+				                  	else{
+				                  		(async () => {
+					                      var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+					                      notificacion.play();
+					                      const a = await Swal.fire({
+					                        icon: "success",
+					                        timer: 4000,
+					                        timerProgressBar: true,
+					                        title: "Producto agregado con éxito",
+					                        text: "El producto se agregó al carrito de compras",
+					                        footer: "Presione OK para cerrar esta alerta o espere."
+					                      });
+					                            
+					                      if(a){
+					                        window.location="index.php?opcion=audifonos&pagina=1";
+					                        //console.log(ajax.responseText);
+					                      }
+
+					                    })()
+
+				                  	}
+				                    
+				                  }
+				                }
+				                ajax.send("id_producto="+id_producto+"&ruta_imagen_producto="+ruta_imagen_producto+"&nombre_producto="+nombre_producto+"&almacenamiento="+almacenamiento+"&precio_producto="+precio);
+				                
+				              }
+				            })
+				          };
+				</script>
+				<?php 
+			}
+		}
+
+		// Método para mostrar los cargadores de la BD
+		static public function vistaCargadores(){
+
+			$respuesta = Model::vistaCargadoresModelo("producto", 5);
+			foreach($respuesta as $renglon => $dato){
+				?> 
+				<a href="#" style="color: black; text-decoration: none;">
+				<div>
+			    <img src="<?php echo $dato['ruta_imagen']; ?>" loading="lazy" width="130px" alt="<?php echo $dato['nombre_producto']; ?>">
+			    <div id="arti" class="media-body" style="width: 350px;">
+			      <h3 class="mt-2"><?php echo $dato['nombre_producto']; ?></h3>
+			      <p><?php echo $dato['descripcion_producto']; ?>
+			      <h3 style="color: red;">$<?php
+			      $precio_f = number_format($dato['max_costo_venta_unitario'], $decimals = 2 , $dec_point = "." , $thousands_sep = "," );
+			      $precio = explode(".", $precio_f); 
+			      echo $precio[0]; ?><sup><?php echo '.'.$precio[1]; ?>&nbsp;
+			      		<div style="color: black; display: inline-flex; font-size: 0.8em;">MXN</div></sup></h3></p>
+			    </div>
+			  	</div></a>
+			  	<?php if(!empty($_SESSION['usuario']) && $_SESSION['tipo'] == 2){ ?>
+				<button type="submit" onclick="agregarCarrito('<?php echo $dato['id_producto']; ?>', '<?php echo $dato['ruta_imagen']; ?>', '<?php echo $dato['nombre_producto']; ?>', '<?php echo $dato['almacenamiento']; ?>', '<?php echo $dato['max_costo_venta_unitario']; ?>');" class="btn btn-primary" style="font-size: 1.2em; border-radius: 17px;">Añadir al carrito</button></p>
+				<?php }else if(!empty($_SESSION['usuario']) && ($_SESSION['tipo'] == 1)){
+
+				}else{ ?>
+					<p><button type="submit" onclick="window.location.href='index.php?opcion=login';" class="btn btn-primary" style="font-size: 1.2em; border-radius: 17px;">Comprar</button></p>
+				<?php } ?>
+				<div class="card" style="margin-bottom: 10px;"></div>
+				<script type="text/javascript">
+				  function agregarCarrito(id_producto, ruta_imagen_producto, nombre_producto, almacenamiento, precio){
+				            Swal.fire({
+				              title: 'Desea agregar el producto?',
+				              icon: 'info',
+				              showCancelButton: true,
+				              cancelButtonText: "Cancelar",
+				              confirmButtonColor: '#3085d6',
+				              cancelButtonColor: '#d33',
+				              confirmButtonText: 'Si, agregar al carrito!'
+				            }).then((result) => {
+				              if (result.value) {
+				                var ajax = new XMLHttpRequest();
+				                ajax.open('POST', 'vistas/modulos/agregar_carrito.php', true);
+				                ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				                ajax.onreadystatechange = function (){
+				                  // Comprobar si se ejecutó correctamente
+				                  if (this.readyState == 4 && this.status == 200) {
+
+				                  	if(ajax.responseText == "yaexiste"){
+
+				                  		(async () => {
+					                    	var siVibra= "vibrate" in navigator;
+											if(siVibra){
+												navigator.vibrate(200);
+											}
+											var notificacion = new Audio("vistas/audio/notificacion_error.mp3");
+											notificacion.load();
+											notificacion.play();
+					                      	const a = await Swal.fire({
+						                        icon: "warning",
+						                        timer: 4000,
+						                        timerProgressBar: true,
+						                        title: "Ya lo tienes agregado",
+						                        text: "El producto ya ha sido agregado al carrito anteriormente",
+						                        footer: "Presione OK para cerrar esta alerta o espere."
+					                      	});
+					                            
+					                    	if(a){
+					                        //window.location="index.php?opcion=celulares&pagina=1";
+					                        //console.log(ajax.responseText);
+					                      	}
+
+					                    })()
+				                  	}
+				                  	else{
+				                  		(async () => {
+					                      var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+					                      notificacion.play();
+					                      const a = await Swal.fire({
+					                        icon: "success",
+					                        timer: 4000,
+					                        timerProgressBar: true,
+					                        title: "Producto agregado con éxito",
+					                        text: "El producto se agregó al carrito de compras",
+					                        footer: "Presione OK para cerrar esta alerta o espere."
+					                      });
+					                            
+					                      if(a){
+					                        window.location="index.php?opcion=cargadores&pagina=1";
+					                        //console.log(ajax.responseText);
+					                      }
+
+					                    })()
+
+				                  	}
+				                    
+				                  }
+				                }
+				                ajax.send("id_producto="+id_producto+"&ruta_imagen_producto="+ruta_imagen_producto+"&nombre_producto="+nombre_producto+"&almacenamiento="+almacenamiento+"&precio_producto="+precio);
+				                
+				              }
+				            })
+				          };
+				</script>
+				<?php 
+			}
+		}
+
+		// Método para mostrar todos los productos de la BD
+		static public function vistaTodo(){
+
+			$respuesta = Model::vistaTodoModelo("producto", 5);
+			foreach($respuesta as $renglon => $dato){
+				?> 
+				<a href="#" style="color: black; text-decoration: none;">
+				<div>
+			    <img src="<?php echo $dato['ruta_imagen']; ?>" loading="lazy" width="130px" alt="<?php echo $dato['nombre_producto']; ?>">
+			    <div id="arti" class="media-body" style="width: 350px;">
+			      <h3 class="mt-2"><?php echo $dato['nombre_producto']; ?></h3>
+			      <p><?php echo $dato['descripcion_producto']; ?>
+			      <h3 style="color: red;">$<?php
+			      $precio_f = number_format($dato['max_costo_venta_unitario'], $decimals = 2 , $dec_point = "." , $thousands_sep = "," );
+			      $precio = explode(".", $precio_f); 
+			      echo $precio[0]; ?><sup><?php echo '.'.$precio[1]; ?>&nbsp;
+			      		<div style="color: black; display: inline-flex; font-size: 0.8em;">MXN</div></sup></h3></p>
+			    </div>
+			  	</div></a>
+			  	<?php if(!empty($_SESSION['usuario']) && $_SESSION['tipo'] == 2){ ?>
+				<button type="submit" onclick="agregarCarrito('<?php echo $dato['id_producto']; ?>', '<?php echo $dato['ruta_imagen']; ?>', '<?php echo $dato['nombre_producto']; ?>', '<?php echo $dato['almacenamiento']; ?>', '<?php echo $dato['max_costo_venta_unitario']; ?>');" class="btn btn-primary" style="font-size: 1.2em; border-radius: 17px;">Añadir al carrito</button></p>
+				<?php }else if(!empty($_SESSION['usuario']) && ($_SESSION['tipo'] == 1)){
+
+				}else{ ?>
+					<p><button type="submit" onclick="window.location.href='index.php?opcion=login';" class="btn btn-primary" style="font-size: 1.2em; border-radius: 17px;">Comprar</button></p>
+				<?php } ?>
+				<div class="card" style="margin-bottom: 10px;"></div>
+				<script type="text/javascript">
+				  function agregarCarrito(id_producto, ruta_imagen_producto, nombre_producto, almacenamiento, precio){
+				            Swal.fire({
+				              title: 'Desea agregar el producto?',
+				              icon: 'info',
+				              showCancelButton: true,
+				              cancelButtonText: "Cancelar",
+				              confirmButtonColor: '#3085d6',
+				              cancelButtonColor: '#d33',
+				              confirmButtonText: 'Si, agregar al carrito!'
+				            }).then((result) => {
+				              if (result.value) {
+				                var ajax = new XMLHttpRequest();
+				                ajax.open('POST', 'vistas/modulos/agregar_carrito.php', true);
+				                ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				                ajax.onreadystatechange = function (){
+				                  // Comprobar si se ejecutó correctamente
+				                  if (this.readyState == 4 && this.status == 200) {
+
+				                  	if(ajax.responseText == "yaexiste"){
+
+				                  		(async () => {
+					                    	var siVibra= "vibrate" in navigator;
+											if(siVibra){
+												navigator.vibrate(200);
+											}
+											var notificacion = new Audio("vistas/audio/notificacion_error.mp3");
+											notificacion.load();
+											notificacion.play();
+					                      	const a = await Swal.fire({
+						                        icon: "warning",
+						                        timer: 4000,
+						                        timerProgressBar: true,
+						                        title: "Ya lo tienes agregado",
+						                        text: "El producto ya ha sido agregado al carrito anteriormente",
+						                        footer: "Presione OK para cerrar esta alerta o espere."
+					                      	});
+					                            
+					                    	if(a){
+					                        //window.location="index.php?opcion=celulares&pagina=1";
+					                        //console.log(ajax.responseText);
+					                      	}
+
+					                    })()
+				                  	}
+				                  	else{
+				                  		(async () => {
+					                      var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+					                      notificacion.play();
+					                      const a = await Swal.fire({
+					                        icon: "success",
+					                        timer: 4000,
+					                        timerProgressBar: true,
+					                        title: "Producto agregado con éxito",
+					                        text: "El producto se agregó al carrito de compras",
+					                        footer: "Presione OK para cerrar esta alerta o espere."
+					                      });
+					                            
+					                      if(a){
+					                        window.location="index.php?opcion=todo&pagina=1";
 					                        //console.log(ajax.responseText);
 					                      }
 
@@ -2605,5 +3347,425 @@
 
 		}
 
-	}
-?>
+		// Método para paginar los audífonos
+		static public function paginacionAudifonos(){
+
+			$respuesta = Model::paginacionAudifonosModelo("producto", 5);
+			if($_GET['pagina']>$respuesta['valor_paginas']){
+					echo '<script>
+					window.location="index.php?opcion=audifonos&pagina=1";
+					</script>';
+			}
+			?> 
+				<nav aria-label="">
+			  	<ul class="pagination justify-content-center">
+				    <li class="page-item
+				    <?php echo $_GET['pagina']<=1 ? 'disabled' : '' ?>">
+				      <a class="page-link" href="<?php echo 'index.php?opcion=audifonos&pagina='.($_GET['pagina']-1) ?>" tabindex="-1">Anterior</a>
+				    </li>
+
+					<?php for($i=0; $i<$respuesta['valor_paginas']; $i++): ?>
+				    <li class="page-item
+				    <?php echo $_GET['pagina']==$i+1 ? 'active' : '' ?>">
+				    	<a class="page-link" href="<?php echo 'index.php?opcion=audifonos&pagina='.($i+1) ?>"><?php echo ($i+1); ?></a>
+				    </li>
+					<?php endfor ?>
+
+				    <li class="page-item
+				    <?php echo $_GET['pagina']>=$respuesta['valor_paginas'] ? 'disabled' : '' ?>">
+				      <a class="page-link" href="<?php echo 'index.php?opcion=audifonos&pagina='.($_GET['pagina']+1) ?>">Siguiente</a>
+					</li>
+				</ul>
+				</nav>
+			<?php
+				echo '&nbsp;&nbsp;<b>Total de audífonos: </b>'.$respuesta['valor_totalArticulosBD'].'<br>';
+
+				if(($_GET['pagina']*$respuesta['valor_articulosXPagina']) < $respuesta['valor_totalArticulosBD']){
+					echo '&nbsp;&nbsp;<b>Mostrando </b>'.($_GET['pagina']*$respuesta['valor_articulosXPagina']).'<b> de </b>'.$respuesta['valor_totalArticulosBD'];
+				}
+				else{
+					echo '&nbsp;&nbsp;<b>Mostrando </b>'.$respuesta['valor_totalArticulosBD'].'<b> de </b>'.$respuesta['valor_totalArticulosBD'];
+				}
+
+		}
+
+		// Método para paginar los cargadores
+		static public function paginacionCargadores(){
+
+			$respuesta = Model::paginacionCargadoresModelo("producto", 5);
+			if($_GET['pagina']>$respuesta['valor_paginas']){
+					echo '<script>
+					window.location="index.php?opcion=cargadores&pagina=1";
+					</script>';
+			}
+			?> 
+				<nav aria-label="">
+			  	<ul class="pagination justify-content-center">
+				    <li class="page-item
+				    <?php echo $_GET['pagina']<=1 ? 'disabled' : '' ?>">
+				      <a class="page-link" href="<?php echo 'index.php?opcion=cargadores&pagina='.($_GET['pagina']-1) ?>" tabindex="-1">Anterior</a>
+				    </li>
+
+					<?php for($i=0; $i<$respuesta['valor_paginas']; $i++): ?>
+				    <li class="page-item
+				    <?php echo $_GET['pagina']==$i+1 ? 'active' : '' ?>">
+				    	<a class="page-link" href="<?php echo 'index.php?opcion=cargadores&pagina='.($i+1) ?>"><?php echo ($i+1); ?></a>
+				    </li>
+					<?php endfor ?>
+
+				    <li class="page-item
+				    <?php echo $_GET['pagina']>=$respuesta['valor_paginas'] ? 'disabled' : '' ?>">
+				      <a class="page-link" href="<?php echo 'index.php?opcion=cargadores&pagina='.($_GET['pagina']+1) ?>">Siguiente</a>
+					</li>
+				</ul>
+				</nav>
+			<?php
+				echo '&nbsp;&nbsp;<b>Total de cargadores: </b>'.$respuesta['valor_totalArticulosBD'].'<br>';
+
+				if(($_GET['pagina']*$respuesta['valor_articulosXPagina']) < $respuesta['valor_totalArticulosBD']){
+					echo '&nbsp;&nbsp;<b>Mostrando </b>'.($_GET['pagina']*$respuesta['valor_articulosXPagina']).'<b> de </b>'.$respuesta['valor_totalArticulosBD'];
+				}
+				else{
+					echo '&nbsp;&nbsp;<b>Mostrando </b>'.$respuesta['valor_totalArticulosBD'].'<b> de </b>'.$respuesta['valor_totalArticulosBD'];
+				}
+
+		}
+
+		// Método para paginar todos los productos
+		static public function paginacionTodo(){
+
+			$respuesta = Model::paginacionTodoModelo("producto", 5);
+			if($_GET['pagina']>$respuesta['valor_paginas']){
+					echo '<script>
+					window.location="index.php?opcion=todo&pagina=1";
+					</script>';
+			}
+			?> 
+				<nav aria-label="">
+			  	<ul class="pagination justify-content-center">
+				    <li class="page-item
+				    <?php echo $_GET['pagina']<=1 ? 'disabled' : '' ?>">
+				      <a class="page-link" href="<?php echo 'index.php?opcion=todo&pagina='.($_GET['pagina']-1) ?>" tabindex="-1">Anterior</a>
+				    </li>
+
+					<?php for($i=0; $i<$respuesta['valor_paginas']; $i++): ?>
+				    <li class="page-item
+				    <?php echo $_GET['pagina']==$i+1 ? 'active' : '' ?>">
+				    	<a class="page-link" href="<?php echo 'index.php?opcion=todo&pagina='.($i+1) ?>"><?php echo ($i+1); ?></a>
+				    </li>
+					<?php endfor ?>
+
+				    <li class="page-item
+				    <?php echo $_GET['pagina']>=$respuesta['valor_paginas'] ? 'disabled' : '' ?>">
+				      <a class="page-link" href="<?php echo 'index.php?opcion=todo&pagina='.($_GET['pagina']+1) ?>">Siguiente</a>
+					</li>
+				</ul>
+				</nav>
+			<?php
+				echo '&nbsp;&nbsp;<b>Total de productos: </b>'.$respuesta['valor_totalArticulosBD'].'<br>';
+
+				if(($_GET['pagina']*$respuesta['valor_articulosXPagina']) < $respuesta['valor_totalArticulosBD']){
+					echo '&nbsp;&nbsp;<b>Mostrando </b>'.($_GET['pagina']*$respuesta['valor_articulosXPagina']).'<b> de </b>'.$respuesta['valor_totalArticulosBD'];
+				}
+				else{
+					echo '&nbsp;&nbsp;<b>Mostrando </b>'.$respuesta['valor_totalArticulosBD'].'<b> de </b>'.$respuesta['valor_totalArticulosBD'];
+				}
+
+		}
+
+		// Método para procesar el pago e insertarlo en la BD
+		static public function procesarPagoController($SID, $total){
+
+			$datos = array('valor_sid' => $SID, 'valor_total' => $total, 'valor_id_usuario' => $_SESSION['id_usuario']);
+
+			$respuesta = Model::procesarPagoModelo($datos, "venta");
+				
+				if($respuesta == "ok"){
+					echo '<script>
+						var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+						notificacion.load();
+						(async () => {
+
+							notificacion.play();
+							const a = await Swal.fire({
+								icon: "success",
+								title: "Compra realizada",
+								text: "Tu compra fue procesada con éxito 😄👍",
+								footer: "Presiona OK para continuar."
+							});
+							
+							if(a){
+								window.location="index.php?opcion=principal";
+							}
+
+							})()
+						
+						</script>';
+				}
+				else{
+					echo '<script>
+					var siVibra= "vibrate" in navigator;
+					if(siVibra){
+						navigator.vibrate(200);
+					}
+					var notificacion = new Audio("vistas/audio/notificacion_error.mp3");
+					notificacion.play();
+					Swal.fire({
+							icon: "error",
+							timer: 5000,
+							timerProgressBar: true,
+							title: "Ocurrió un error al procesar el pago :("
+						});
+					</script>
+					';
+				}
+
+		}
+
+		// Método para mostrar los resultados de una búsqueda
+		static public function buscarController($palabra){
+
+			$respuesta = Model::buscarModelo("producto", 5, $palabra);
+			if(empty($respuesta)){
+				echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		  		<strong>Búsqueda sin resultados! :( </strong><br> No se encontraron coincidencias con: <b>'.$palabra.'</b>.
+		  		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    	<span aria-hidden="true">&times;</span>
+		  		</button>
+				</div>';
+			}
+			foreach($respuesta as $renglon => $dato){
+				?> 
+				<a href="#" style="color: black; text-decoration: none;">
+				<div>
+			    <img src="<?php echo $dato['ruta_imagen']; ?>" loading="lazy" width="130px" alt="<?php echo $dato['nombre_producto']; ?>">
+			    <div id="arti" class="media-body" style="width: 350px;">
+			      <h3 class="mt-2"><?php echo $dato['nombre_producto']; if($dato['fk_categoria'] == 'Teléfono Celular' || $dato['fk_categoria'] == 'Teléfono de Casa'){ echo ' <button class="btn btn-outline-secondary" style="display: inline;">'.$dato['almacenamiento'].'</button>'; } ?></h3>
+			      <p><?php echo $dato['descripcion_producto']; ?>
+			      <h3 style="color: red;">$<?php
+			      $precio_f = number_format($dato['max_costo_venta_unitario'], $decimals = 2 , $dec_point = "." , $thousands_sep = "," );
+			      $precio = explode(".", $precio_f); 
+			      echo $precio[0]; ?><sup><?php echo '.'.$precio[1]; ?>&nbsp;
+			      		<div style="color: black; display: inline-flex; font-size: 0.8em;">MXN</div></sup></h3></p>
+			    </div>
+			  	</div></a>
+			  	<?php if(!empty($_SESSION['usuario']) && ($_SESSION['tipo'] == 2)){ ?>
+				<button type="submit" onclick="agregarCarrito('<?php echo $dato['id_producto']; ?>', '<?php echo $dato['ruta_imagen']; ?>', '<?php echo $dato['nombre_producto']; ?>', '<?php echo $dato['almacenamiento']; ?>', '<?php echo $dato['max_costo_venta_unitario']; ?>');" class="btn btn-primary" style="font-size: 1.2em; border-radius: 17px;">Añadir al carrito</button></p>
+			<?php }else if(!empty($_SESSION['usuario']) && ($_SESSION['tipo'] == 1)){
+
+			}else{ ?>
+					<p><button type="submit" onclick="window.location.href='index.php?opcion=login';" class="btn btn-primary" style="font-size: 1.2em; border-radius: 17px;">Comprar</button></p>
+			<?php } ?>
+				<div class="card" style="margin-bottom: 10px;"></div>
+				<script type="text/javascript">
+				  function agregarCarrito(id_producto, ruta_imagen_producto, nombre_producto, almacenamiento, precio){
+				            Swal.fire({
+				              title: 'Desea agregar el producto?',
+				              icon: 'info',
+				              showCancelButton: true,
+				              cancelButtonText: "Cancelar",
+				              confirmButtonColor: '#3085d6',
+				              cancelButtonColor: '#d33',
+				              confirmButtonText: 'Si, agregar al carrito!'
+				            }).then((result) => {
+				              if (result.value) {
+				                var ajax = new XMLHttpRequest();
+				                ajax.open('POST', 'vistas/modulos/agregar_carrito.php', true);
+				                ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				                ajax.onreadystatechange = function (){
+				                  // Comprobar si se ejecutó correctamente
+				                  if (this.readyState == 4 && this.status == 200) {
+
+				                  	if(ajax.responseText == "yaexiste"){
+
+				                  		(async () => {
+					                    	var siVibra= "vibrate" in navigator;
+											if(siVibra){
+												navigator.vibrate(200);
+											}
+											var notificacion = new Audio("vistas/audio/notificacion_error.mp3");
+											notificacion.load();
+											notificacion.play();
+					                      	const a = await Swal.fire({
+						                        icon: "warning",
+						                        timer: 4000,
+						                        timerProgressBar: true,
+						                        title: "Ya lo tienes agregado",
+						                        text: "El producto ya ha sido agregado al carrito anteriormente",
+						                        footer: "Presione OK para cerrar esta alerta o espere."
+					                      	});
+					                            
+					                    	if(a){
+					                        //window.location="index.php?opcion=celulares&pagina=1";
+					                        //console.log(ajax.responseText);
+					                      	}
+
+					                    })()
+				                  	}
+				                  	else{
+				                  		(async () => {
+					                      var notificacion = new Audio("vistas/audio/notificacion_ok.mp3");
+					                      notificacion.play();
+					                      const a = await Swal.fire({
+					                        icon: "success",
+					                        timer: 4000,
+					                        timerProgressBar: true,
+					                        title: "Producto agregado con éxito",
+					                        text: "El producto se agregó al carrito de compras",
+					                        footer: "Presione OK para cerrar esta alerta o espere."
+					                      });
+					                            
+					                      if(a){
+					                        window.location="index.php?opcion=celulares&pagina=1";
+					                        //console.log(ajax.responseText);
+					                      }
+
+					                    })()
+
+				                  	}
+				                    
+				                  }
+				                }
+				                ajax.send("id_producto="+id_producto+"&ruta_imagen_producto="+ruta_imagen_producto+"&nombre_producto="+nombre_producto+"&almacenamiento="+almacenamiento+"&precio_producto="+precio);
+				                
+				              }
+				            })
+				          };
+				</script>
+				<?php 
+			}
+		}
+
+		// Método para paginar los productos de la búsqueda
+		static public function paginacionBusqueda($palabra){
+
+			$respuesta = Model::paginacionBusquedaModelo("producto", 5, $palabra);
+			if($_GET['pagina']>$respuesta['valor_paginas']){
+					echo '<script>
+					window.location="index.php?opcion=buscar&s='.$palabra.'&pagina=1";
+					</script>';
+			}
+			?> 
+				<nav aria-label="">
+			  	<ul class="pagination justify-content-center">
+				    <li class="page-item
+				    <?php echo $_GET['pagina']<=1 ? 'disabled' : '' ?>">
+				      <a class="page-link" href="<?php echo 'index.php?opcion=buscar&s='.$palabra.'&pagina='.($_GET['pagina']-1) ?>" tabindex="-1">Anterior</a>
+				    </li>
+
+					<?php for($i=0; $i<$respuesta['valor_paginas']; $i++): ?>
+				    <li class="page-item
+				    <?php echo $_GET['pagina']==$i+1 ? 'active' : '' ?>">
+				    	<a class="page-link" href="<?php echo 'index.php?opcion=buscar&s='.$palabra.'&pagina='.($i+1) ?>"><?php echo ($i+1); ?></a>
+				    </li>
+					<?php endfor ?>
+
+				    <li class="page-item
+				    <?php echo $_GET['pagina']>=$respuesta['valor_paginas'] ? 'disabled' : '' ?>">
+				      <a class="page-link" href="<?php echo 'index.php?opcion=buscar&s='.$palabra.'&pagina='.($_GET['pagina']+1) ?>">Siguiente</a>
+					</li>
+				</ul>
+				</nav>
+			<?php
+				echo '&nbsp;&nbsp;<b>Total de productos: </b>'.$respuesta['valor_totalArticulosBD'].'<br>';
+
+				if(($_GET['pagina']*$respuesta['valor_articulosXPagina']) < $respuesta['valor_totalArticulosBD']){
+					echo '&nbsp;&nbsp;<b>Mostrando </b>'.($_GET['pagina']*$respuesta['valor_articulosXPagina']).'<b> de </b>'.$respuesta['valor_totalArticulosBD'];
+				}
+				else{
+					echo '&nbsp;&nbsp;<b>Mostrando </b>'.$respuesta['valor_totalArticulosBD'].'<b> de </b>'.$respuesta['valor_totalArticulosBD'];
+				}
+
+		}
+
+		// Método para contar los usuarios registrados en la BD
+		static public function contarUsuariosController(){
+			$respuesta = Model::contarUsuariosModelo("usuario");
+			if(empty($respuesta)){
+				echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		  		<strong>Ups ocurrió un error! :( </strong><br> Ocurrió un error al conectarse con la base de datos
+		  		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    	<span aria-hidden="true">&times;</span>
+		  		</button>
+				</div>';
+			}else{
+				echo $respuesta['num'];
+			}
+		}
+
+		// Método para contar las ventas del día registradas en la BD
+		static public function contarVentasDiaController(){
+			$respuesta = Model::contarVentasDiaModelo("venta");
+			if(empty($respuesta)){
+				echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		  		<strong>Ups ocurrió un error! :( </strong><br> Ocurrió un error al conectarse con la base de datos
+		  		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    	<span aria-hidden="true">&times;</span>
+		  		</button>
+				</div>';
+			}else{
+				echo $respuesta['num'];
+			}
+		}
+
+		// Método para contar los productos registrados en la BD
+		static public function contarProductosController(){
+			$respuesta = Model::contarProductosModelo("producto");
+			if(empty($respuesta)){
+				echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		  		<strong>Ups ocurrió un error! :( </strong><br> Ocurrió un error al conectarse con la base de datos
+		  		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    	<span aria-hidden="true">&times;</span>
+		  		</button>
+				</div>';
+			}else{
+				echo $respuesta['num'];
+			}
+		}
+
+		// Método para contar las marcas registradas en la BD
+		static public function contarMarcasController(){
+			$respuesta = Model::contarMarcasModelo("marca");
+			if(empty($respuesta)){
+				echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		  		<strong>Ups ocurrió un error! :( </strong><br> Ocurrió un error al conectarse con la base de datos
+		  		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    	<span aria-hidden="true">&times;</span>
+		  		</button>
+				</div>';
+			}else{
+				echo $respuesta['num'];
+			}
+		}
+
+		// Método para contar los proveedores registrados en la BD
+		static public function contarProveedoresController(){
+			$respuesta = Model::contarProveedoresModelo("proveedor");
+			if(empty($respuesta)){
+				echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		  		<strong>Ups ocurrió un error! :( </strong><br> Ocurrió un error al conectarse con la base de datos
+		  		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    	<span aria-hidden="true">&times;</span>
+		  		</button>
+				</div>';
+			}else{
+				echo $respuesta['num'];
+			}
+		}
+
+		// Método para contar las categorías registradas en la BD
+		static public function contarCategoriasController(){
+			$respuesta = Model::contarCategoriasModelo("categoria");
+			if(empty($respuesta)){
+				echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		  		<strong>Ups ocurrió un error! :( </strong><br> Ocurrió un error al conectarse con la base de datos
+		  		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    	<span aria-hidden="true">&times;</span>
+		  		</button>
+				</div>';
+			}else{
+				echo $respuesta['num'];
+			}
+		}
+
+}

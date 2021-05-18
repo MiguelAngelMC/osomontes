@@ -12,7 +12,7 @@
         </a>
       </li>
       <li class="breadcrumb-item active" aria-current="page">
-        <span class="icon-profile"></span> Cambiar nombre
+        <span class="icon-mail"></span> Cambiar C.P.
       </li>
     </div>
   </ol>
@@ -26,10 +26,10 @@
     <form method="POST" accept="UTF-8" class="needs-validation" novalidate>
 
       <div class="form-group">
-        <label for="nombre"><b>Nombre:</b></label>
-        <input type="text" style="border-radius: 17px;" class="form-control" id="nombre" name="nombre" value="<?php echo $_SESSION['usuario']; ?>" required="" minlength="3" maxlength="30" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+">
+        <label for="nvoCp"><b>Código Postal (C.P.):</b></label>
+        <input type="text" style="border-radius: 17px;" class="form-control" id="nvoCp" name="nvoCp" placeholder="&#128236; 63500" required="" pattern="\d*" minlength="5" maxlength="5" value="<?php echo $_SESSION['cp']; ?>">
         <div class="invalid-feedback">
-        Porfavor ingrese un nombre.
+        Porfavor ingrese el código postal (cp) de donde vive.
         </div>
       </div>
 
@@ -62,6 +62,6 @@
 <?php
 
   $calcular = new Controller();
-  $calcular -> cambiarNombreController(); 
+  $calcular -> cambiarCpController(); 
 
 ?>

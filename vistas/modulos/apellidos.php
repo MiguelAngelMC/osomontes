@@ -1,5 +1,24 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <div class="container" style="display: inline-flex; white-space: nowrap;">
+      <li class="breadcrumb-item">
+        <a href="index.php">
+          <span class="icon-home3"></span> Inicio
+        </a>
+      </li>
+      <li class="breadcrumb-item">
+        <a href="index.php?opcion=ver_perfil">
+          <span class="icon-user"></span> Perfil
+        </a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">
+        <span class="icon-profile"></span> Cambiar apellidos
+      </li>
+    </div>
+  </ol>
+</nav>
 <center>
-  <img src="vistas/img/menu/user.png" width="100vw" style="margin-top: 25px;">
+  <img src="vistas/img/menu/user.png" width="100vw">
 </center>
 <div class="col-sm-6 offset-sm-3 offset-md-4 col-md-4">
   <div class="px-4 py-3">

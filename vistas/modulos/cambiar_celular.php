@@ -12,7 +12,7 @@
         </a>
       </li>
       <li class="breadcrumb-item active" aria-current="page">
-        <span class="icon-profile"></span> Cambiar nombre
+        <span class="icon-mobile"></span> Cambiar número
       </li>
     </div>
   </ol>
@@ -26,10 +26,10 @@
     <form method="POST" accept="UTF-8" class="needs-validation" novalidate>
 
       <div class="form-group">
-        <label for="nombre"><b>Nombre:</b></label>
-        <input type="text" style="border-radius: 17px;" class="form-control" id="nombre" name="nombre" value="<?php echo $_SESSION['usuario']; ?>" required="" minlength="3" maxlength="30" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+">
+        <label for="nvoTel"><b>Teléfono Celular:</b></label>
+        <input type="text" style="border-radius: 17px;" class="form-control" id="nvoTel" name="nvoTel" value="<?php echo $_SESSION['celular']; ?>" required="" minlength="10" maxlength="10" pattern="\d*">
         <div class="invalid-feedback">
-        Porfavor ingrese un nombre.
+        Porfavor ingrese un número de teléfono celular.
         </div>
       </div>
 
@@ -62,6 +62,6 @@
 <?php
 
   $calcular = new Controller();
-  $calcular -> cambiarNombreController(); 
+  $calcular -> cambiarCelularController(); 
 
 ?>

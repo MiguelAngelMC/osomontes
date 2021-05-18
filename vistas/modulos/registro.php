@@ -1,29 +1,27 @@
-<center>
-  <img src="vistas/img/logocelosomontes2.png" width="100vw" style="margin-top: 25px;">
-</center>
-<div class="col-sm-6 offset-sm-3 offset-md-4 col-md-4">
-  <div class="px-4 py-3">
+<div style="background-color: #f0f2f5;">
+<center><a href="index.php"><img src="vistas/img/logocelosomontes2.png" style="margin-top: 3px;" alt="Logo Oso Montes" width="130vw" loading="lazy"></a></center>
+<div class="container">
+<div class="col-12 col-sm-8 offset-sm-2 offset-md-3 col-md-6 offset-lg-3 col-lg-6 offset-xl-4 col-xl-4" style="box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302),0 2px 6px 2px rgba(60,64,67,0.149); padding: 1.4%; border-radius: 17px; margin-top: 5px; background-color: white;">
+  <center><h3><b>Únete a nuestra comunidad</b></h3><h5 style="color: rgb(147,147,147);">Introduce tus datos</h5></center>
+  <div class="px-4">
     <div></div>
     <form method="POST" accept="UTF-8" class="needs-validation" novalidate>
 
       <div class="form-group">
-        <label for="nombre"><b>Nombre(s):</b></label>
-        <input type="text" style="border-radius: 17px;" class="form-control" id="nombre" name="nombre" placeholder="Miguel Angel" required="" minlength="3" maxlength="30" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+">
+        <input type="text" style="border-radius: 17px;" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required="" minlength="3" maxlength="30" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+">
         <div class="invalid-feedback">
         Porfavor ingrese su(s) nombre(s) (almenos 3 caracteres).
         </div>
       </div>
 
       <div class="form-group">
-        <label for="ape"><b>Apellidos:</b></label>
-        <input type="text" style="border-radius: 17px;" class="form-control" id="ape" name="ape" placeholder="Pérez López" required="" minlength="6" maxlength="30" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+">
+        <input type="text" style="border-radius: 17px;" class="form-control" id="ape" name="ape" placeholder="Apellidos" required="" minlength="6" maxlength="30" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+">
         <div class="invalid-feedback">
         Porfavor ingrese sus apellidos (almenos 6 caracteres).
         </div>
       </div>
 
       <div class="form-group">
-        <label for="sexo"><b>Sexo:</b></label>
         <select class="form-control" style="border-radius: 17px;" required="true" name="sexo" id="sexo">
           <option value="">👥 Selecciona tu sexo</option>
           <option value="Femenino">Femenino</option>
@@ -47,23 +45,20 @@
       </div>
 
       <div class="form-group">
-        <label for="tel"><b>Teléfono celular:</b></label>
-        <input type="text" style="border-radius: 17px;" class="form-control" id="tel" name="tel" placeholder="&#128241; 3231000000" required="" pattern="\d*" minlength="10" maxlength="10">
+        <input type="text" style="border-radius: 17px;" class="form-control" id="tel" name="tel" placeholder="&#128241; Teléfono celular" required="" pattern="\d*" minlength="10" maxlength="10">
         <div class="invalid-feedback">
         Porfavor ingrese su número de teléfono celular.
         </div>
       </div>
 
       <div class="form-group">
-        <label for="locali"><b>Ciudad / Localidad:</b></label>
-        <input type="text" style="border-radius: 17px;" class="form-control" id="locali" name="locali" placeholder="&#127751; Santiago Ixc." required="" minlength="4" maxlength="20">
+        <input type="text" style="border-radius: 17px;" class="form-control" id="locali" name="locali" placeholder="&#127751; Ciudad / Localidad" required="" minlength="4" maxlength="20">
         <div class="invalid-feedback">
         Porfavor ingrese la ciudad/localidad en la que vive.
         </div>
       </div>
 
       <div class="form-group">
-        <label for="estado"><b>Estado:</b></label>
         <select class="form-control" style="border-radius: 17px;" required="true" name="estado" id="estado">
           <option value="">&#x1F1F2;&#x1F1FD; Selecciona tu estado &#xFE0F;</option>
           <option value="Aguascalientes">Aguascalientes</option>
@@ -105,63 +100,65 @@
       </div>
 
       <div class="form-group">
-        <label for="domic"><b>Domicilio:</b></label>
-        <input type="text" style="border-radius: 17px;" class="form-control" id="domic" name="domic" placeholder="&#127968; Amado Nervo #260" minlength="6" maxlength="40" required="">
+        <input type="text" style="border-radius: 17px;" class="form-control" id="domic" name="domic" placeholder="&#127968; Domicilio" minlength="6" maxlength="40" required="">
         <div class="invalid-feedback">
         Porfavor ingrese el domicilio donde vive.
         </div>
       </div>
 
       <div class="form-group">
-        <label for="cp"><b>Código Postal (CP):</b></label>
-        <input type="text" style="border-radius: 17px;" class="form-control" id="cp" name="cp" placeholder="&#128236; 63500" required="" pattern="\d*" minlength="5" maxlength="5">
+        <input type="text" style="border-radius: 17px;" class="form-control" id="cp" name="cp" placeholder="&#128236; Código Postal (CP)" required="" pattern="\d*" minlength="5" maxlength="5">
         <div class="invalid-feedback">
         Porfavor ingrese el código postal (cp) de donde vive.
         </div>
       </div>
 
       <div class="form-group">
-        <label for="corre"><b>Correo electrónico:</b></label>
-        <input type="email" style="border-radius: 17px;" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" id="corre" name="corre" placeholder="correo@ejemplo.com" required="" maxlength="45">
+        <input type="email" style="border-radius: 17px;" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" id="corre" name="corre" placeholder="✉️ Correo electrónico" required="" maxlength="45">
         <div class="invalid-feedback">
         Porfavor ingrese su correo electrónico.
         </div>
       </div>
 
       <div class="form-group">
-        <label for="contra"><b>Contraseña:</b></label>
-        <input type="password" style="border-radius: 17px;" class="form-control" id="contra" name="contra" placeholder="********" minlength="4" maxlength="20" required="">
+        <input type="password" style="border-radius: 17px;" class="form-control" id="contra" name="contra" placeholder="🔑 Contraseña" minlength="4" maxlength="20" required="">
         <div class="invalid-feedback">
         Porfavor ingrese su contraseña (almenos 4 caracteres).
         </div>
       </div>
       
       <div class="form-group" title="Mostrar contraseña">
-        <div class="form-check"  >
-          <input type="checkbox" class="form-check-input" id="checkbox" onclick="mostrar()">
-          <label class="form-check-label" for="mostrar" style="color: black;"> Mostrar contraseña
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="checkmostrar" name="checkmostrar" onclick="mostrar()">
+          <label class="form-check-label" for="checkmostrar" style="color: black;"> Mostrar contraseña
           </label>
         </div>
       </div>
       <script type="text/javascript">
-        function mostrar() {
+        function mostrar(){
         var x = document.getElementById("contra");
-          if (x.type == "password") {
+          if (x.type == "password"){
               x.type = "text";
-          } else {
+          } 
+          else{
               x.type = "password";
           }
         } 
       </script>
-      <button type="submit" style="border-radius: 17px;" class="btn btn-outline-success btn-lg btn-block">Registrarte</button>
-      Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.<br><br>
-      <div style="font-size: 1.08em;">
-      <b>¿Ya tienes una cuenta?</b> <a href="index.php?opcion=login">Iniciar Sesión</a>
-      </div>
+
+      <button type="submit" style="border-radius: 17px;" class="btn btn-success btn-lg btn-block"><b>Registrarte</b></button>
+      Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.<br>
     </form>
+    <div style="font-size: 1.08em;">
+      <div class="dropdown-divider"></div>
+      <center><b>¿Ya tienes una cuenta?</b></center>
+      <button class="btn btn-primary btn-md btn-block" style="border-radius: 17px; margin-top: 5px; margin-bottom: 10px;" onclick="window.location='index.php?opcion=login'"><b>Inicio de Sesión</b></button>
+      </div>
   </div>
 </div>
+</div>
 <br><br>
+</div>
 <script>
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function() {

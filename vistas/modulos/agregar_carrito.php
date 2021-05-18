@@ -29,7 +29,7 @@ if(in_array($_POST['id_producto'], $idProductos)){
 			'almacenamiento' => $_POST['almacenamiento'],
 			'precio' => $_POST['precio_producto']
 			);
-			$_SESSION['carrito'][$numeroProductos] = $producto;
+			array_push($_SESSION['carrito'],$producto);
 			var_dump($_SESSION['carrito']);
 	}
 

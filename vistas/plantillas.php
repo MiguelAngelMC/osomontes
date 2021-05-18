@@ -8,6 +8,8 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta name="description" content="Empresa de telefonía celular, accesorios y servicios originaria de Santiago Ixcuintla, Nayarit, México. Realiza compras online seguras y paga con tu tarjeta de crédito/débito o tu cuenta de PayPal">
+  <meta name="author" content="Miguel Angel Montes Contreras"/>
+  <meta name="copyright" content="Miguel Angel Montes Contreras"/>
 	<title>Oso Montes</title>
 	<link rel="shortcut icon" type="image/x-icon" href="vistas/img/logocelosomontes2.png">
 	<link rel="stylesheet" type="text/css" href="vistas/css/bootstrap.css">
@@ -31,9 +33,28 @@
   <script type="text/javascript" src="Plug-ins/datatables/buttons.print.min.js"></script>
   <link rel="stylesheet" type="text/css" href="Plug-ins/datatables/buttons.dataTables.min.css">
   <script type="text/javascript" src="Plug-ins/datatables/"></script>
-
+  <script type="text/javascript" src="vistas/js/preloader.js"></script>
 </head>
-<body>
+<body class="hidden">
+  <div class="centrado" id="onload">
+    <center>
+      <img src="vistas/img/logocelosomontes2.png" style="width: 50%;" loading="lazy">
+    </center>
+    <div class="lds-spinner">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
 	<div>
 		<?php
     
@@ -50,6 +71,12 @@
         //echo $_SESSION['tipo'];
         include("modulos/menu_admin.php");
       }
+      else if(isset($_GET['opcion']) && ($_GET['opcion'] == 'login')){
+
+      }
+      else if(isset($_GET['opcion']) && ($_GET['opcion'] == 'registro')){
+
+      }
       else{
         include("modulos/menu.php");
       }
@@ -65,13 +92,9 @@
 	<div style="background-color: black;">
     
 		<!------------------------------ aqui va el footer ---------------------------------->
-	<center>
-	<img src="vistas/img/logocelosomontes2.png" loading="lazy" alt="Logo Oso Montes" width="100vw" style="margin-top: 25px;"><br>
-	</center>
-    <hr class="my-4">
-
     <!-- Button trigger modal -->
     <center>
+    <br>
     <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal">Ubicación y contacto</button>
 	<button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal1">Métodos de pago</button>
 	<button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal2">Acerca de</button></center>
@@ -114,15 +137,15 @@
       </div>
       <div class="modal-body" style="color: black;">
 		
-		<h5><b>PayPal</b> <img src="vistas/img/tarjetas/paypal.png" alt="PayPal Logo" width="15%"></h5>
+		  <h5><b>PayPal</b> <img src="vistas/img/tarjetas/paypal.png" alt="PayPal Logo" width="15%"></h5>
         Puedes pagar con tu cuenta de PayPal.<br><br>
-
+<!--
         <h5><b>Crédito</b> <img src="vistas/img/tarjetas/tarjeta-mastercard.png" alt="Mastercard Logo" width="13%"> <img src="vistas/img/tarjetas/visa.png" alt="Visa Logo" width="13%"></h5>
         Puedes pagar con tu tarjeta Visa y Mastercard.
         <br><br>
 
         <h5><b>Débito</b> <img src="vistas/img/tarjetas/tarjeta-mastercard.png" alt="Mastercard Logo" width="13%"> <img src="vistas/img/tarjetas/visa.png" alt="Visa Logo" width="13%"></h5>
-        Puedes pagar con tu tarjeta Visa y Mastercard.
+        Puedes pagar con tu tarjeta Visa y Mastercard. -->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal" title="Cerrar">Cerrar</button>
@@ -157,7 +180,7 @@
 	</div><br>
 	<center>
 	<div style="color: white;">
-	© Celulares Oso Montes - Todos los derechos reservados
+	Celulares Oso Montes © <?php echo date("Y"); ?>
 	</div><br></center>
 </body>
 </html>

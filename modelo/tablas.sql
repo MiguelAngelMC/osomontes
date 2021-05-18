@@ -1,3 +1,14 @@
+CREATE TABLE roles
+(
+	num_rol SMALLINT PRIMARY KEY NOT NULL,
+	rol VARCHAR (15) NOT NULL
+);
+
+INSERT INTO roles(num_rol, rol) VALUES('1', 'administrador'),
+('2', 'usuario');
+
+
+
 CREATE TABLE usuario
 (
 	id_user INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -31,18 +42,6 @@ UPDATE usuario SET status='desactivado' WHERE id_user=1;
 
 
 
-CREATE TABLE roles
-(
-	num_rol SMALLINT PRIMARY KEY NOT NULL,
-	rol VARCHAR (15) NOT NULL
-);
-
-INSERT INTO roles(num_rol, rol) VALUES('1', 'administrador'),
-('2', 'usuario');
-
-
-
-
 CREATE TABLE marca
 (
 	nombre_marca VARCHAR(30) PRIMARY KEY NOT NULL,
@@ -50,31 +49,6 @@ CREATE TABLE marca
 	hora TIME NOT NULL,
 	fecha_modificacion DATE,
 	hora_modificacion TIME
-);
-
-
-
-
-CREATE TABLE producto
-(
-	id_producto INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	fk_categoria VARCHAR(30) NOT NULL,
-	imei VARCHAR(15),
-	fk_marca VARCHAR(30) NOT NULL,
-	fk_id_proveedor INT NOT NULL,
-	ruta_imagen VARCHAR(60),
-	nombre_producto TEXT NOT NULL,
-	almacenamiento TEXT,
-	descripcion_producto TEXT NOT NULL,
-	costo_compra_unitario FLOAT(8,2),
-	costo_venta_unitario FLOAT(8,2),
-	fecha_creacion DATE,
-	hora_creacion TIME,
-	fecha_modificacion DATE,
-	hora_modificacion TIME,
-	FOREIGN KEY (fk_categoria) REFERENCES categoria(nombre_categoria),
-	FOREIGN KEY (fk_marca) REFERENCES marca(nombre_marca),
-	FOREIGN KEY (fk_id_proveedor) REFERENCES proveedor(id_proveedor)
 );
 
 
@@ -108,4 +82,59 @@ CREATE TABLE proveedor
 	hora_registro TIME NOT NULL,
 	fecha_modificacion DATE,
 	hora_modificacion TIME
+);
+
+
+
+
+CREATE TABLE producto
+(
+	id_producto INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	fk_categoria VARCHAR(30) NOT NULL,
+	imei VARCHAR(15),
+	fk_marca VARCHAR(30) NOT NULL,
+	fk_id_proveedor INT NOT NULL,
+	ruta_imagen VARCHAR(60),
+	nombre_producto TEXT NOT NULL,
+	almacenamiento TEXT,
+	descripcion_producto TEXT NOT NULL,
+	costo_compra_unitario FLOAT(8,2) NOT NULL,
+	costo_venta_unitario FLOAT(8,2) NOT NULL,
+	status VARCHAR(30) NOT NULL,
+	fecha_creacion DATE NOT NULL,
+	hora_creacion TIME NOT NULL,
+	fecha_modificacion DATE,
+	hora_modificacion TIME,
+	FOREIGN KEY (fk_categoria) REFERENCES categoria(nombre_categoria),
+	FOREIGN KEY (fk_marca) REFERENCES marca(nombre_marca),
+	FOREIGN KEY (fk_id_proveedor) REFERENCES proveedor(id_proveedor)
+);
+
+
+
+
+CREATE TABLE venta
+(
+	id_venta INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	clave_transaccion VARCHAR(250) NOT NULL,
+	paypal_datos TEXT NOT NULL,
+	total FLOAT(8,2) NOT NULL,
+	fecha DATE NOT NULL,
+	hora TIME NOT NULL,
+	fk_id_usuario INT NOT NULL,
+	status VARCHAR(200) NOT NULL,
+	FOREIGN KEY (fk_id_usuario) REFERENCES usuario(id_user)
+);
+
+
+CREATE TABLE detalle_venta
+(
+	id_detalle_venta INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	fk_id_venta INT NOT NULL,
+	fk_id_producto INT NOT NULL,
+	precio_unitario FLOAT(8,2),
+	fk_id_usuario INT NOT NULL,
+	FOREIGN KEY (fk_id_venta) REFERENCES venta(id_venta) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (fk_id_producto) REFERENCES producto(id_producto) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (fk_id_usuario) REFERENCES usuario(id_user) ON DELETE CASCADE ON UPDATE CASCADE
 );

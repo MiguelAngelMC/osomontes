@@ -20,6 +20,7 @@
 					<th>COSTO DE VENTA</th>
 					<th>FECHA CREACIÓN</th>
 					<th>ÚLTIMA MODIFICACIÓN</th>
+					<th>STATUS</th>
 					<th></th>
 				</tr>
 			</thead>

@@ -210,8 +210,8 @@
       </div>
 
       <div class="form-group">
-        <label for="nvaContra"><b>Contraseña:</b></label>
-        <input type="password" style="border-radius: 17px;" class="form-control" id="nvaContra" name="nvaContra" placeholder="********" minlength="4" maxlength="20" required="">
+        <label for="Contra"><b>Contraseña:</b></label>
+        <input type="password" style="border-radius: 17px;" class="form-control" id="contra" name="contra" placeholder="********" minlength="4" maxlength="20" required="">
         <div class="invalid-feedback">
         Porfavor ingrese una nueva contraseña para el usuario (almenos 4 caracteres).
         </div>
@@ -219,8 +219,8 @@
 
       <div class="form-group" title="Mostrar contraseña">
         <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="checkbox" onclick="mostrar()">
-          <label class="form-check-label" for="mostrar" style="color: black;"> Mostrar contraseña
+          <input type="checkbox" class="form-check-input" id="checkmostrar" name="checkmostrar" onclick="mostrar()">
+          <label class="form-check-label" for="checkmostrar" style="color: black;"> Mostrar contraseña
           </label>
         </div>
       </div>
@@ -280,11 +280,12 @@
       </div>
 
       <script type="text/javascript">
-        function mostrar() {
-        var x = document.getElementById("nvaContra");
-          if (x.type == "password") {
+        function mostrar(){
+        var x = document.getElementById("contra");
+          if (x.type == "password"){
               x.type = "text";
-          } else {
+          } 
+          else{
               x.type = "password";
           }
         } 

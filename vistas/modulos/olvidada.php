@@ -1,12 +1,9 @@
-<center>
-  <img src="vistas/img/logocelosomontes2.png" width="100vw" style="margin-top: 10px;">
-</center>
 <div class="col-sm-6 offset-sm-3 offset-md-4 col-md-4">
+  <br><center><h3>Restablecer contraseña</h3></center>
   <div class="px-4 py-3">
     <form method="POST" class="needs-validation" novalidate>
       <div class="form-group" title="Correo electrónico">
-        <label for="corr">Correo electrónico:</label>
-        <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" id="corr" name="corre" placeholder="correo@ejemplo.com" required="" maxlength="45">
+        <input type="email" style="border-radius: 17px; padding: 23px; font-size: 1.08em;" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" id="corr" name="corre" placeholder="✉️ Correo electrónico" required="" maxlength="45">
         <div class="invalid-feedback">
         Porfavor ingrese su correo electrónico.
         </div>
@@ -22,7 +19,7 @@
           }
         } 
       </script>
-      <button type="submit" class="btn btn-outline-primary btn-lg btn-block" title="Enviar">Enviar</button>
+      <button type="submit" style="border-radius: 17px;" class="btn btn-primary btn-lg btn-block" title="Enviar">Enviar</button>
     </form>
     <div style="font-size: 1.08em; margin-top: 2px;">
       ¿No tienes una cuenta?&nbsp; <a href="index.php?opcion=registro" title="Crear cuenta nueva">Crear cuenta nueva</a>

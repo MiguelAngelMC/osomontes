@@ -1,13 +1,13 @@
-<center>
-  <img src="vistas/img/logocelosomontes2.png" width="100vw" style="margin-top: 10px;">
-</center>
-<div class="col-sm-6 offset-sm-3 offset-md-4 col-md-4">
-  <div class="px-4 py-3">
+<div style="background-color: #e9ebee;">
+<center><a href="index.php"><img src="vistas/img/logocelosomontes2.png" style="margin-top: 3px;" alt="Logo Oso Montes" width="130vw" loading="lazy"></a></center>
+<div class="container">
+<div class="col-12 col-sm-8 offset-sm-2 offset-md-3 col-md-6 offset-lg-3 col-lg-6 offset-xl-4 col-xl-4" style="box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302),0 2px 6px 2px rgba(60,64,67,0.149); padding-top: 10px; padding-bottom: 15px; border-radius: 17px; margin-top: 5px; background-color: white;">
+  <center><h3>Inicia sesión</h3></center>
+  <div class="px-4">
     <form method="POST" class="needs-validation" novalidate>
 
       <div class="form-group" title="Correo electrónico">
-        <label for="corr"><b>Correo electrónico:</b></label>
-          <input type="email" style="border-radius: 17px;" placeholder="✉️" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" id="corr" name="corre" required="" autofocus="" maxlength="45" value="<?php if(isset($_POST['corre'])){
+          <input type="email" style="border-radius: 17px; padding: 23px; font-size: 1.08em;" placeholder="✉️ Correo electrónico" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" id="corr" name="corre" required="" autofocus="true" maxlength="45" value="<?php if(isset($_POST['corre'])){
             echo $_POST['corre'];
           } ?>">
         <div class="invalid-feedback">
@@ -16,8 +16,7 @@
       </div>
 
       <div class="form-group" title="Contraseña">
-        <label for="contra"><b>Contraseña:</b></label>
-          <input type="password" placeholder="🔑" style="border-radius: 17px;" class="form-control" id="contra" name="contra" minlength="4" maxlength="20" required="" value="<?php if(isset($_POST['corre'])){
+          <input type="password" placeholder="🔑 Contraseña" style="border-radius: 17px; padding: 23px; font-size: 1.08em;" class="form-control" id="contra" name="contra" minlength="4" maxlength="20" required="" value="<?php if(isset($_POST['corre'])){
             echo $_POST['contra'];
           } ?>">
         <div class="invalid-feedback">
@@ -44,22 +43,24 @@
         } 
       </script>
 
-      <button type="submit" style="border-radius: 17px;" class="btn btn-outline-primary btn-lg btn-block" title="Entrar">Iniciar sesión</button>
+      <button type="submit" style="border-radius: 17px;" class="btn btn-primary btn-lg btn-block" title="Entrar"><b>Iniciar sesión</b></button>
 
     </form>
 
-    <div style="font-size: 1.08em; margin-top: 2px;">
-      <b>¿No tienes una cuenta?</b> <a href="index.php?opcion=registro" title="Crear cuenta nueva">Crear cuenta nueva</a>
-    </div>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="index.php?opcion=olvidada" style="text-align: center; color: #007bff; font-size: 1.08em;" title="¿Olvidaste tu contraseña?">¿Olvidaste tu contraseña?</a>
+    <div class="dropdown-divider"></div>
+
+    <!-- <div style="font-size: 1.08em; margin-top: 2px; margin-bottom: 5px; text-align: center;">
+      <b>¿No tienes una cuenta?</b>
+    </div> -->
+    <button style="border-radius: 17px; font-size: 1.08em; margin-bottom: 10px;" class="btn btn-success btn-md btn-block" onclick="window.location='index.php?opcion=registro'"><b>Crear cuenta nueva</b></button>
 
   </div>
 </div>
-
-  <div class="dropdown-divider"></div>
-  <a class="dropdown-item" href="index.php?opcion=olvidada" style="text-align: center; color: #007bff;" title="¿Olvidaste tu contraseña?">¿Olvidaste tu contraseña?</a>
-  <div class="dropdown-divider"></div>
-
-<br><br>
+</div>
+<br><br><br><br><br>
+</div>
 <script>
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function() {

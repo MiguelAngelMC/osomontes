@@ -133,7 +133,7 @@ class Model extends Conexion{
 		$correo = $datos['valor_correo'];
 		$contra = $datos['valor_contra'];
 
-		$datos = Conexion::conectar()->prepare("SELECT id_user, nombre, apellidos, correo, contra, status, num_rol FROM $tabla WHERE correo=:correo");
+		$datos = Conexion::conectar()->prepare("SELECT id_user, nombre, apellidos, celular, localidad, estado, domicilio, cp, correo, contra, status, num_rol FROM $tabla WHERE correo=:correo");
 		$datos -> bindParam(':correo', $correo);
 		$datos->execute();
 
@@ -144,10 +144,15 @@ class Model extends Conexion{
 
 			// Verificar si la cuenta está activada o no
 			if($resultados['status'] == 'activo'){
+				$_SESSION['id_usuario'] = $resultados['id_user'];
 				$_SESSION['usuario'] = $resultados['nombre'];
 				$_SESSION['apellidos'] = $resultados['apellidos'];
+				$_SESSION['celular'] = $resultados['celular'];
+				$_SESSION['localidad'] = $resultados['localidad'];
+				$_SESSION['estado'] = $resultados['estado'];
+				$_SESSION['domicilio'] = $resultados['domicilio'];
+				$_SESSION['cp'] = $resultados['cp'];
 				$_SESSION['tipo'] = $resultados['num_rol'];
-				$_SESSION['id_usuario'] = $resultados['id_user'];
 
 				// establecer fecha y hora del inicio de sesión
 				$datos2 = Conexion::conectar()->prepare("UPDATE $tabla SET fecha_ultima_sesion=:fecha, hora_ultima_sesion=:hora WHERE correo=:correo");
@@ -245,6 +250,181 @@ class Model extends Conexion{
 			if($datos->execute()){
 
 				$_SESSION['apellidos'] = $apellidosNvos;
+
+				return "ok";
+			}
+			else{
+
+				return "error";
+			}
+
+			$datos->close();
+		}
+		
+	}
+
+	// Método que cambia el número de teléfono celular del usuario respecto a su id
+	static public function cambiarCelularModelo($id, $nvoTel, $tabla){
+
+		//obtener fecha y hora
+		date_default_timezone_set("America/Mazatlan");
+		$hora = date("H:i:s");
+		$fecha = date("Y-m-d");
+
+		if($nvoTel == $_SESSION['celular']){
+
+			return 'esigual';
+		}
+		else{
+
+			$datos = Conexion::conectar()->prepare("UPDATE $tabla SET celular=:tel WHERE id_user=:id");
+			$datos -> bindParam(':id', $id);
+			$datos -> bindParam(':tel', $nvoTel);
+			$datos->execute();
+
+			if($datos->execute()){
+
+				$_SESSION['celular'] = $nvoTel;
+
+				return "ok";
+			}
+			else{
+
+				return "error";
+			}
+
+			$datos->close();
+		}
+		
+	}
+
+	// Método que cambia la localidad del usuario respecto a su id
+	static public function cambiarLocalidadModelo($id, $nvaLocali, $tabla){
+
+		//obtener fecha y hora
+		date_default_timezone_set("America/Mazatlan");
+		$hora = date("H:i:s");
+		$fecha = date("Y-m-d");
+
+		if($nvaLocali == $_SESSION['localidad']){
+
+			return 'esigual';
+		}
+		else{
+
+			$datos = Conexion::conectar()->prepare("UPDATE $tabla SET localidad=:nvaLocali WHERE id_user=:id");
+			$datos -> bindParam(':id', $id);
+			$datos -> bindParam(':nvaLocali', $nvaLocali);
+			$datos->execute();
+
+			if($datos->execute()){
+
+				$_SESSION['localidad'] = $nvaLocali;
+
+				return "ok";
+			}
+			else{
+
+				return "error";
+			}
+
+			$datos->close();
+		}
+		
+	}
+
+	// Método que cambia el estado del usuario respecto a su id
+	static public function cambiarEstadoModelo($id, $nvoEstado, $tabla){
+
+		//obtener fecha y hora
+		date_default_timezone_set("America/Mazatlan");
+		$hora = date("H:i:s");
+		$fecha = date("Y-m-d");
+
+		if($nvoEstado == $_SESSION['estado']){
+
+			return 'esigual';
+		}
+		else{
+
+			$datos = Conexion::conectar()->prepare("UPDATE $tabla SET estado=:nvoEstado WHERE id_user=:id");
+			$datos -> bindParam(':id', $id);
+			$datos -> bindParam(':nvoEstado', $nvoEstado);
+			$datos->execute();
+
+			if($datos->execute()){
+
+				$_SESSION['estado'] = $nvoEstado;
+
+				return "ok";
+			}
+			else{
+
+				return "error";
+			}
+
+			$datos->close();
+		}
+		
+	}
+
+	// Método que cambia el domicilio del usuario respecto a su id
+	static public function cambiarDomicilioModelo($id, $nvoDomic, $tabla){
+
+		//obtener fecha y hora
+		date_default_timezone_set("America/Mazatlan");
+		$hora = date("H:i:s");
+		$fecha = date("Y-m-d");
+
+		if($nvoDomic == $_SESSION['domicilio']){
+
+			return 'esigual';
+		}
+		else{
+
+			$datos = Conexion::conectar()->prepare("UPDATE $tabla SET domicilio=:nvoDomic WHERE id_user=:id");
+			$datos -> bindParam(':id', $id);
+			$datos -> bindParam(':nvoDomic', $nvoDomic);
+			$datos->execute();
+
+			if($datos->execute()){
+
+				$_SESSION['domicilio'] = $nvoDomic;
+
+				return "ok";
+			}
+			else{
+
+				return "error";
+			}
+
+			$datos->close();
+		}
+		
+	}
+
+	// Método que cambia el código postal del usuario respecto a su id
+	static public function cambiarCpModelo($id, $nvoCp, $tabla){
+
+		//obtener fecha y hora
+		date_default_timezone_set("America/Mazatlan");
+		$hora = date("H:i:s");
+		$fecha = date("Y-m-d");
+
+		if($nvoCp == $_SESSION['cp']){
+
+			return 'esigual';
+		}
+		else{
+
+			$datos = Conexion::conectar()->prepare("UPDATE $tabla SET cp=:nvoCp WHERE id_user=:id");
+			$datos -> bindParam(':id', $id);
+			$datos -> bindParam(':nvoCp', $nvoCp);
+			$datos->execute();
+
+			if($datos->execute()){
+
+				$_SESSION['cp'] = $nvoCp;
 
 				return "ok";
 			}
@@ -1108,6 +1288,7 @@ class Model extends Conexion{
 		$descripcionProducto = $datos['valor_descripcion'];
 		$precioCompra = $datos['valor_precio_compra'];
 		$precioVenta = $datos['valor_precio_venta'];
+		$status = "stock";
 
 		if($categoria == 'Mica de Cristal'){
 
@@ -1119,9 +1300,19 @@ class Model extends Conexion{
 			$ruta = "vistas/img/fundas/".$nombre_foto;
 
 		}
+		else if($categoria == 'Audífonos'){
+
+			$ruta = "vistas/img/audifonos/".$nombre_foto;
+
+		}
 		else if($categoria == 'PopSocket'){
 
 			$ruta = "vistas/img/popsockets/".$nombre_foto;
+
+		}
+		else if($categoria == 'Cargadores'){
+
+			$ruta = "vistas/img/cargadores/".$nombre_foto;
 
 		}
 		else if($categoria == 'Teléfono Celular'){
@@ -1153,7 +1344,7 @@ class Model extends Conexion{
 				if(move_uploaded_file($_FILES['foto']['tmp_name'], $ruta)){
 
 					// Insertar en la base de datos si se movio la foto
-					$dato2 = Conexion::conectar()->prepare("INSERT INTO $tabla (fk_categoria, imei, fk_marca, fk_id_proveedor, ruta_imagen, nombre_producto, almacenamiento, descripcion_producto, costo_compra_unitario, costo_venta_unitario, fecha_creacion, hora_creacion, fecha_modificacion, hora_modificacion) VALUES (:categoria, :imei, :marca, :proveedor, :ruta, :nombre, :almacenamiento, :descripcion, :precio_compra, :precio_venta, :fecha_creacion, :hora_creacion, NULL, NULL)");
+					$dato2 = Conexion::conectar()->prepare("INSERT INTO $tabla (fk_categoria, imei, fk_marca, fk_id_proveedor, ruta_imagen, nombre_producto, almacenamiento, descripcion_producto, costo_compra_unitario, costo_venta_unitario, status, fecha_creacion, hora_creacion, fecha_modificacion, hora_modificacion) VALUES (:categoria, :imei, :marca, :proveedor, :ruta, :nombre, :almacenamiento, :descripcion, :precio_compra, :precio_venta, :status, :fecha_creacion, :hora_creacion, NULL, NULL)");
 					$dato2 -> bindParam(':categoria', $categoria);
 					$dato2 -> bindParam(':imei', $imei);
 					$dato2 -> bindParam(':marca', $marca);
@@ -1166,13 +1357,14 @@ class Model extends Conexion{
 					$dato2 -> bindParam(':precio_venta', $precioVenta);
 					$dato2 -> bindParam(':fecha_creacion', $fecha);
 					$dato2 -> bindParam(':hora_creacion', $hora);
+					$dato2 -> bindParam(':status', $status);
 
 					if($dato2->execute()){
 
 						return "ok";
 					}
 					else{
-
+						unlink($ruta);
 						return "error";
 					}
 					$dato2->close();
@@ -1192,7 +1384,7 @@ class Model extends Conexion{
 			if(move_uploaded_file($_FILES['foto']['tmp_name'], $ruta)){
 
 				// Insertar en la base de datos si se movio la foto
-				$dato2 = Conexion::conectar()->prepare("INSERT INTO $tabla (fk_categoria, imei, fk_marca, fk_id_proveedor, ruta_imagen, nombre_producto, almacenamiento, descripcion_producto, costo_compra_unitario, costo_venta_unitario, fecha_creacion, hora_creacion, fecha_modificacion, hora_modificacion) VALUES (:categoria, :imei, :marca, :proveedor, :ruta, :nombre, :almacenamiento, :descripcion, :precio_compra, :precio_venta, :fecha_creacion, :hora_creacion, NULL, NULL)");
+				$dato2 = Conexion::conectar()->prepare("INSERT INTO $tabla (fk_categoria, imei, fk_marca, fk_id_proveedor, ruta_imagen, nombre_producto, almacenamiento, descripcion_producto, costo_compra_unitario, costo_venta_unitario, status, fecha_creacion, hora_creacion, fecha_modificacion, hora_modificacion) VALUES (:categoria, :imei, :marca, :proveedor, :ruta, :nombre, :almacenamiento, :descripcion, :precio_compra, :precio_venta, :status, :fecha_creacion, :hora_creacion, NULL, NULL)");
 				$dato2 -> bindParam(':categoria', $categoria);
 				$dato2 -> bindParam(':imei', $imei);
 				$dato2 -> bindParam(':marca', $marca);
@@ -1205,13 +1397,14 @@ class Model extends Conexion{
 				$dato2 -> bindParam(':precio_venta', $precioVenta);
 				$dato2 -> bindParam(':fecha_creacion', $fecha);
 				$dato2 -> bindParam(':hora_creacion', $hora);
+				$dato2 -> bindParam(':status', $status);
 
 				if($dato2->execute()){
 
 					return "ok";
 				}
 				else{
-
+					unlink($ruta);
 					return "error";
 				}
 				$dato2->close();
@@ -1278,7 +1471,7 @@ class Model extends Conexion{
 
 		$iniciar = ($_GET['pagina']-1)*$articulosXPagina;
 		
-		$consulta = Conexion::conectar()->prepare("SELECT COUNT(nombre_producto) AS 'productos_disponibles', MAX(costo_venta_unitario) AS 'max_costo_venta_unitario', id_producto, nombre_producto, almacenamiento, ruta_imagen, descripcion_producto FROM producto WHERE fk_categoria='Teléfono Celular' GROUP BY nombre_producto, almacenamiento LIMIT :iniciar, :articulosXPagina;");
+		$consulta = Conexion::conectar()->prepare("SELECT COUNT(nombre_producto) AS 'productos_disponibles', MAX(costo_venta_unitario) AS 'max_costo_venta_unitario', id_producto, nombre_producto, almacenamiento, ruta_imagen, descripcion_producto FROM producto WHERE fk_categoria='Teléfono Celular' AND status='stock' GROUP BY nombre_producto, almacenamiento LIMIT :iniciar, :articulosXPagina;");
 		$consulta -> bindParam(':iniciar', $iniciar, PDO::PARAM_INT);
 		$consulta -> bindParam(':articulosXPagina', $articulosXPagina, PDO::PARAM_INT);
 		$consulta -> execute();
@@ -1293,7 +1486,7 @@ class Model extends Conexion{
 
 		$iniciar = ($_GET['pagina']-1)*$articulosXPagina;
 		
-		$consulta = Conexion::conectar()->prepare("SELECT COUNT(nombre_producto) AS 'productos_disponibles', MAX(costo_venta_unitario) AS 'max_costo_venta_unitario', id_producto, nombre_producto, almacenamiento, ruta_imagen, descripcion_producto FROM producto WHERE fk_categoria='Funda' GROUP BY nombre_producto LIMIT :iniciar, :articulosXPagina;");
+		$consulta = Conexion::conectar()->prepare("SELECT COUNT(nombre_producto) AS 'productos_disponibles', MAX(costo_venta_unitario) AS 'max_costo_venta_unitario', id_producto, nombre_producto, almacenamiento, ruta_imagen, descripcion_producto FROM producto WHERE fk_categoria='Funda' AND status='stock' GROUP BY nombre_producto LIMIT :iniciar, :articulosXPagina;");
 		$consulta -> bindParam(':iniciar', $iniciar, PDO::PARAM_INT);
 		$consulta -> bindParam(':articulosXPagina', $articulosXPagina, PDO::PARAM_INT);
 		$consulta -> execute();
@@ -1308,7 +1501,52 @@ class Model extends Conexion{
 
 		$iniciar = ($_GET['pagina']-1)*$articulosXPagina;
 		
-		$consulta = Conexion::conectar()->prepare("SELECT COUNT(nombre_producto) AS 'productos_disponibles', MAX(costo_venta_unitario) AS 'max_costo_venta_unitario', id_producto, nombre_producto, almacenamiento, ruta_imagen, descripcion_producto FROM producto WHERE fk_categoria='Mica de Cristal' GROUP BY nombre_producto LIMIT :iniciar, :articulosXPagina;");
+		$consulta = Conexion::conectar()->prepare("SELECT COUNT(nombre_producto) AS 'productos_disponibles', MAX(costo_venta_unitario) AS 'max_costo_venta_unitario', id_producto, nombre_producto, almacenamiento, ruta_imagen, descripcion_producto FROM producto WHERE fk_categoria='Mica de Cristal' AND status='stock' GROUP BY nombre_producto LIMIT :iniciar, :articulosXPagina;");
+		$consulta -> bindParam(':iniciar', $iniciar, PDO::PARAM_INT);
+		$consulta -> bindParam(':articulosXPagina', $articulosXPagina, PDO::PARAM_INT);
+		$consulta -> execute();
+
+		return $consulta -> fetchAll();
+		$consulta -> close();
+
+	}
+
+	// Método que consulta a la bd los audífonos
+	static public function vistaAudifonosModelo($tabla, $articulosXPagina){
+
+		$iniciar = ($_GET['pagina']-1)*$articulosXPagina;
+		
+		$consulta = Conexion::conectar()->prepare("SELECT COUNT(nombre_producto) AS 'productos_disponibles', MAX(costo_venta_unitario) AS 'max_costo_venta_unitario', id_producto, nombre_producto, almacenamiento, ruta_imagen, descripcion_producto FROM producto WHERE fk_categoria='Audífonos' AND status='stock' GROUP BY nombre_producto LIMIT :iniciar, :articulosXPagina;");
+		$consulta -> bindParam(':iniciar', $iniciar, PDO::PARAM_INT);
+		$consulta -> bindParam(':articulosXPagina', $articulosXPagina, PDO::PARAM_INT);
+		$consulta -> execute();
+
+		return $consulta -> fetchAll();
+		$consulta -> close();
+
+	}
+
+	// Método que consulta a la bd los cargadores
+	static public function vistaCargadoresModelo($tabla, $articulosXPagina){
+
+		$iniciar = ($_GET['pagina']-1)*$articulosXPagina;
+		
+		$consulta = Conexion::conectar()->prepare("SELECT COUNT(nombre_producto) AS 'productos_disponibles', MAX(costo_venta_unitario) AS 'max_costo_venta_unitario', id_producto, nombre_producto, almacenamiento, ruta_imagen, descripcion_producto FROM producto WHERE fk_categoria='Cargadores' AND status='stock' GROUP BY nombre_producto LIMIT :iniciar, :articulosXPagina;");
+		$consulta -> bindParam(':iniciar', $iniciar, PDO::PARAM_INT);
+		$consulta -> bindParam(':articulosXPagina', $articulosXPagina, PDO::PARAM_INT);
+		$consulta -> execute();
+
+		return $consulta -> fetchAll();
+		$consulta -> close();
+
+	}
+
+	// Método que consulta a la bd todos los productos
+	static public function vistaTodoModelo($tabla, $articulosXPagina){
+
+		$iniciar = ($_GET['pagina']-1)*$articulosXPagina;
+		
+		$consulta = Conexion::conectar()->prepare("SELECT COUNT(nombre_producto) AS 'productos_disponibles', MAX(costo_venta_unitario) AS 'max_costo_venta_unitario', id_producto, nombre_producto, almacenamiento, ruta_imagen, descripcion_producto FROM producto WHERE status='stock' GROUP BY nombre_producto LIMIT :iniciar, :articulosXPagina;");
 		$consulta -> bindParam(':iniciar', $iniciar, PDO::PARAM_INT);
 		$consulta -> bindParam(':articulosXPagina', $articulosXPagina, PDO::PARAM_INT);
 		$consulta -> execute();
@@ -1321,7 +1559,7 @@ class Model extends Conexion{
 	// Método que pagina celulares.php
 	static public function paginacionCelularesModelo($tabla, $articulosXPagina){
 		
-		$consulta = Conexion::conectar()->prepare("SELECT COUNT(nombre_producto) AS 'productos_disponibles', MAX(costo_venta_unitario) AS 'max_costo_venta_unitario', id_producto, nombre_producto, almacenamiento, ruta_imagen, descripcion_producto FROM producto WHERE fk_categoria='Teléfono Celular' GROUP BY nombre_producto, almacenamiento;");
+		$consulta = Conexion::conectar()->prepare("SELECT COUNT(nombre_producto) AS 'productos_disponibles', MAX(costo_venta_unitario) AS 'max_costo_venta_unitario', id_producto, nombre_producto, almacenamiento, ruta_imagen, descripcion_producto FROM producto WHERE fk_categoria='Teléfono Celular' AND status='stock' GROUP BY nombre_producto, almacenamiento;");
 
 		$consulta -> execute();
 
@@ -1348,7 +1586,7 @@ class Model extends Conexion{
 	// Método que pagina fundas.php
 	static public function paginacionFundasModelo($tabla, $articulosXPagina){
 		
-		$consulta = Conexion::conectar()->prepare("SELECT COUNT(nombre_producto) AS 'productos_disponibles', MAX(costo_venta_unitario) AS 'max_costo_venta_unitario', id_producto, nombre_producto, almacenamiento, ruta_imagen, descripcion_producto FROM producto WHERE fk_categoria='Funda' GROUP BY nombre_producto;");
+		$consulta = Conexion::conectar()->prepare("SELECT COUNT(nombre_producto) AS 'productos_disponibles', MAX(costo_venta_unitario) AS 'max_costo_venta_unitario', id_producto, nombre_producto, almacenamiento, ruta_imagen, descripcion_producto FROM producto WHERE fk_categoria='Funda' AND status='stock' GROUP BY nombre_producto;");
 
 		$consulta -> execute();
 
@@ -1375,7 +1613,7 @@ class Model extends Conexion{
 	// Método que pagina micas.php
 	static public function paginacionMicasModelo($tabla, $articulosXPagina){
 		
-		$consulta = Conexion::conectar()->prepare("SELECT COUNT(nombre_producto) AS 'productos_disponibles', MAX(costo_venta_unitario) AS 'max_costo_venta_unitario', id_producto, nombre_producto, almacenamiento, ruta_imagen, descripcion_producto FROM producto WHERE fk_categoria='Mica de Cristal' GROUP BY nombre_producto;");
+		$consulta = Conexion::conectar()->prepare("SELECT COUNT(nombre_producto) AS 'productos_disponibles', MAX(costo_venta_unitario) AS 'max_costo_venta_unitario', id_producto, nombre_producto, almacenamiento, ruta_imagen, descripcion_producto FROM producto WHERE fk_categoria='Mica de Cristal' AND status='stock' GROUP BY nombre_producto;");
 
 		$consulta -> execute();
 
@@ -1397,6 +1635,258 @@ class Model extends Conexion{
 		return $datos;
 		$consulta -> close();
 
+	}
+
+	// Método que pagina audifonos.php
+	static public function paginacionAudifonosModelo($tabla, $articulosXPagina){
+		
+		$consulta = Conexion::conectar()->prepare("SELECT COUNT(nombre_producto) AS 'productos_disponibles', MAX(costo_venta_unitario) AS 'max_costo_venta_unitario', id_producto, nombre_producto, almacenamiento, ruta_imagen, descripcion_producto FROM producto WHERE fk_categoria='Audífonos' AND status='stock' GROUP BY nombre_producto;");
+
+		$consulta -> execute();
+
+		// Contar filas de la consulta
+		$totalArticulosBD = $consulta->rowCount();
+
+		// Contar el número de páginas
+		$paginas = ($totalArticulosBD / $articulosXPagina);
+		$paginas = ceil($paginas);
+		//echo '<br>&nbsp;&nbsp;<b>Total de páginas: </b>'.$paginas;
+
+		// Comprobar si está vacía la tabla producto
+		if($paginas == 0){
+			$paginas = 1;
+		}
+
+		$datos = array('valor_totalArticulosBD' => $totalArticulosBD, 'valor_articulosXPagina' => $articulosXPagina, 'valor_paginas' => $paginas);
+
+		return $datos;
+		$consulta -> close();
+
+	}
+
+	// Método que pagina cargadores.php
+	static public function paginacionCargadoresModelo($tabla, $articulosXPagina){
+		
+		$consulta = Conexion::conectar()->prepare("SELECT COUNT(nombre_producto) AS 'productos_disponibles', MAX(costo_venta_unitario) AS 'max_costo_venta_unitario', id_producto, nombre_producto, almacenamiento, ruta_imagen, descripcion_producto FROM producto WHERE fk_categoria='Cargadores' AND status='stock' GROUP BY nombre_producto;");
+
+		$consulta -> execute();
+
+		// Contar filas de la consulta
+		$totalArticulosBD = $consulta->rowCount();
+
+		// Contar el número de páginas
+		$paginas = ($totalArticulosBD / $articulosXPagina);
+		$paginas = ceil($paginas);
+		//echo '<br>&nbsp;&nbsp;<b>Total de páginas: </b>'.$paginas;
+
+		// Comprobar si está vacía la tabla producto
+		if($paginas == 0){
+			$paginas = 1;
+		}
+
+		$datos = array('valor_totalArticulosBD' => $totalArticulosBD, 'valor_articulosXPagina' => $articulosXPagina, 'valor_paginas' => $paginas);
+
+		return $datos;
+		$consulta -> close();
+
+	}
+
+	// Método que pagina todo.php
+	static public function paginacionTodoModelo($tabla, $articulosXPagina){
+		
+		$consulta = Conexion::conectar()->prepare("SELECT COUNT(nombre_producto) AS 'productos_disponibles', MAX(costo_venta_unitario) AS 'max_costo_venta_unitario', id_producto, nombre_producto, almacenamiento, ruta_imagen, descripcion_producto FROM producto WHERE status='stock' GROUP BY nombre_producto;");
+
+		$consulta -> execute();
+
+		// Contar filas de la consulta
+		$totalArticulosBD = $consulta->rowCount();
+
+		// Contar el número de páginas
+		$paginas = ($totalArticulosBD / $articulosXPagina);
+		$paginas = ceil($paginas);
+		//echo '<br>&nbsp;&nbsp;<b>Total de páginas: </b>'.$paginas;
+
+		// Comprobar si está vacía la tabla producto
+		if($paginas == 0){
+			$paginas = 1;
+		}
+
+		$datos = array('valor_totalArticulosBD' => $totalArticulosBD, 'valor_articulosXPagina' => $articulosXPagina, 'valor_paginas' => $paginas);
+
+		return $datos;
+		$consulta -> close();
+
+	}
+
+	//Método que inserta los valores de pagar.php
+	static public function procesarPagoModelo($datos, $tabla){
+
+		//obtener fecha y hora actual en Nayarit
+		date_default_timezone_set("America/Mazatlan");
+		$hora = date("H:i:s");
+		$fecha = date("Y-m-d");
+
+		$SID = $datos['valor_sid'];
+		$paypalDatos = "tujefa";
+		$total = $datos['valor_total'];
+		$idUsuario = $datos['valor_id_usuario'];
+		$status = 'pendiente';
+
+		$consulta = Conexion::conectar()->prepare("INSERT INTO $tabla (`clave_transaccion`, `paypal_datos`, `total`, `fecha`, `hora`, `fk_id_usuario`, `status`) VALUES (:sid, :paypalDatos, :total, :fecha, :hora, :idUsuario, :status);");
+		$consulta->bindParam(':sid', $SID);
+		$consulta->bindParam(':paypalDatos', $paypalDatos);
+		$consulta->bindParam(':total', $total);
+		$consulta->bindParam(':fecha', $fecha);
+		$consulta->bindParam(':hora', $hora);
+		$consulta->bindParam(':idUsuario', $idUsuario);
+		$consulta->bindParam(':status', $status);
+		$consulta->execute();
+
+		$consulta2 = Conexion::conectar()->prepare("SELECT MAX(id_venta) AS 'ultimo_id' FROM $tabla;");
+		$consulta2->bindParam(':sid', $SID);
+		$consulta2->bindParam(':paypalDatos', $paypalDatos);
+		$consulta2->bindParam(':total', $total);
+		$consulta2->bindParam(':fecha', $fecha);
+		$consulta2->bindParam(':hora', $hora);
+		$consulta2->bindParam(':idUsuario', $idUsuario);
+		$consulta2->bindParam(':status', $status);
+		$consulta2->execute();
+		$resultado = $consulta2->fetch(PDO::FETCH_ASSOC); 
+		$idVenta = $resultado['ultimo_id'];
+
+			foreach($_SESSION['carrito'] as $indice => $producto){
+
+				$tabla2 = "detalle_venta";
+
+				$consulta3 = Conexion::conectar()->prepare("INSERT INTO $tabla2 (fk_id_venta, fk_id_producto, precio_unitario, fk_id_usuario) VALUES (:fk_id_venta, :fk_id_producto, :precio_unitario, :fk_id_usuario);");
+				$consulta3->bindParam(':fk_id_venta', $idVenta);
+				$consulta3->bindParam(':fk_id_producto', $producto['id_producto']);
+				$consulta3->bindParam(':precio_unitario', $producto['precio']);
+				$consulta3->bindParam(':fk_id_usuario', $idUsuario);
+
+				$consulta3->execute();
+				echo $idVenta;
+			}
+		return "";
+
+	}
+
+	// Método que consulta a la bd la búsqueda
+	static public function buscarModelo($tabla, $articulosXPagina, $palabra){
+
+		$iniciar = ($_GET['pagina']-1)*$articulosXPagina;
+
+		$palabra = '%'.$palabra.'%';
+		
+		$consulta = Conexion::conectar()->prepare("SELECT COUNT(nombre_producto) AS 'productos_disponibles', MAX(costo_venta_unitario) AS 'max_costo_venta_unitario', id_producto, fk_categoria, nombre_producto, almacenamiento, ruta_imagen, descripcion_producto FROM producto WHERE fk_categoria LIKE :palabra OR fk_marca LIKE :palabra OR nombre_producto LIKE :palabra OR almacenamiento LIKE :palabra OR descripcion_producto LIKE :palabra OR costo_venta_unitario LIKE :palabra GROUP BY nombre_producto, almacenamiento ORDER BY id_producto LIMIT :iniciar, :articulosXPagina;");
+		$consulta -> bindParam(':iniciar', $iniciar, PDO::PARAM_INT);
+		$consulta -> bindParam(':articulosXPagina', $articulosXPagina, PDO::PARAM_INT);
+		$consulta -> bindParam(':palabra', $palabra);
+		$consulta -> execute();
+
+		return $consulta -> fetchAll();
+		$consulta -> close();
+
+	}
+
+	// Método que pagina todo.php
+	static public function paginacionBusquedaModelo($tabla, $articulosXPagina, $palabra){
+
+		$palabra = '%'.$palabra.'%';
+		
+		$consulta = Conexion::conectar()->prepare("SELECT COUNT(nombre_producto) AS 'productos_disponibles', MAX(costo_venta_unitario) AS 'max_costo_venta_unitario', id_producto, fk_categoria, nombre_producto, almacenamiento, ruta_imagen, descripcion_producto FROM producto WHERE fk_categoria LIKE :palabra OR fk_marca LIKE :palabra OR nombre_producto LIKE :palabra OR almacenamiento LIKE :palabra OR descripcion_producto LIKE :palabra OR costo_venta_unitario LIKE :palabra GROUP BY nombre_producto, almacenamiento");
+		$consulta -> bindParam(':iniciar', $iniciar, PDO::PARAM_INT);
+		$consulta -> bindParam(':articulosXPagina', $articulosXPagina, PDO::PARAM_INT);
+		$consulta -> bindParam(':palabra', $palabra);
+		$consulta -> execute();
+
+		// Contar filas de la consulta
+		$totalArticulosBD = $consulta->rowCount();
+
+		// Contar el número de páginas
+		$paginas = ($totalArticulosBD / $articulosXPagina);
+		$paginas = ceil($paginas);
+		//echo '<br>&nbsp;&nbsp;<b>Total de páginas: </b>'.$paginas;
+
+		// Comprobar si está vacía la tabla producto
+		if($paginas == 0){
+			$paginas = 1;
+		}
+
+		$datos = array('valor_totalArticulosBD' => $totalArticulosBD, 'valor_articulosXPagina' => $articulosXPagina, 'valor_paginas' => $paginas);
+
+		return $datos;
+		$consulta -> close();
+
+	}
+
+	// Método que consulta el número de usuarios de la BD
+	static public function contarUsuariosModelo($tabla){
+
+		$consulta = Conexion::conectar()->prepare("SELECT COUNT('id_user') AS num FROM $tabla");
+		if($consulta -> execute()){
+			return $consulta -> fetch(PDO::FETCH_ASSOC);
+		}
+		$consulta->closeCursor();
+		$consulta->close();
+	}
+
+	// Método que consulta el número de ventas del día actual de la BD
+	static public function contarVentasDiaModelo($tabla){
+
+		date_default_timezone_set("America/Mazatlan");
+		$fecha = date("Y-m-d");
+
+		$consulta = Conexion::conectar()->prepare("SELECT COUNT('id_venta') AS num FROM $tabla WHERE fecha='$fecha'");
+		if($consulta -> execute()){
+			return $consulta -> fetch(PDO::FETCH_ASSOC);
+		}
+		$consulta->closeCursor();
+		$consulta->close();
+	}
+
+	// Método que consulta el número de productos de la BD
+	static public function contarProductosModelo($tabla){
+
+		$consulta = Conexion::conectar()->prepare("SELECT COUNT('id_producto') AS num FROM $tabla");
+		if($consulta -> execute()){
+			return $consulta -> fetch(PDO::FETCH_ASSOC);
+		}
+		$consulta->closeCursor();
+		$consulta->close();
+	}
+
+	// Método que consulta el número de marcas de la BD
+	static public function contarMarcasModelo($tabla){
+
+		$consulta = Conexion::conectar()->prepare("SELECT COUNT('nombre_marca') AS num FROM $tabla");
+		if($consulta -> execute()){
+			return $consulta -> fetch(PDO::FETCH_ASSOC);
+		}
+		$consulta->closeCursor();
+		$consulta->close();
+	}
+
+	// Método que consulta el número de proveedores de la BD
+	static public function contarProveedoresModelo($tabla){
+
+		$consulta = Conexion::conectar()->prepare("SELECT COUNT('id_proveedor') AS num FROM $tabla");
+		if($consulta -> execute()){
+			return $consulta -> fetch(PDO::FETCH_ASSOC);
+		}
+		$consulta->closeCursor();
+		$consulta->close();
+	}
+
+	// Método que consulta el número de categorías de la BD
+	static public function contarCategoriasModelo($tabla){
+
+		$consulta = Conexion::conectar()->prepare("SELECT COUNT('nombre_categoria') AS num FROM $tabla");
+		if($consulta -> execute()){
+			return $consulta -> fetch(PDO::FETCH_ASSOC);
+		}
+		$consulta->closeCursor();
+		$consulta->close();
 	}
 
 }

@@ -88,6 +88,76 @@
 				}
 
 			}
+			else if($enlaces == 'cambiar_celular'){
+
+				if(!empty($_SESSION['usuario'])){
+
+					$contenido = 'vistas/modulos/cambiar_celular.php';
+
+				}
+				else{
+
+					$contenido = "vistas/modulos/confirmar_correo.php";
+
+				}
+
+			}
+			else if($enlaces == 'cambiar_localidad'){
+
+				if(!empty($_SESSION['usuario'])){
+
+					$contenido = 'vistas/modulos/cambiar_localidad.php';
+
+				}
+				else{
+
+					$contenido = "vistas/modulos/confirmar_correo.php";
+
+				}
+
+			}
+			else if($enlaces == 'cambiar_estado'){
+
+				if(!empty($_SESSION['usuario'])){
+
+					$contenido = 'vistas/modulos/cambiar_estado.php';
+
+				}
+				else{
+
+					$contenido = "vistas/modulos/confirmar_correo.php";
+
+				}
+
+			}
+			else if($enlaces == 'cambiar_domicilio'){
+
+				if(!empty($_SESSION['usuario'])){
+
+					$contenido = 'vistas/modulos/cambiar_domicilio.php';
+
+				}
+				else{
+
+					$contenido = "vistas/modulos/confirmar_correo.php";
+
+				}
+
+			}
+			else if($enlaces == 'cambiar_cp'){
+
+				if(!empty($_SESSION['usuario'])){
+
+					$contenido = 'vistas/modulos/cambiar_cp.php';
+
+				}
+				else{
+
+					$contenido = "vistas/modulos/confirmar_correo.php";
+
+				}
+
+			}
 			else if($enlaces == 'olvidada'){
 				$contenido = 'vistas/modulos/olvidada.php';
 			}
@@ -153,6 +223,15 @@
 			}
 			else if($enlaces == 'subearchivo'){
 				$contenido = "vistas/modulos/subearchivo.php";
+			}
+			else if($enlaces == 'ver_pelicula'){
+
+				if(empty($_SESSION['usuario']) && ($_SESSION['tipo'] == 2)){
+					$contenido = "vistas/modulos/pelicula.php";
+				}
+				else{
+					$contenido = "vistas/modulos/confirmar_correo.php";
+				}
 			}
 			else if($enlaces == 'registrar_producto'){
 
@@ -325,6 +404,15 @@
 					$contenido = "vistas/modulos/confirmar_correo.php";
 				}
 			}
+			else if($enlaces == 'editar_producto'){
+
+				if(!empty($_SESSION['usuario']) && ($_SESSION['tipo'] == 1)){
+					$contenido = "vistas/modulos/editar_producto.php";
+				}
+				else{
+					$contenido = "vistas/modulos/confirmar_correo.php";
+				}
+			}
 			else if($enlaces == 'eliminar_producto'){
 
 				if(!empty($_SESSION['usuario']) && ($_SESSION['tipo'] == 1)){
@@ -342,6 +430,34 @@
 				else{
 					$contenido = "vistas/modulos/confirmar_correo.php";
 				}
+			}
+			else if($enlaces == 'pagar'){
+
+				if(!empty($_SESSION['usuario']) && ($_SESSION['tipo'] == 2) && !empty($_SESSION['carrito'])){
+
+					$contenido = 'vistas/modulos/pagar.php';
+
+				}
+				else{
+
+					$contenido = "vistas/modulos/confirmar_correo.php";
+
+				}
+
+			}
+			else if($enlaces == 'buscar'){
+
+				if(!empty($_GET['s'])){
+
+					$contenido = 'vistas/modulos/buscar.php';
+
+				}
+				else{
+
+					$contenido = "vistas/modulos/principal.php";
+
+				}
+
 			}
 			else{
 				$contenido = "vistas/modulos/principal.php";
